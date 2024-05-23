@@ -1,0 +1,70 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #D7B9C2; /* Цвет фона */
+  box-shadow: 0 5px 2px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+.nav-button-container,
+.auth-container {
+  display: flex;
+  gap: 1px; /* Расстояние между кнопками */
+}
+
+/* Стили для кнопок навигации */
+.nav-button {
+  background-color: transparent; /* Прозрачный фон */
+  color: black; /* Цвет текста */
+  padding: 10px 20px; /* Отступы */
+  font-size: 16px; /* Размер шрифта */
+  cursor: pointer; /* Указатель курсора */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Плавный переход */
+  border: none;
+}
+
+.nav-button:hover {
+  /*background-color: #333; !* Цвет фона при наведении *!*/
+  color: #c119c7; /* Цвет текста при наведении */
+}
+
+.nav-button:active {
+  /*background-color: #555; !* Цвет фона при нажатии *!*/
+  color: #c119c7; /* Цвет текста при нажатии */
+}
+
+/* Стили для логотипа */
+.logo-container {
+  flex-grow: 1; /* Расширение контейнера логотипа для центровки */
+  display: flex;
+  justify-content: center;
+}
+
+.logo-img {
+  max-height: 40px; /* Максимальная высота логотипа */
+}
+
+/* Стили для кнопок аутентификации */
+.login-button,
+.sign-in-button {
+  background-color: transparent; /* Прозрачный фон */
+  color: black; /* Цвет текста */
+  padding: 10px 20px; /* Отступы */
+  font-size: 16px; /* Размер шрифта */
+  cursor: pointer; /* Указатель курсора */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Плавный переход */
+  border: none;
+}
+
+.login-button:hover,
+.sign-in-button:hover {
+  /*background-color: #333; !* Цвет фона при наведении *!*/
+  color: #c119c7; /* Цвет текста при наведении */
+}
+
+.login-button:active,
+.sign-in-button:active {
+  /*background-color: #555; !* Цвет фона при нажатии *!*/
+  color: #c119c7; /* Цвет текста при нажатии */
+}
