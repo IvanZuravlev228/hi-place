@@ -1,0 +1,19 @@
+<app-header></app-header>
+<main class="main-service-container">
+  <section class="side-panel">
+    <div class="service-type-item" *ngFor="let serv of typesOfService">
+      <p>
+        <button class="service-type-item-btn" (click)="loadServiceItem(serv)">{{ serv.name }}</button>
+      </p>
+      <div class="service-item-block" *ngIf="!serv.serviceItem || serv.serviceItem.length > 1">
+        <div class="service-item-item" *ngFor="let item of serv.serviceItem">
+          <p><button class="service-item-item-btn">{{ item.name }}</button></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-container">
+
+  </section>
+</main>

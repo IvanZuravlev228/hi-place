@@ -1,0 +1,270 @@
+.main-container {
+}
+
+.preview-container {
+  background-image: url('src/assets/image/main/back-main.png'); /* Установка изображения как задний фон */
+  background-size: cover; /* Масштабирование изображения для покрытия всей области */
+  background-position: center; /* Центрирование изображения */
+  background-repeat: no-repeat; /* Избежание повторения изображения */
+  /*width: 100%; !* Ширина секции *!*/
+  height: 90vh; /* Высота секции, можно изменить по необходимости */
+  display: flex; /* Использование flexbox для выравнивания содержимого */
+  flex-direction: column;
+  /*justify-content: center; !* Горизонтальное выравнивание содержимого *!*/
+  /*align-items: center; !* Вертикальное выравнивание содержимого *!*/
+  color: white; /* Цвет текста для лучшей читаемости на фоне */
+  margin-top: 15px;
+  padding: 20px;
+}
+
+.text-container {
+  width: 50%;
+  height: 110px;
+  font-size: 40px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 100px;
+  margin-bottom: 75px;
+  border-bottom: white 1px solid;
+  font-family: Impact, fantasy;
+  transition: background-color 1s ease;
+}
+
+.text-container:hover {
+  background-color: #D7B9C2;
+  border-radius: 5px;
+}
+
+.client-master-container {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  font-family: Georg, serif;
+}
+
+.client, .master {
+  width: 45%;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 1s ease;
+}
+
+.client:hover, .master:hover {
+  background-color: #D7B9C2;
+}
+
+.empty {
+  width: 10%;
+  font-size: 24px;
+  /*background-color: black;*/
+  /*border-top: white 1px solid;*/
+  /*border-bottom: white 1px solid;*/
+  align-items: center;
+  text-align: center;
+}
+
+.about-service-container {
+  display: flex; /* Устанавливает контейнер как flex-контейнер */
+  flex-direction: column; /* Располагает элементы в колонку */
+  /*justify-content: center; !* Центрирует элементы по вертикали *!*/
+  align-items: center; /* Центрирует элементы по горизонтали */
+  text-align: center; /* Центрирует текст внутри элементов */
+  padding: 20px; /* Отступы внутри контейнера */
+  margin-top: 15px;
+  height: 90vh;
+  /*margin-bottom: 400px;*/
+}
+
+.section-name {
+  font-family: Impact, fantasy;
+  font-weight: normal;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.text-about {
+  width: 700px;
+  font-size: 20px;
+}
+
+.service-item-container {
+  width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+
+.service-item {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(255, 192, 203, 0.7);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.service-item:hover .overlay {
+  background-color: rgba(255, 192, 203, 0.9);
+}
+
+#manicure {
+  background-image: url('src/assets/image/main/manicure-main.jpg');
+}
+
+#haircut {
+  background-image: url('src/assets/image/main/haircut-main.jpg');
+}
+
+#eyebrow {
+  background-image: url('src/assets/image/main/eyebrow-main.jpg');
+}
+
+#makeup {
+  background-image: url('src/assets/image/main/makeup-main.jpg');
+}
+
+#tattoo {
+  background-image: url('src/assets/image/main/tattoo-main.jpg');
+}
+
+#haircut-man {
+  background-image: url('src/assets/image/main/haircut-man-main.jpg');
+}
+
+.more-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.more-button {
+  background: linear-gradient(45deg, #ff6b6b, #ffcc5c, #1dd1a1, #54a0ff);
+  background-size: 400% 400%;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  animation: gradientAnimation 3s ease infinite;
+}
+
+.more-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer h4 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #ff69b4;
+  display: inline-block;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-about p,
+.footer-contact p {
+  margin: 10px 0;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+  color: #ff69b4;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-social a {
+  /*display: inline-block;*/
+  /*margin-right: 10px;*/
+  transition: transform 0.3s;
+}
+
+.footer-social a img {
+  width: 40px;
+  /*height: 30px;*/
+}
+
+.footer-social a:hover {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  margin-top: 20px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+

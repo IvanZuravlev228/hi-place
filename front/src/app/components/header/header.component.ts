@@ -10,7 +10,11 @@ export class HeaderComponent {
   constructor(private router: Router) {
   }
 
-  public goToServicePage() {
-    this.router.navigate(["services"]);
+  public goToAboutUsPage() {
+    this.router.navigate(["about"])
+  }
+
+  public goToHomePage() {
+    this.router.navigate(["home"])
   }
 }
