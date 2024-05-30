@@ -19,4 +19,5 @@ public class UserResponseDto {
     private Boolean atSalon;
     private Integer discountWithPromo = 0;
     private String type;
+    private Double avg;
 }

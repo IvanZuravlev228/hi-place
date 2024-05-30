@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -18,13 +21,22 @@ public class UserController {
     private final RequestResponseMapper<UserRequestDto, UserResponseDto, User> userMapper;
 
     @GetMapping
-    public ResponseEntity<User> getByEmail(@RequestParam String email) {
-        return new ResponseEntity<>(userService.getByEmail(email), HttpStatus.OK);
+    public ResponseEntity<UserResponseDto> getByEmail(@RequestParam String email) {
+        return new ResponseEntity<>(userMapper.toDto(userService.getByEmail(email)),
+                HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Boolean> createNewUser(@RequestBody UserRequestDto newUser) {
         return new ResponseEntity<>(userService.createNewUser(
                 userMapper.toModel(newUser)).getId() > 0, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
+        return new ResponseEntity<>(userService.getAll()
+                .stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList()), HttpStatus.OK);
     }
 }

@@ -596,24 +596,38 @@ BEGIN
 END$$
 
 DELIMITER ;
-drop trigger update_avg_after_rating_insert
-DELIMITER $$
 
-CREATE TRIGGER update_avg_after_rating_insert
-AFTER INSERT ON Rating
-FOR EACH ROW
-BEGIN
-    DECLARE avg_rating DOUBLE;
-    DECLARE user_id BIGINT;
+-- drop trigger update_avg_after_rating_insert
+-- DELIMITER $$
 
-    -- Получаем id пользователя, которому добавлен отзыв
-    SET user_id = NEW.user_id;
+-- CREATE TRIGGER update_avg_after_rating_insert
+-- AFTER INSERT ON Rating
+-- FOR EACH ROW
+-- BEGIN
+--     DECLARE avg_rating DOUBLE;
+--     DECLARE user_id BIGINT;
 
-    -- Вычисляем новое среднее значение
-    SELECT AVG(point) INTO avg_rating FROM Rating WHERE user_id = user_id;
+--     -- Получаем id пользователя, которому добавлен отзыв
+--     SET user_id = NEW.user_id;
 
-    -- Обновляем поле avg в таблице User
-    UPDATE User SET avg = avg_rating WHERE id = user_id;
-END$$
+--     -- Вычисляем новое среднее значение
+--     SELECT AVG(point) INTO avg_rating FROM Rating WHERE user_id = user_id;
 
-DELIMITER ;
+--     -- Обновляем поле avg в таблице User
+--     UPDATE User SET avg = avg_rating WHERE id = user_id;
+-- END$$
+
+-- DELIMITER ;
+
+
+INSERT INTO User (name, email, logourl, experience, phone, tiktok_link, instagram_link, telegram_link, viber_link, home_visit, online_counseling, at_salon, discount_with_promo, type, avg) VALUES
+('User1', 'user1@example.com', 'http://example.com/logo1.png', 5.0, '+38 (095) 332 42 55', '', 'http://instagram.com/user1', 'http://telegram.com/user1', 'http://viber.com/user1', TRUE, FALSE, TRUE, 10, 'SALON', 5),
+('User2', 'user2@example.com', 'http://example.com/logo2.png', 4.5, '+38 (095) 332 42 55', 'http://tiktok.com/user2', '', 'http://telegram.com/user2', 'http://viber.com/user2', FALSE, TRUE, FALSE, 15, 'MASTER', 4.7),
+('User3', 'user3@example.com', 'http://example.com/logo3.png', 3.2, '+38 (095) 332 42 55', 'http://tiktok.com/user3', 'http://instagram.com/user3', '', 'http://viber.com/user3', TRUE, TRUE, TRUE, 5, 'SALON', 4.0),
+('User4', 'user4@example.com', 'http://example.com/logo4.png', 6.1, '+38 (095) 332 42 55', 'http://tiktok.com/user4', 'http://instagram.com/user4', 'http://telegram.com/user4', '', FALSE, FALSE, TRUE, 0, 'MASTER', 4.8),
+('User5', 'user5@example.com', 'http://example.com/logo5.png', 7.0, '+38 (095) 332 42 55', 'http://tiktok.com/user5', 'http://instagram.com/user5', 'http://telegram.com/user5', 'http://viber.com/user5', TRUE, TRUE, FALSE, 20, 'SALON', 4.9),
+('User6', 'user6@example.com', 'http://example.com/logo6.png', 2.3, '+38 (095) 332 42 55', 'http://tiktok.com/user6', 'http://instagram.com/user6', 'http://telegram.com/user6', 'http://viber.com/user6', FALSE, FALSE, FALSE, 10, 'MASTER', 3.8),
+('User7', 'user7@example.com', 'http://example.com/logo7.png', 8.2, '+38 (095) 332 42 55', 'http://tiktok.com/user7', 'http://instagram.com/user7', 'http://telegram.com/user7', 'http://viber.com/user7', TRUE, TRUE, TRUE, 25, 'SALON', 4.6),
+('User8', 'user8@example.com', 'http://example.com/logo8.png', 4.0, '+38 (095) 332 42 55', 'http://tiktok.com/user8', 'http://instagram.com/user8', 'http://telegram.com/user8', 'http://viber.com/user8', FALSE, TRUE, FALSE, 30, 'MASTER', 4.3),
+('User9', 'user9@example.com', 'http://example.com/logo9.png', 1.5, '+38 (095) 332 42 55', 'http://tiktok.com/user9', 'http://instagram.com/user9', 'http://telegram.com/user9', 'http://viber.com/user9', TRUE, FALSE, TRUE, 10, 'SALON', 3.5),
+('User10', 'user10@example.com', 'http://example.com/logo10.png', 5.5, '+38 (095) 332 42 55', 'http://tiktok.com/user10', 'http://instagram.com/user10', 'http://telegram.com/user10', 'http://viber.com/user10', FALSE, TRUE, FALSE, 0, 'MASTER', 4.1);

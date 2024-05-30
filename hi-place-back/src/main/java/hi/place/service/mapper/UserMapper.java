@@ -45,6 +45,7 @@ public class UserMapper implements RequestResponseMapper<UserRequestDto, UserRes
         dto.setAtSalon(model.getAtSalon());
         dto.setDiscountWithPromo(model.getDiscountWithPromo());
         dto.setType(model.getType().toString());
+        dto.setAvg(model.getAvg());
         return dto;
     }
 }
