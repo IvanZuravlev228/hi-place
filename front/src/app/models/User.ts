@@ -16,4 +16,5 @@ export class User {
   discountWithPromo: number = 0;
   type: string = "";
   avg: number = 0;
+  examples: string[] = [];
 }

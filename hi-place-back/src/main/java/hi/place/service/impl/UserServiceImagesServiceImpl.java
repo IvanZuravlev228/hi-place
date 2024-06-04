@@ -14,7 +14,12 @@ public class UserServiceImagesServiceImpl implements UserServiceImagesService {
     private final UserServiceImagesRepository userServiceImagesRepository;
 
     @Override
-    public List<UserServiceImageResponseDto> getByUserAndTypeOfServiceId(Long typeOfServiceId, Long userId) {
+    public List<UserServiceImageResponseDto> getByTypeOfServiceAndUserId(Long typeOfServiceId, Long userId) {
         return userServiceImagesRepository.findUserServiceImageDtosByTypeOfService_IdAndUser_Id(typeOfServiceId, userId);
+    }
+
+    @Override
+    public List<UserServiceImageResponseDto> getByMainTypeOfServiceAndUserId(Long mainTypeOfService, Long userId) {
+        return userServiceImagesRepository.findUserServiceImageDtosByMainTypeOfService_IdAndUser_Id(mainTypeOfService, userId);
     }
 }

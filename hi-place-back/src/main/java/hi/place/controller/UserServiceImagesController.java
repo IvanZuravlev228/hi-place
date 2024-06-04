@@ -1,7 +1,6 @@
 package hi.place.controller;
 
 import hi.place.dto.UserServiceImageResponseDto;
-import hi.place.model.UserServiceImages;
 import hi.place.service.UserServiceImagesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,13 @@ public class UserServiceImagesController {
 
     @GetMapping
     public ResponseEntity<List<UserServiceImageResponseDto>> getImagesByTypeOfServiceAndUserId(@RequestParam Long typeOfServiceId,
-                                                                                     @RequestParam Long userId) {
-        return new ResponseEntity<>(userServiceImagesService.getByUserAndTypeOfServiceId(userId, typeOfServiceId), HttpStatus.OK);
+                                                                                               @RequestParam Long userId) {
+        return new ResponseEntity<>(userServiceImagesService.getByTypeOfServiceAndUserId(typeOfServiceId, userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/main")
+    public ResponseEntity<List<UserServiceImageResponseDto>> getImagesByMainTypeOfServiceAndUserId(@RequestParam Long mainTypeOfServiceId,
+                                                                                                   @RequestParam Long userId) {
+        return new ResponseEntity<>(userServiceImagesService.getByMainTypeOfServiceAndUserId(mainTypeOfServiceId, userId), HttpStatus.OK);
     }
 }

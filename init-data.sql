@@ -1,13 +1,13 @@
 use `hi-place`;
 
-CREATE TABLE IF NOT EXISTS user_service_images (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    type_of_service_id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    path VARCHAR(255) NOT NULL,
-    FOREIGN KEY (type_of_service_id) REFERENCES type_of_service(id),
-    FOREIGN KEY (user_id) REFERENCES user(id)
-);
+-- CREATE TABLE IF NOT EXISTS user_service_images (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     type_of_service_id bigint NOT NULL,
+--     user_id bigint NOT NULL,
+--     path VARCHAR(255) NOT NULL,
+--     FOREIGN KEY (type_of_service_id) REFERENCES type_of_service(id),
+--     FOREIGN KEY (user_id) REFERENCES user(id)
+-- );
 
 INSERT INTO main_type_of_service (name)
 VALUES
@@ -651,9 +651,15 @@ INSERT INTO `hi-place`.`price` (`service_item_id`, `user_id`, `price`, `time_uni
 (29, 10, 1900.0, '60 мин'),
 (30, 10, 1950.0, '60 мин');
 
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/user-logo/user1-3.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/user-logo/user1-2.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/user-logo/user1-1.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '2', 'http://localhost:8080/images/user-logo/user1-4.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '2', 'http://localhost:8080/images/user-logo/user1-5.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '2', 'http://localhost:8080/images/user-logo/user1-6.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-3.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-2.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-1.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-4.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('10', '1', 'http://localhost:8080/images/examples/user1/user1-5.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('10', '1', 'http://localhost:8080/images/examples/user1/user1-6.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '2', 'http://localhost:8080/images/examples/user1/user1-3.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '2', 'http://localhost:8080/images/examples/user1/user1-2.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '3', 'http://localhost:8080/images/examples/user1/user1-1.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '3', 'http://localhost:8080/images/examples/user1/user1-4.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '3', 'http://localhost:8080/images/examples/user1/user1-5.jpg');
+INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '3', 'http://localhost:8080/images/examples/user1/user1-6.jpg');

@@ -6,6 +6,7 @@ import {ServiceItem} from "../../models/ServiceItem";
 import {ServiceItemService} from "../../services/service-item.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/User";
+import {UserImagesService} from "../../services/user-images.service";
 
 @Component({
   selector: 'app-service',
@@ -34,7 +35,8 @@ export class ServiceComponent implements OnInit {
               private router: Router,
               private typeOfServiceService: TypeOfServiceService,
               private serviceItemService: ServiceItemService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private userImagesService: UserImagesService) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -75,9 +77,8 @@ export class ServiceComponent implements OnInit {
     this.userService.getAllUsersByMainTypeOfServiceId(mainTypeId).subscribe({
       next: (users) => {
         this.users = users;
-        this.users.forEach(user => {
-          this.hidePhone(user);
-        });
+        this.users.forEach(user => this.getExampleImagesByMainTypeOfServiceAndUserId(mainTypeId, user.id, user));
+        this.users.forEach(user => this.hidePhone(user));
       },
       error: (error) => {
         console.log(error);
@@ -98,10 +99,35 @@ export class ServiceComponent implements OnInit {
   }
 
   public getAllUsersByTypeOfServiceId(typeOfServiceId: number) {
-    this.userService.getAllUsersByMainTypeOfServiceId(typeOfServiceId).subscribe({
+    this.userService.getAllUsersByTypeOfServiceId(typeOfServiceId).subscribe({
       next: (users) => {
         this.users = users;
+        this.users.forEach(user => this.getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId, user.id, user));
         this.users.forEach(user => this.hidePhone(user));
+        console.log(this.users);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  private getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId: number, userId: number, user: User) {
+    this.userImagesService.getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId, userId).subscribe({
+      next: (userServiceImages) => {
+        console.log(userServiceImages);
+        user.examples = userServiceImages.map(response => response.path);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  private getExampleImagesByMainTypeOfServiceAndUserId(mainTypeOfServiceId: number, userId: number, user: User) {
+    this.userImagesService.getExampleImagesByMainTypeOfServiceAndUserId(mainTypeOfServiceId, userId).subscribe({
+      next: (userServiceImages) => {
+        user.examples = userServiceImages.map(response => response.path);
       },
       error: (error) => {
         console.log(error);
@@ -150,8 +176,7 @@ export class ServiceComponent implements OnInit {
     user.hiddenPhone = user.phone;
   }
 
-
-  goToUserPricePage(id: number) {
+  public goToUserPricePage(id: number) {
     this.router.navigate(["/services/user/price"], {
       queryParams: {
         userId: id
