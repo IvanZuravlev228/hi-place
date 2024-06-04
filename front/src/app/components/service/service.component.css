@@ -78,6 +78,9 @@
 }
 
 #user-logo {
+  border: 1px red solid;
+  padding: 5px;
+
   border-radius: 100px;
   width: 150px;
   height: 150px;
@@ -143,6 +146,7 @@
   color: #ff6510;
   border-radius: 5px;
   background-color: #ffffff;
+  margin-bottom: 10px;
 }
 
 .discount {
@@ -158,16 +162,20 @@
   width: 100%; /* Ширина контейнера */
   overflow-x: auto; /* Горизонтальная прокрутка */
   white-space: nowrap; /* Отключение переноса строк */
+  margin-bottom: 10px;
 }
 
 .scroll-container {
   display: inline-block; /* Внутренний контейнер для прокрутки */
+  align-items: center;
 }
 
 .scroll-container img {
-  max-width: 100px; /* Ширина изображения */
+  width: 175px; /* Максимальная ширина изображения */
+  height: 200px; /* Фиксированная высота изображения */
   margin-right: 15px; /* Отступ между изображениями */
   display: inline-block; /* Отображение изображений в линию */
+  object-fit: cover;
 }
 
 .show-user-container {

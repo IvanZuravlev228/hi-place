@@ -34,4 +34,19 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() {
         return userRepository.findAll();
     }
+
+    @Override
+    public List<User> getAllByMainTypeOfServiceId(Long mainTypeOfServiceId) {
+        return userRepository.findUsersByMainTypeOfServiceId(mainTypeOfServiceId);
+    }
+
+    @Override
+    public List<User> getAllByTypeOfServiceId(Long typeOfServiceId) {
+        return userRepository.findUsersByTypeOfServiceId(typeOfServiceId);
+    }
+
+    @Override
+    public List<User> getAllByServiceItemId(Long serviceItemId) {
+        return userRepository.findUsersByServiceItemId(serviceItemId);
+    }
 }

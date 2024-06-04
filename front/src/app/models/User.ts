@@ -1,4 +1,5 @@
 export class User {
+  id: number = 0;
   name: string = "";
   email: string = "";
   logoURL: string = "";
@@ -15,5 +16,4 @@ export class User {
   discountWithPromo: number = 0;
   type: string = "";
   avg: number = 0;
-
 }

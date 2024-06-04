@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TypeOfServiceService} from "../../services/type-of-service.service";
 import {TypeOfService} from "../../models/TypeOfService";
 import {ServiceItem} from "../../models/ServiceItem";
@@ -31,6 +31,7 @@ export class ServiceComponent implements OnInit {
   ];
 
   constructor(private activatedRoute: ActivatedRoute,
+              private router: Router,
               private typeOfServiceService: TypeOfServiceService,
               private serviceItemService: ServiceItemService,
               private userService: UserService) { }
@@ -43,7 +44,7 @@ export class ServiceComponent implements OnInit {
 
     console.log(this.mainTypeId);
 
-    this.getAllUsers();
+    this.getAllUsersByMainTypeOfServiceId(this.mainTypeId);
   }
 
   private getAllTypeOfMainService(mainTypeId: number) {
@@ -58,10 +59,11 @@ export class ServiceComponent implements OnInit {
   }
 
   public loadServiceItem(serv: TypeOfService) {
+    this.getAllUsersByTypeOfServiceId(serv.id);
+
     this.serviceItemService.getAllServiceItemsByTypeId(serv.id).subscribe({
       next: (serviceItems) => {
         serv.serviceItem = serviceItems;
-        console.log(serviceItems);
       },
       error: (error) => {
         console.log(error)
@@ -69,11 +71,10 @@ export class ServiceComponent implements OnInit {
     })
   }
 
-  public getAllUsers() {
-    this.userService.getAllUsers().subscribe({
+  public getAllUsersByMainTypeOfServiceId(mainTypeId: number) {
+    this.userService.getAllUsersByMainTypeOfServiceId(mainTypeId).subscribe({
       next: (users) => {
         this.users = users;
-        console.log(users);
         this.users.forEach(user => {
           this.hidePhone(user);
         });
@@ -84,7 +85,31 @@ export class ServiceComponent implements OnInit {
     })
   }
 
-  getStars(rating: number): string[] {
+  public getUsersByServiceItemId(serviceItemId: number) {
+    this.userService.getUsersByServiceItemId(serviceItemId).subscribe({
+      next: (users) => {
+        this.users = users;
+        this.users.forEach(user => this.hidePhone(user));
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  public getAllUsersByTypeOfServiceId(typeOfServiceId: number) {
+    this.userService.getAllUsersByMainTypeOfServiceId(typeOfServiceId).subscribe({
+      next: (users) => {
+        this.users = users;
+        this.users.forEach(user => this.hidePhone(user));
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  public getStars(rating: number): string[] {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
@@ -98,12 +123,11 @@ export class ServiceComponent implements OnInit {
     return stars;
   }
 
-  hidePhone(user: User) {
+  public hidePhone(user: User) {
     user.hiddenPhone = this.formatPhone(user.phone);
-    console.log(user.hiddenPhone);
   }
 
-  formatPhone(phone: string): string {
+  private formatPhone(phone: string): string {
     // +38 (095) 332 42 55
     // Регулярное выражение для выделения частей номера телефона
     const regex = /(\+\d{2})\s\((\d{3})\)\s(\d{3})\s(\d{2})\s(\d{2})/;
@@ -122,7 +146,16 @@ export class ServiceComponent implements OnInit {
     return phone;
   }
 
-  revealPhone(user: User): void {
+  public revealPhone(user: User): void {
     user.hiddenPhone = user.phone;
+  }
+
+
+  goToUserPricePage(id: number) {
+    this.router.navigate(["/services/user/price"], {
+      queryParams: {
+        userId: id
+      }
+    })
   }
 }

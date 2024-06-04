@@ -12,7 +12,7 @@
       </p>
       <div class="service-item-block" *ngIf="!serv.serviceItem || serv.serviceItem.length > 1">
         <div class="service-item-item" *ngFor="let item of serv.serviceItem">
-          <p><button class="service-item-item-btn">{{ item.name }}</button></p>
+          <p><button class="service-item-item-btn" (click)="getUsersByServiceItemId(item.id)">{{ item.name }}</button></p>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@
             <img *ngFor="let image of images" [src]="image" alt="example image">          </div>
         </div>
         <div class="show-user-container">
-          <button class="show-user-btn">Переглянути прайс</button>
+          <button class="show-user-btn" (click)="goToUserPricePage(user.id)">Переглянути прайс</button>
         </div>
       </div>
     </div>

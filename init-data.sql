@@ -1,5 +1,14 @@
 use `hi-place`;
 
+CREATE TABLE user_service_images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type_of_service_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    path VARCHAR(255) NOT NULL,
+    FOREIGN KEY (type_of_service_id) REFERENCES type_of_service(id),
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
 INSERT INTO main_type_of_service (name)
 VALUES
     ('Догляд за обличчям'),
@@ -597,37 +606,48 @@ END$$
 
 DELIMITER ;
 
--- drop trigger update_avg_after_rating_insert
--- DELIMITER $$
-
--- CREATE TRIGGER update_avg_after_rating_insert
--- AFTER INSERT ON Rating
--- FOR EACH ROW
--- BEGIN
---     DECLARE avg_rating DOUBLE;
---     DECLARE user_id BIGINT;
-
---     -- Получаем id пользователя, которому добавлен отзыв
---     SET user_id = NEW.user_id;
-
---     -- Вычисляем новое среднее значение
---     SELECT AVG(point) INTO avg_rating FROM Rating WHERE user_id = user_id;
-
---     -- Обновляем поле avg в таблице User
---     UPDATE User SET avg = avg_rating WHERE id = user_id;
--- END$$
-
--- DELIMITER ;
-
-
 INSERT INTO User (name, email, logourl, experience, phone, tiktok_link, instagram_link, telegram_link, viber_link, home_visit, online_counseling, at_salon, discount_with_promo, type, avg) VALUES
-('User1', 'user1@example.com', 'http://example.com/logo1.png', 5.0, '+38 (095) 332 42 55', '', 'http://instagram.com/user1', 'http://telegram.com/user1', 'http://viber.com/user1', TRUE, FALSE, TRUE, 10, 'SALON', 5),
-('User2', 'user2@example.com', 'http://example.com/logo2.png', 4.5, '+38 (095) 332 42 55', 'http://tiktok.com/user2', '', 'http://telegram.com/user2', 'http://viber.com/user2', FALSE, TRUE, FALSE, 15, 'MASTER', 4.7),
-('User3', 'user3@example.com', 'http://example.com/logo3.png', 3.2, '+38 (095) 332 42 55', 'http://tiktok.com/user3', 'http://instagram.com/user3', '', 'http://viber.com/user3', TRUE, TRUE, TRUE, 5, 'SALON', 4.0),
-('User4', 'user4@example.com', 'http://example.com/logo4.png', 6.1, '+38 (095) 332 42 55', 'http://tiktok.com/user4', 'http://instagram.com/user4', 'http://telegram.com/user4', '', FALSE, FALSE, TRUE, 0, 'MASTER', 4.8),
-('User5', 'user5@example.com', 'http://example.com/logo5.png', 7.0, '+38 (095) 332 42 55', 'http://tiktok.com/user5', 'http://instagram.com/user5', 'http://telegram.com/user5', 'http://viber.com/user5', TRUE, TRUE, FALSE, 20, 'SALON', 4.9),
-('User6', 'user6@example.com', 'http://example.com/logo6.png', 2.3, '+38 (095) 332 42 55', 'http://tiktok.com/user6', 'http://instagram.com/user6', 'http://telegram.com/user6', 'http://viber.com/user6', FALSE, FALSE, FALSE, 10, 'MASTER', 3.8),
-('User7', 'user7@example.com', 'http://example.com/logo7.png', 8.2, '+38 (095) 332 42 55', 'http://tiktok.com/user7', 'http://instagram.com/user7', 'http://telegram.com/user7', 'http://viber.com/user7', TRUE, TRUE, TRUE, 25, 'SALON', 4.6),
-('User8', 'user8@example.com', 'http://example.com/logo8.png', 4.0, '+38 (095) 332 42 55', 'http://tiktok.com/user8', 'http://instagram.com/user8', 'http://telegram.com/user8', 'http://viber.com/user8', FALSE, TRUE, FALSE, 30, 'MASTER', 4.3),
-('User9', 'user9@example.com', 'http://example.com/logo9.png', 1.5, '+38 (095) 332 42 55', 'http://tiktok.com/user9', 'http://instagram.com/user9', 'http://telegram.com/user9', 'http://viber.com/user9', TRUE, FALSE, TRUE, 10, 'SALON', 3.5),
-('User10', 'user10@example.com', 'http://example.com/logo10.png', 5.5, '+38 (095) 332 42 55', 'http://tiktok.com/user10', 'http://instagram.com/user10', 'http://telegram.com/user10', 'http://viber.com/user10', FALSE, TRUE, FALSE, 0, 'MASTER', 4.1);
+('User1', 'user1@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 5.0, '+38 (095) 332 42 55', '', 'http://instagram.com/user1', 'http://telegram.com/user1', 'http://viber.com/user1', TRUE, FALSE, TRUE, 10, 'SALON', 5),
+('User2', 'user2@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 4.5, '+38 (095) 332 42 55', 'http://tiktok.com/user2', '', 'http://telegram.com/user2', 'http://viber.com/user2', FALSE, TRUE, FALSE, 15, 'MASTER', 4.7),
+('User3', 'user3@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 3.2, '+38 (095) 332 42 55', 'http://tiktok.com/user3', 'http://instagram.com/user3', '', 'http://viber.com/user3', TRUE, TRUE, TRUE, 5, 'SALON', 4.0),
+('User4', 'user4@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 6.1, '+38 (095) 332 42 55', 'http://tiktok.com/user4', 'http://instagram.com/user4', 'http://telegram.com/user4', '', FALSE, FALSE, TRUE, 0, 'MASTER', 4.8),
+('User5', 'user5@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 7.0, '+38 (095) 332 42 55', 'http://tiktok.com/user5', 'http://instagram.com/user5', 'http://telegram.com/user5', 'http://viber.com/user5', TRUE, TRUE, FALSE, 20, 'SALON', 4.9),
+('User6', 'user6@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 2.3, '+38 (095) 332 42 55', 'http://tiktok.com/user6', 'http://instagram.com/user6', 'http://telegram.com/user6', 'http://viber.com/user6', FALSE, FALSE, FALSE, 10, 'MASTER', 3.8),
+('User7', 'user7@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 8.2, '+38 (095) 332 42 55', 'http://tiktok.com/user7', 'http://instagram.com/user7', 'http://telegram.com/user7', 'http://viber.com/user7', TRUE, TRUE, TRUE, 25, 'SALON', 4.6),
+('User8', 'user8@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 4.0, '+38 (095) 332 42 55', 'http://tiktok.com/user8', 'http://instagram.com/user8', 'http://telegram.com/user8', 'http://viber.com/user8', FALSE, TRUE, FALSE, 30, 'MASTER', 4.3),
+('User9', 'user9@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 1.5, '+38 (095) 332 42 55', 'http://tiktok.com/user9', 'http://instagram.com/user9', 'http://telegram.com/user9', 'http://viber.com/user9', TRUE, FALSE, TRUE, 10, 'SALON', 3.5),
+('User10', 'user10@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 5.5, '+38 (095) 332 42 55', 'http://tiktok.com/user10', 'http://instagram.com/user10', 'http://telegram.com/user10', 'http://viber.com/user10', FALSE, TRUE, FALSE, 0, 'MASTER', 4.1);
+
+
+INSERT INTO `hi-place`.`price` (`service_item_id`, `user_id`, `price`, `time_unit`) VALUES 
+(1, 1, 500.0, '60 мин'),
+(2, 1, 550.0, '60 мин'),
+(3, 1, 600.0, '60 мин'),
+(4, 2, 650.0, '60 мин'),
+(5, 2, 700.0, '60 мин'),
+(6, 2, 750.0, '60 мин'),
+(7, 3, 800.0, '60 мин'),
+(8, 3, 850.0, '60 мин'),
+(9, 3, 900.0, '60 мин'),
+(10, 4, 950.0, '60 мин'),
+(11, 4, 1000.0, '60 мин'),
+(12, 4, 1050.0, '60 мин'),
+(13, 5, 1100.0, '60 мин'),
+(14, 5, 1150.0, '60 мин'),
+(15, 5, 1200.0, '60 мин'),
+(16, 6, 1250.0, '60 мин'),
+(17, 6, 1300.0, '60 мин'),
+(18, 6, 1350.0, '60 мин'),
+(19, 7, 1400.0, '60 мин'),
+(20, 7, 1450.0, '60 мин'),
+(21, 7, 1500.0, '60 мин'),
+(22, 8, 1550.0, '60 мин'),
+(23, 8, 1600.0, '60 мин'),
+(24, 8, 1650.0, '60 мин'),
+(25, 9, 1700.0, '60 мин'),
+(26, 9, 1750.0, '60 мин'),
+(27, 9, 1800.0, '60 мин'),
+(28, 10, 1850.0, '60 мин'),
+(29, 10, 1900.0, '60 мин'),
+(30, 10, 1950.0, '60 мин');
+
