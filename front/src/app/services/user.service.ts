@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environment/environment";
 import {User} from "../models/User";
+import {UserRequest} from "../models/UserRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,16 @@ export class UserService {
       },
       params: {
         serviceItemId: serviceItemId.toString()
+      }
+    })
+  }
+
+  public createUser(user: UserRequest) {
+    const userJSON = JSON.stringify(user);
+    return this.http.post<User>(environment.backendURL + "/user", userJSON, {
+      headers: {
+        "Content-Type": "application/json",
+        // "Authorization": "Bearer " + this.cookie.get("jwt-token")
       }
     })
   }

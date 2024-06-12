@@ -2,6 +2,7 @@ package hi.place.controller;
 
 import hi.place.dto.user.UserRequestDto;
 import hi.place.dto.user.UserResponseDto;
+import hi.place.exception.EmailAlreadyExistsException;
 import hi.place.model.user.User;
 import hi.place.service.UserService;
 import hi.place.service.mapper.RequestResponseMapper;
@@ -27,9 +28,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Boolean> createNewUser(@RequestBody UserRequestDto newUser) {
-        return new ResponseEntity<>(userService.createNewUser(
-                userMapper.toModel(newUser)).getId() > 0, HttpStatus.CREATED);
+    public ResponseEntity<UserResponseDto> createNewUser(@RequestBody UserRequestDto newUser) {
+        return new ResponseEntity<>(userMapper.toDto(userService.createNewUser(
+                userMapper.toModel(newUser))), HttpStatus.CREATED);
     }
 
     @GetMapping("/all")

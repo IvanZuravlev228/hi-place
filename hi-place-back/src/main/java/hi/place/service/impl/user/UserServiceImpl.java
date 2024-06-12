@@ -1,9 +1,11 @@
 package hi.place.service.impl.user;
 
+import hi.place.exception.EmailAlreadyExistsException;
 import hi.place.model.user.User;
 import hi.place.repository.user.UserRepository;
 import hi.place.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +17,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createNewUser(User user) {
-        return userRepository.save(user);
+        try {
+            return userRepository.save(user);
+        } catch (DataIntegrityViolationException e) {
+            throw new EmailAlreadyExistsException("Email already exists");
+        }
     }
 
     @Override
@@ -48,5 +54,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllByServiceItemId(Long serviceItemId) {
         return userRepository.findUsersByServiceItemId(serviceItemId);
+    }
+
+    @Override
+    public void addLogoUrlToUser(String logoUrl, Long userId) {
+        userRepository.addLogoUrlToUser(logoUrl, userId);
     }
 }

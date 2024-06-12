@@ -1,0 +1,10 @@
+<!-- address-autocomplete.component.html -->
+<div class="form-group">
+  <label for="address">Address:</label>
+  <input type="text" class="form-control" id="address" [(ngModel)]="query" (ngModelChange)="onQueryChange()">
+  <ul *ngIf="addresses.length > 0" class="list-group">
+    <li *ngFor="let address of addresses" (click)="selectAddress(address)" class="list-group-item">
+      {{ address.display_name }}
+    </li>
+  </ul>
+</div>

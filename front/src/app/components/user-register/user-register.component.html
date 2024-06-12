@@ -1,0 +1,121 @@
+<app-header></app-header>
+
+<app-address></app-address>
+
+<main class="main-container-create">
+  <section class="create-user-section">
+    <div>
+      <h1>Create User</h1>
+      <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div>
+          <input type="file" (change)="selectFile($event)">
+          <div class="incorrectInputData">
+            <p>{{ messageAboutFile }}</p>
+          </div>
+        </div>
+
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" [(ngModel)]="createUserRequest.name" name="name" required>
+          <div class="incorrectInputData" *ngIf="!createUserRequest.name">
+            Обязательное поле
+          </div>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" [(ngModel)]="createUserRequest.email" name="email" required>
+          <div class="incorrectInputData" *ngIf="!isEmailCorrect">
+            Почта не корректная
+          </div>
+          <div class="incorrectInputData" *ngIf="!createUserRequest.email">
+            Обязательное поле
+          </div>
+        </div>
+
+        <div>
+          <label for="phone">Phone:</label>
+          <p id="hint-phone-number">На приклад: +38(099) 999 99 99</p>
+          <input type="tel"
+                 id="phone" [(ngModel)]="createUserRequest.phone"
+                 name="phone"
+                 required>
+          <div class="incorrectInputData" *ngIf="!isCorrectPhoneNumber">
+            Номер телефона не корректный
+          </div>
+          <div class="incorrectInputData" *ngIf="!createUserRequest.phone">
+            Обязательное поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="type" class="form-label">Type:</label>
+          <select id="type" [(ngModel)]="createUserRequest.type" name="type" class="form-control" required>
+            <option value="SALON">Салон красоты</option>
+            <option value="MASTER">Мастер</option>
+          </select>
+        </div>
+        <div class="incorrectInputData" *ngIf="!createUserRequest.type">
+          Обязательное поле
+        </div>
+
+        <div>
+          <label for="experience">Experience:</label>
+          <input type="number" id="experience" [(ngModel)]="createUserRequest.experience" name="experience" step="0.1">
+        </div>
+
+        <div>
+          <button class="show-links-btn" (click)="showLinks = !showLinks">
+            {{ showLinks ? 'Скрыть соц сети' : 'Добавить соц сети' }}
+          </button>
+        </div>
+
+        <div *ngIf="showLinks" @fadeInOut>
+
+          <div>
+            <label for="tiktokLink">TikTok Link:</label>
+            <input type="url" id="tiktokLink" [(ngModel)]="createUserRequest.tiktokLink" name="tiktokLink">
+          </div>
+          <div>
+            <label for="instagramLink">Instagram Link:</label>
+            <input type="url" id="instagramLink" [(ngModel)]="createUserRequest.instagramLink" name="instagramLink">
+          </div>
+          <div>
+            <label for="telegramLink">Telegram Link:</label>
+            <input type="url" id="telegramLink" [(ngModel)]="createUserRequest.telegramLink" name="telegramLink">
+          </div>
+          <div>
+            <label for="viberLink">Viber Link:</label>
+            <input type="url" id="viberLink" [(ngModel)]="createUserRequest.viberLink" name="viberLink">
+          </div>
+
+        </div>
+
+        <div class="checkbox-container">
+          <label for="homeVisit" class="checkbox-label">Home Visit:</label>
+          <input type="checkbox" id="homeVisit" [(ngModel)]="createUserRequest.homeVisit" name="homeVisit" class="checkbox-input">
+        </div>
+        <div class="checkbox-container">
+          <label for="homeVisit" class="checkbox-label">Online Counseling:</label>
+          <input type="checkbox" id="onlineCounseling" [(ngModel)]="createUserRequest.onlineCounseling" name="onlineCounseling" class="checkbox-input">
+        </div>
+        <div class="checkbox-container" *ngIf="createUserRequest.type === 'MASTER'">
+          <label for="homeVisit" class="checkbox-label">At Salon:</label>
+          <input type="checkbox" id="atSalon" [(ngModel)]="createUserRequest.atSalon" name="atSalon" class="checkbox-input">
+        </div>
+
+        <div>
+          <label for="discountWithPromo">Discount With Promo:</label>
+          <input type="number" id="discountWithPromo" [(ngModel)]="createUserRequest.discountWithPromo" name="discountWithPromo" value="0">
+        </div>
+
+
+
+
+        <button type="submit">Create User</button>
+      </form>
+    </div>
+
+  </section>
+</main>
+
+<app-footer></app-footer>
