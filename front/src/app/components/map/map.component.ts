@@ -1,0 +1,64 @@
+import {Component, Input} from '@angular/core';
+import * as L from 'leaflet';
+
+@Component({
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
+})
+export class MapComponent {
+  private map!: L.Map;
+  @Input() lat: number = 50.40287;
+  @Input() lon: number = 30.51542;
+  private zoom: number = 20;
+  private iconSize: number = 40;
+  private pathToMapPointerImage: string = "./assets/image/icons/map-pointer.png";
+  private sizeMap: string = "100%";
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.initMap();
+  }
+
+  private initMap(): void {
+    this.map = L.map('map').setView([this.lat, this.lon], this.zoom);
+    this.map.getContainer().style.width = this.sizeMap;
+    this.map.getContainer().style.height = this.sizeMap;
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> HiPlace'
+    }).addTo(this.map);
+
+    const customIcon = L.icon({
+      iconUrl: this.pathToMapPointerImage,
+      iconSize: [this.iconSize, this.iconSize], // размер иконки
+      // iconAnchor: [16, 32], // точка якоря иконки
+      // popupAnchor: [0, -32] // смещение всплывающего окна относительно иконки
+    });
+
+    L.marker([this.lat, this.lon], ).addTo(this.map)
+      .setIcon(customIcon)
+      .openPopup();
+
+    // CUSTOM MAP POINTER
+    // const popupContent = `
+    //     <h3>Title</h3>
+    //     <p>Additional information</p>
+    // `;
+    //
+    // const tooltipContent = 'Tooltip text';
+    // const marker = L.marker([this.lat, this.lon], ).addTo(this.map)
+    //   .setIcon(customIcon)
+    //   .bindTooltip(tooltipContent)
+    //   .bindPopup(popupContent)
+    //   .openPopup();
+    // marker.on('click', () => {
+    //   console.log('Marker clicked');
+    // });
+    //
+    // marker.on('mouseover', () => {
+    //   marker.openPopup();
+    // });
+  }
+}

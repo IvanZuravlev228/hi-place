@@ -14,6 +14,7 @@ import { UserRegisterComponent } from './components/user-register/user-register.
 import { FooterComponent } from './components/footer/footer.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AddressComponent } from './components/address/address.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AddressComponent } from './components/address/address.component';
     UserRegisterComponent,
     FooterComponent,
     AddressComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,

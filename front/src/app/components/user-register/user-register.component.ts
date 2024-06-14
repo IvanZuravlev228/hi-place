@@ -4,6 +4,9 @@ import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {UploadFileService} from "../../services/upload-file.service";
 import {UserService} from "../../services/user.service";
 import {fadeInOutAnimation} from "./animation";
+import {Address} from "../../models/Address";
+import {AddressService} from "../../services/address.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-register',
@@ -16,52 +19,71 @@ export class UserRegisterComponent {
 
   selectedFiles?: FileList;
   messageAboutFile = '';
-  messageAboutEmail: string = "Обязательное поле";
+  messageAboutEmail: string = "Обов'язкове поле";
 
   isCorrectPhoneNumber: boolean = true;
-  isSuccessfullyUploadedUserLogo: boolean = true;
+  isSuccessfullyUploadedUserLogo: boolean = false;
+  isSuccessfullySavedNewAddress: boolean = false;
+  isLoading: boolean = false;
   isEmailCorrect: boolean = true;
-  showLinks = false;
+  isAddressCorrect: boolean = false;
+
+  showLinks: boolean = false;
+  showAddress: boolean = false;
+
+  public receivedAddresses: Address[] | null = null;
 
   constructor(private uploadService: UploadFileService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private addressService: AddressService,
+              private router: Router) { }
 
   public onSubmit() {
     if (!this.checkCorrectInputLogoFile()) {
-      this.messageAboutFile = "Максимальный размер файла 10 МБ";
+      this.messageAboutFile = "Максимальний розмір файлу 10 МБ";
       return;
     }
 
     if (!this.checkEmail(this.createUserRequest.email)) {
-      this.isEmailCorrect = false;
+      // this.isEmailCorrect = false;
       return;
     }
-
     this.isEmailCorrect = true;
-    if(!this.checkPhoneNumber(this.createUserRequest.phone)) {
-      console.log("Phone number is not correct");
+
+    if (!this.checkPhoneNumber(this.createUserRequest.phone)) {
       this.isCorrectPhoneNumber = false
       return;
     }
-    console.log("Phone number IS correct");
-
     this.isCorrectPhoneNumber = true;
 
+    if (!this.checkAddressCorrect()) {
+      this.isAddressCorrect = true;
+      return;
+    }
+    this.isAddressCorrect = false;
+
+    this.isLoading = true;
     console.log("sending request for new user...");
     this.createUser(this.createUserRequest);
-
   }
 
   public createUser(user: UserRequest) {
     this.userService.createUser(user).subscribe({
       next: (newUser) => {
         this.uploadUserLogoFile(newUser.id);
+
+        if (this.receivedAddresses) {
+          this.receivedAddresses.forEach(address => {
+            address.userId = newUser.id;
+            this.saveNewAddress(address);
+          });
+        }
       },
       error: (error) => {
         console.log(error);
-        console.log(error.status);
         if (error.status === 409) {
-          this.messageAboutEmail = "Пользователь с такой почтой уже существует";
+          this.isLoading = false;
+          this.messageAboutEmail = "Користувач із такою поштою вже існує";
         }
       }
     })
@@ -85,6 +107,7 @@ export class UserRegisterComponent {
               this.messageAboutFile = event.body;
             }
             this.isSuccessfullyUploadedUserLogo = true;
+            this.checkLoading();
           },
           error: (error) => {
             console.log(error);
@@ -95,6 +118,23 @@ export class UserRegisterComponent {
     }
   }
 
+  public onAddressSelected(addresses: Address[]) {
+    this.receivedAddresses = addresses;
+  }
+
+  private saveNewAddress(address: Address) {
+    this.addressService.saveNewAddress(address).subscribe({
+      next: (address) => {
+        this.isSuccessfullySavedNewAddress = true;
+        this.checkLoading();
+      },
+      error: (error) => {
+        console.log(error);
+        this.isSuccessfullySavedNewAddress = false;
+      }
+    })
+  }
+
   private checkPhoneNumber(input: string): boolean {
     const phoneNumberPattern: RegExp = /^[\+]?3?[\s]?8?[\s]?\(?0\d{2}?\)?[\s]?\d{3}[\s|-]?\d{2}[\s|-]?\d{2}$/;
     return phoneNumberPattern.test(input);
@@ -102,6 +142,8 @@ export class UserRegisterComponent {
 
   private checkEmail(input: string): boolean {
     const emailPattern: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    console.log("========== incorrect ==========");
+    this.messageAboutEmail = "Пошта некоректна"
     return emailPattern.test(input);
   }
 
@@ -110,10 +152,24 @@ export class UserRegisterComponent {
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
       if (file && file.size / (1024 * 1024) < 10) {
-        console.log(file.size / (1024 * 1024));
         return true;
       }
     }
     return false;
+  }
+
+  private checkAddressCorrect(): boolean {
+    if (!this.receivedAddresses) {
+      this.isSuccessfullySavedNewAddress = true;
+    }
+    return !!(this.receivedAddresses || this.createUserRequest.homeVisit);
+  }
+
+  private checkLoading() {
+    if (this.isSuccessfullyUploadedUserLogo && this.isSuccessfullySavedNewAddress) {
+      this.isLoading = false;
+      // this.routter.....
+      this.router.navigate(["/"])
+    }
   }
 }

@@ -1,14 +1,9 @@
-package hi.place.model.address;
+package hi.place.dto.address;
 
-import hi.place.model.user.User;
-import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
 @Data
-public class Address {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+public class AddressResponseDto {
     private Long id;
     private String country;
     private String city;
@@ -18,6 +13,4 @@ public class Address {
     private String suburb;
     private Double lat;
     private Double lon;
-    @ManyToOne
-    private User user;
 }

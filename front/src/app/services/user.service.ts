@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../environment/environment";
 import {User} from "../models/User";
 import {UserRequest} from "../models/UserRequest";
@@ -34,14 +34,13 @@ export class UserService {
   }
 
   public getUsersByServiceItemId(serviceItemId: number) {
-    return this.http.get<User[]>(environment.backendURL + "/user/service-item", {
-      headers: {
+    const params = new HttpParams().set("serviceItemId", serviceItemId.toString())
+    const headers = new HttpHeaders({
+      // 'Content-Type': 'application/json',
+      // 'Authorization': 'Bearer ' + localStorage.getItem('token') // Пример добавления заголовка авторизации
+    });
 
-      },
-      params: {
-        serviceItemId: serviceItemId.toString()
-      }
-    })
+    return this.http.get<User[]>(environment.backendURL + "/user/service-item", { params, headers })
   }
 
   public createUser(user: UserRequest) {
