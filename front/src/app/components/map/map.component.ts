@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
@@ -6,23 +6,42 @@ import * as L from 'leaflet';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent {
+export class MapComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   private map!: L.Map;
-  @Input() lat: number = 50.40287;
-  @Input() lon: number = 30.51542;
+  @Input() lat: number = 0;
+  @Input() lon: number = 0;
   private zoom: number = 20;
   private iconSize: number = 40;
   private pathToMapPointerImage: string = "./assets/image/icons/map-pointer.png";
   private sizeMap: string = "100%";
 
-  constructor() { }
+  constructor() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.updateMap();
+  }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
     this.initMap();
   }
 
+  ngOnDestroy(): void {
+    if (this.map) {
+      this.map.remove();
+    }
+  }
+
   private initMap(): void {
+    this.renderMap();
+  }
+
+  private renderMap() {
     this.map = L.map('map').setView([this.lat, this.lon], this.zoom);
+    console.log('Map initialized:', this.map);
     this.map.getContainer().style.width = this.sizeMap;
     this.map.getContainer().style.height = this.sizeMap;
 
@@ -60,5 +79,12 @@ export class MapComponent {
     // marker.on('mouseover', () => {
     //   marker.openPopup();
     // });
+  }
+
+  private updateMap(): void {
+    if (this.map) {
+      this.map.remove();
+      this.renderMap();
+    }
   }
 }

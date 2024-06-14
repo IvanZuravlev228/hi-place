@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/address")
 @RequiredArgsConstructor
@@ -26,5 +29,13 @@ public class AddressController {
     @GetMapping("/{id}")
     public ResponseEntity<AddressResponseDto> getAddressById(@PathVariable Long id) {
         return new ResponseEntity<>(addressMapper.toDto(addressService.getById(id)), HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<AddressResponseDto>> getAllByUserId(@PathVariable Long userId) {
+        return new ResponseEntity<>(addressService.getByUserId(userId)
+                .stream()
+                .map(addressMapper::toDto)
+                .collect(Collectors.toList()), HttpStatus.OK);
     }
 }

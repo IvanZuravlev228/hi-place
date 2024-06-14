@@ -20,9 +20,9 @@ public class PriceController {
     private final PriceService priceService;
     private final RequestResponseMapper<PriceRequestDto, PriceResponseDto, Price> priceMapper;
 
-    @GetMapping
-    public ResponseEntity<List<PriceResponseDto>> getAllByUser(@RequestParam String userEmail) {
-        return new ResponseEntity<>(priceService.getAllByUser(userEmail)
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<PriceResponseDto>> getAllByUser(@PathVariable Long userId) {
+        return new ResponseEntity<>(priceService.getAllByUserId(userId)
                 .stream()
                 .map(priceMapper::toDto)
                 .collect(Collectors.toList()), HttpStatus.OK);

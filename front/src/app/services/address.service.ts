@@ -8,9 +8,7 @@ import {environment} from "../../environment/environment";
   providedIn: 'root'
 })
 export class AddressService {
-
   private apiUrl: string = 'https://nominatim.openstreetmap.org/search';
-  private reverseApiUrl: string = 'https://nominatim.openstreetmap.org/reverse';
 
   constructor(private http: HttpClient) { }
 
@@ -35,7 +33,7 @@ export class AddressService {
     return this.http.get<any[]>(this.apiUrl, { params });
   }
 
-  public saveNewAddress(address: Address) {
+  public saveNewAddress(address: Address): Observable<Address> {
     const addressJSON = JSON.stringify(address);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -43,5 +41,9 @@ export class AddressService {
     });
 
     return this.http.post<Address>(environment.backendURL + "/address", addressJSON, {headers: headers});
+  }
+
+  public getAllByUserId(userId: number) {
+    return this.http.get<Address[]>(environment.backendURL + "/address/user/" + userId);
   }
 }

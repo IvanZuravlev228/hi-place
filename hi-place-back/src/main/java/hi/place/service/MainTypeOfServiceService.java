@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface MainTypeOfServiceService {
     List<MainTypeOfService> getAll();
+
+    List<MainTypeOfService> getAllByUserId(Long userId);
 }

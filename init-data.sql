@@ -663,3 +663,6 @@ INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `
 INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '3', 'http://localhost:8080/images/examples/user1/user1-4.jpg');
 INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '3', 'http://localhost:8080/images/examples/user1/user1-5.jpg');
 INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '3', 'http://localhost:8080/images/examples/user1/user1-6.jpg');
+
+INSERT INTO `hi-place`.`address` (`lat`, `lon`, `user_id`, `borough`, `city`, `country`, `house_number`, `road`, `suburb`) VALUES ('50.40291', '30.51543', '1', 'мммм', 'Kyiv', 'Ukraine', '46/1', 'Голосеевский проспект', 'Димеевка');
+INSERT INTO `hi-place`.`address` (`lat`, `lon`, `user_id`, `borough`, `city`, `country`, `house_number`, `road`, `suburb`) VALUES ('50.4140', '30.5270', '1', 'мммм', 'Kyiv', 'Ukraine', '46/1', 'Голосеевский проспект', 'Димеевка');

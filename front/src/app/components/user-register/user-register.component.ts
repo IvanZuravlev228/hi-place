@@ -107,7 +107,7 @@ export class UserRegisterComponent {
               this.messageAboutFile = event.body;
             }
             this.isSuccessfullyUploadedUserLogo = true;
-            this.checkLoading();
+            this.checkLoading(userId);
           },
           error: (error) => {
             console.log(error);
@@ -126,7 +126,7 @@ export class UserRegisterComponent {
     this.addressService.saveNewAddress(address).subscribe({
       next: (address) => {
         this.isSuccessfullySavedNewAddress = true;
-        this.checkLoading();
+        this.checkLoading(address.userId);
       },
       error: (error) => {
         console.log(error);
@@ -142,7 +142,6 @@ export class UserRegisterComponent {
 
   private checkEmail(input: string): boolean {
     const emailPattern: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    console.log("========== incorrect ==========");
     this.messageAboutEmail = "Пошта некоректна"
     return emailPattern.test(input);
   }
@@ -165,11 +164,15 @@ export class UserRegisterComponent {
     return !!(this.receivedAddresses || this.createUserRequest.homeVisit);
   }
 
-  private checkLoading() {
+  private checkLoading(userId: number) {
     if (this.isSuccessfullyUploadedUserLogo && this.isSuccessfullySavedNewAddress) {
       this.isLoading = false;
       // this.routter.....
-      this.router.navigate(["/"])
+      this.router.navigate(["user/profile"], {
+        queryParams: {
+          userId: userId
+        }
+      })
     }
   }
 }

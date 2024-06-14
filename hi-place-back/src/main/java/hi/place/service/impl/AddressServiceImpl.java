@@ -6,6 +6,8 @@ import hi.place.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
@@ -21,5 +23,10 @@ public class AddressServiceImpl implements AddressService {
         return addressRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("Can't find address with id: " + id)
         );
+    }
+
+    @Override
+    public List<Address> getByUserId(Long userId) {
+        return addressRepository.getAllByUser_Id(userId);
     }
 }

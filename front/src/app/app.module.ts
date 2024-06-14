@@ -15,6 +15,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AddressComponent } from './components/address/address.component';
 import { MapComponent } from './components/map/map.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { MapComponent } from './components/map/map.component';
     FooterComponent,
     AddressComponent,
     MapComponent,
+    ProfileComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

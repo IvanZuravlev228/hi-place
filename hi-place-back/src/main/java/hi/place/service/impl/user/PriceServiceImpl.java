@@ -19,8 +19,8 @@ public class PriceServiceImpl implements PriceService {
     private final ServiceItemService serviceItemService;
 
     @Override
-    public List<Price> getAllByUser(String email) {
-        return priceRepository.getAllByUser_Email(email);
+    public List<Price> getAllByUserId(Long id) {
+        return priceRepository.getAllByUser_Id(id);
     }
 
     @Override

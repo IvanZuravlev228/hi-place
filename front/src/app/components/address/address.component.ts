@@ -31,7 +31,6 @@ export class AddressComponent {
             this.addressService.search(this.query, this.countryCodes, 'en').subscribe({
               next: (data: any) => {
                 this.addresses = data;
-
               },
               error: (error) => {
                 console.log(error);

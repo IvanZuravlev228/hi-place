@@ -64,4 +64,9 @@ public class UserController {
                 .map(userMapper::toDto)
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponseDto> getUserById(@PathVariable Long userId) {
+        return new ResponseEntity<>(userMapper.toDto(userService.getById(userId)), HttpStatus.OK);
+    }
 }

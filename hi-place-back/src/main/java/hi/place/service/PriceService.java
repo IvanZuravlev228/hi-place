@@ -3,10 +3,9 @@ package hi.place.service;
 import hi.place.model.user.Price;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PriceService {
-    List<Price> getAllByUser(String email);
+    List<Price> getAllByUserId(Long id);
 
     Price addToUser(Price price);
 

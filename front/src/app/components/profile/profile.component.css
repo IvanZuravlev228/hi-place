@@ -1,0 +1,110 @@
+.profile-main-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  margin-top: 20px;
+}
+
+.user-block-container {
+  padding: 20px 10px;
+  width: 30%;
+  background-color: rgba(237, 237, 237, 0.3);
+  text-align: center;
+}
+
+.user-logo-img {
+  border: 1px red solid;
+  padding: 5px;
+
+  border-radius: 100px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+#user-name{
+  font-size: 18px;
+}
+
+#user-avg {
+  color: #c119c7;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+#user-phone {
+  border-radius: 3px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  background-color: rgba(255, 182, 193, 0.3);;
+  font-size: 16px;
+}
+
+#user-phone-call {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.hint-text {
+  text-align: left;
+  font-size: 12px;
+  color: grey;
+  margin-bottom: 3px;
+}
+
+.checkbox-container {
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: 20px;
+  border-bottom: grey 1px solid;
+  padding: 5px 0;
+}
+
+.social-feedback-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px 0 5px;
+  border-bottom: grey 1px solid;
+  margin-bottom: 10px;
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-icon {
+  width: 25px;
+  padding: 2px;
+}
+
+.feedback {
+
+}
+
+.address-item {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+#show-map-btn {
+  background-color: transparent;
+  color: blue;
+}
+
+#show-map-btn:hover {
+  cursor: pointer;
+}
+
+.address-map {
+  display: block;
+  width: 100%;
+  height: 200px;
+}
+
+.service-block-container {
+  width: 65%;
+  background-color: rgba(237, 237, 237, 0.3);
+}
