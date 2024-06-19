@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {TypeOfServiceService} from "../../services/type-of-service.service";
-import {TypeOfService} from "../../models/TypeOfService";
+import {TypeOfService} from "../../models/typeService/TypeOfService";
 import {ServiceItem} from "../../models/ServiceItem";
 import {ServiceItemService} from "../../services/service-item.service";
 import {UserService} from "../../services/user.service";
@@ -19,17 +19,7 @@ export class ServiceComponent implements OnInit {
   typesOfService: TypeOfService[] = [];
   users: User[] = [];
 
-  images: string[] = [
-    './assets/image/main/haircut-man-main.jpg',
-    './assets/image/main/eyebrow-main.jpg',
-    './assets/image/main/photosession.jpg',
-    './assets/image/main/tattoo-main.jpg',
-    './assets/image/main/injection-main.jpg',
-    './assets/image/main/facial-main.jpg',
-    './assets/image/main/epilation.jpg',
-    './assets/image/main/eyebrow-tattoo-main.jpg',
-    './assets/image/main/haircut-man-main.jpg',
-  ];
+
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,

@@ -1,5 +1,6 @@
 package hi.place.controller;
 
+import hi.place.dto.price.PriceProfileResponseDto;
 import hi.place.dto.price.PriceRequestDto;
 import hi.place.dto.price.PriceResponseDto;
 import hi.place.model.user.Price;
@@ -38,5 +39,11 @@ public class PriceController {
     public ResponseEntity<Boolean> updatePrice(@RequestBody PriceRequestDto price,
                                                @RequestParam Long previousPriceId) {
         return new ResponseEntity<>(priceService.update(priceMapper.toModel(price), previousPriceId).getId() > 0, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{userId}/type/{typeOfServiceId}")
+    public ResponseEntity<List<PriceProfileResponseDto>> getAllByTypeOfServiceId(@PathVariable Long userId,
+                                                                                 @PathVariable Long typeOfServiceId) {
+        return new ResponseEntity<>(priceService.getAllByTypeOfServiceIdAndUserId(typeOfServiceId, userId), HttpStatus.OK);
     }
 }

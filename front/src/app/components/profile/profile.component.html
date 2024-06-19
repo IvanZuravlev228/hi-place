@@ -1,82 +1,51 @@
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-
 <app-header></app-header>
 
 <main class="profile-main-container">
-  <section class="user-block-container">
-    <img [src]="user.logoURL" [alt]="user.name" class="user-logo-img">
-
-    <p id="user-name">{{ user.name }}</p>
-
-    <div id="user-avg">
-      <ng-container *ngFor="let star of getStars(user.avg)">
-        <i class="fa-star" [ngClass]="star" style="color: gold;"></i>
-      </ng-container>
-    </div>
-
-    <button id="user-phone" (click)="revealPhone(user)">
-      <a href="tel:{{ user.phone }}">{{ user.hiddenPhone }}</a>
-      <p id="user-phone-call">Подзвонити</p>
-    </button>
-
-    <div class="checkbox-container">
-      <p class="hint-text">Мои услуги</p>
-      <p *ngIf="user.homeVisit">Выезд на дом  <span>&#10003;</span></p>
-      <p *ngIf="user.onlineCounseling">Онлайн косультация  <span>&#10003;</span></p>
-      <p *ngIf="user.atSalon">Принимаю в салоне  <span>&#10003;</span></p>
-    </div>
-
-    <div>
-      <p class="hint-text">Мои соц сети</p>
-    </div>
-    <div class="social-feedback-container">
-
-      <div class="social">
-        <a [href]="user.instagramLink" target="_blank">
-          <img class="social-icon" src="assets/image/icons/instagram.png" *ngIf="user.instagramLink">
-        </a>
-
-        <a [href]="user.tiktokLink" target="_blank">
-          <img class="social-icon" src="assets/image/icons/tiktok.png" *ngIf="user.tiktokLink">
-        </a>
-
-        <a [href]="user.telegramLink" target="_blank">
-          <img class="social-icon" src="assets/image/icons/telegram.png" *ngIf="user.telegramLink">
-        </a>
-
-        <a [href]="user.viberLink" target="_blank">
-          <img class="social-icon" src="assets/image/icons/viber.png" *ngIf="user.viberLink">
-        </a>
-      </div>
-      <div class="feedback">
-        <a href="#">Відгуки</a>
-      </div>
-    </div>
-
-    <div class="address-container">
-      <p class="hint-text">Мы находимся</p>
-      <div class="address-item" *ngFor="let address of addresses">
-        <div class="address-info-block" (click)="showMap(address.lat, address.lon)">
-          <button (click)="showMap(address.lat, address.lon)" id="show-map-btn">
-            {{ address.city }}, {{ address.road }} {{ address.houseNumber }}
-          </button>
-        </div>
-      </div>
-      <div class="address-map" *ngIf="isShowMap">
-        <app-map [lat]="addressLat" [lon]="addressLon"></app-map>
-      </div>
-    </div>
+  <section class="user-container">
+    <app-user-preview [userId]="userId"></app-user-preview>
   </section>
 
   <section class="service-block-container">
-    <div class="main-type-service-container">
-      <div class="main-type-service-item" *ngFor="let price of prices">
-        {{ price.mainTypeOfServiceId }}
+
+    <div class="app-image-container">
+       <app-image-example [examples]="images"></app-image-example>
+    </div>
+
+    <div class="type-service-counts-container">
+      <div class="type-counts-item" *ngFor="let typeCounts of profilePriceData">
+        <button class="type-counts-btn" (click)="getPriceByTypeOfService(typeCounts.typeOfServiceId, typeCounts)">
+          {{ typeCounts.typeOfServiceName }} ({{ typeCounts.count }})
+        </button>
+        <div class="price-profile-container">
+          <div class="price-profile-item" *ngFor="let price of typeCounts.priceProfile">
+
+            <div class="price-profile-service-name">
+              {{ price.serviceItemName }}
+            </div>
+            <div class="price-profile-price">
+              <p>{{ price.price }}/{{ price.timeUnit }}</p>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
 </main>
+
+<section class="address-container">
+  <h3>Наши адреса</h3>
+  <div class="address-name">
+    <div class="address-name-item" *ngFor="let address of addresses">
+      <button (click)="showMap(address.lat, address.lon)" id="show-map-btn">
+        {{ address.city }}, {{ address.road }} {{ address.houseNumber }}
+      </button>
+    </div>
+  </div>
+  <div class="address-map">
+    <app-map [lat]="addressLat" [lon]="addressLon"></app-map>
+  </div>
+</section>
 
 <app-footer></app-footer>

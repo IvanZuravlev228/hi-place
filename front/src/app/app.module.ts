@@ -17,6 +17,9 @@ import { AddressComponent } from './components/address/address.component';
 import { MapComponent } from './components/map/map.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
+import { ImageExampleComponent } from './components/image-example/image-example.component';
+import { UserPreviewComponent } from './components/user-preview/user-preview.component';
+import { AddServiceComponent } from './components/add-service/add-service.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { LoginComponent } from './components/login/login.component';
     MapComponent,
     ProfileComponent,
     LoginComponent,
+    ImageExampleComponent,
+    UserPreviewComponent,
+    AddServiceComponent,
   ],
   imports: [
     BrowserModule,

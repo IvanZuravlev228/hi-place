@@ -585,28 +585,28 @@ UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '49');
 UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '50');
 UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '51');
 
-DELIMITER $$
+-- DELIMITER $$
 
-CREATE TRIGGER update_avg_after_rating_insert
-AFTER INSERT ON Rating
-FOR EACH ROW
-BEGIN
-    DECLARE avg_rating DECIMAL(10, 2);
-    DECLARE user_id BIGINT;
+-- CREATE TRIGGER update_avg_after_rating_insert
+-- AFTER INSERT ON Rating
+-- FOR EACH ROW
+-- BEGIN
+--     DECLARE avg_rating DECIMAL(10, 2);
+--     DECLARE user_id BIGINT;
 
-    -- Получаем id пользователя, которому добавлен отзыв
-    SET user_id = NEW.user_id;
+--     -- Получаем id пользователя, которому добавлен отзыв
+--     SET user_id = NEW.user_id;
 
-    -- Вычисляем новое среднее значение
-    SELECT AVG(point) INTO avg_rating FROM Rating WHERE user_id = user_id;
+--     -- Вычисляем новое среднее значение
+--     SELECT AVG(point) INTO avg_rating FROM Rating WHERE user_id = user_id;
 
-    -- Обновляем поле avg в таблице User
-    UPDATE User SET avg = avg_rating WHERE id = user_id;
-END$$
+--     -- Обновляем поле avg в таблице User
+--     UPDATE User SET avg = avg_rating WHERE id = user_id;
+-- END$$
 
-DELIMITER ;
+-- DELIMITER ;
 
-INSERT INTO User (name, email, logourl, experience, phone, tiktok_link, instagram_link, telegram_link, viber_link, home_visit, online_counseling, at_salon, discount_with_promo, type, avg) VALUES
+INSERT INTO user (name, email, logourl, experience, phone, tiktok_link, instagram_link, telegram_link, viber_link, home_visit, online_counseling, at_salon, discount_with_promo, type, avg) VALUES
 ('User1', 'user1@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 5.0, '+38 (095) 332 42 55', '', 'http://instagram.com/user1', 'http://telegram.com/user1', 'http://viber.com/user1', TRUE, FALSE, TRUE, 10, 'SALON', 5),
 ('User2', 'user2@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 4.5, '+38 (095) 332 42 55', 'http://tiktok.com/user2', '', 'http://telegram.com/user2', 'http://viber.com/user2', FALSE, TRUE, FALSE, 15, 'MASTER', 4.7),
 ('User3', 'user3@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 3.2, '+38 (095) 332 42 55', 'http://tiktok.com/user3', 'http://instagram.com/user3', '', 'http://viber.com/user3', TRUE, TRUE, TRUE, 5, 'SALON', 4.0),
@@ -619,37 +619,100 @@ INSERT INTO User (name, email, logourl, experience, phone, tiktok_link, instagra
 ('User10', 'user10@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 5.5, '+38 (095) 332 42 55', 'http://tiktok.com/user10', 'http://instagram.com/user10', 'http://telegram.com/user10', 'http://viber.com/user10', FALSE, TRUE, FALSE, 0, 'MASTER', 4.1);
 
 
-INSERT INTO `hi-place`.`price` (`service_item_id`, `user_id`, `price`, `time_unit`) VALUES 
-(1, 1, 500.0, '60 мин'),
-(2, 1, 550.0, '60 мин'),
-(3, 1, 600.0, '60 мин'),
-(4, 2, 650.0, '60 мин'),
-(5, 2, 700.0, '60 мин'),
-(6, 2, 750.0, '60 мин'),
-(7, 3, 800.0, '60 мин'),
-(8, 3, 850.0, '60 мин'),
-(9, 3, 900.0, '60 мин'),
-(10, 4, 950.0, '60 мин'),
-(11, 4, 1000.0, '60 мин'),
-(12, 4, 1050.0, '60 мин'),
-(13, 5, 1100.0, '60 мин'),
-(14, 5, 1150.0, '60 мин'),
-(15, 5, 1200.0, '60 мин'),
-(16, 6, 1250.0, '60 мин'),
-(17, 6, 1300.0, '60 мин'),
-(18, 6, 1350.0, '60 мин'),
-(19, 7, 1400.0, '60 мин'),
-(20, 7, 1450.0, '60 мин'),
-(21, 7, 1500.0, '60 мин'),
-(22, 8, 1550.0, '60 мин'),
-(23, 8, 1600.0, '60 мин'),
-(24, 8, 1650.0, '60 мин'),
-(25, 9, 1700.0, '60 мин'),
-(26, 9, 1750.0, '60 мин'),
-(27, 9, 1800.0, '60 мин'),
-(28, 10, 1850.0, '60 мин'),
-(29, 10, 1900.0, '60 мин'),
-(30, 10, 1950.0, '60 мин');
+INSERT INTO `hi-place`.`price` (`service_item_id`, `type_of_service_id`, `main_type_of_service_id`, `user_id`, `price`, `time_unit`) VALUES 
+(1, 1, 1, 1, 500.0, '60 мин'),
+(2, 1, 1, 1, 550.0, '60 мин'),
+(3, 1, 1, 1, 600.0, '60 мин'),
+(4, 1, 1, 2, 650.0, '60 мин'),
+(5, 1, 1, 2, 700.0, '60 мин'),
+(6, 1, 1, 2, 750.0, '60 мин'),
+(7, 1, 1, 3, 800.0, '60 мин'),
+(8, 1, 1, 3, 850.0, '60 мин'),
+(9, 1, 1, 3, 900.0, '60 мин'),
+(10, 1, 1, 4, 950.0, '60 мин'),
+(11, 1, 1, 4, 1000.0, '60 мин'),
+(12, 2, 1, 4, 1050.0, '60 мин'),
+(13, 2, 1, 5, 1100.0, '60 мин'),
+(14, 2, 1, 5, 1150.0, '60 мин'),
+(15, 2, 1, 5, 1200.0, '60 мин'),
+(16, 2, 1, 6, 1250.0, '60 мин'),
+(17, 2, 1, 6, 1300.0, '60 мин'),
+(18, 2, 1, 6, 1350.0, '60 мин'),
+(19, 2, 1, 7, 1400.0, '60 мин'),
+(20, 2, 1, 7, 1450.0, '60 мин'),
+(21, 3, 1, 7, 1500.0, '60 мин'),
+(22, 3, 1, 8, 1550.0, '60 мин'),
+(23, 3, 1, 8, 1600.0, '60 мин'),
+(24, 3, 1, 8, 1650.0, '60 мин'),
+(25, 3, 1, 9, 1700.0, '60 мин'),
+(26, 3, 1, 9, 1750.0, '60 мин'),
+(27, 3, 1, 9, 1800.0, '60 мин'),
+(28, 3, 1, 10, 1850.0, '60 мин'),
+(29, 3, 1, 10, 1900.0, '60 мин'),
+(30, 3, 1, 10, 1950.0, '60 мин'),
+(31, 4, 1, 1, 1950.0, '60 мин'),
+(32, 4, 1, 1, 1950.0, '60 мин'),
+(33, 4, 1, 1, 1950.0, '60 мин'),
+(34, 4, 1, 1, 1950.0, '60 мин'),
+(35, 4, 1, 1, 1950.0, '60 мин'),
+(36, 4, 1, 1, 1950.0, '60 мин'),
+(37, 4, 1, 1, 1950.0, '60 мин'),
+(38, 4, 1, 1, 1950.0, '60 мин'),
+(39, 4, 1, 1, 1950.0, '60 мин'),
+(40, 4, 1, 1, 1950.0, '60 мин'),
+(41, 4, 1, 1, 1950.0, '60 мин'),
+(42, 4, 1, 1, 1950.0, '60 мин'),
+(43, 4, 1, 1, 1950.0, '60 мин'),
+(44, 4, 1, 1, 1950.0, '60 мин'),
+(45, 4, 1, 1, 1950.0, '60 мин'),
+(46, 4, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин'),
+(45, 5, 1, 1, 1950.0, '60 мин');
+
+-- INSERT INTO `hi-place`.`price` (`service_item_id`, `type_of_service_id`, `user_id`, `price`, `time_unit`) VALUES 
+-- (1, 1, 1, 500.0, '60 мин'),
+-- (2, 1, 1, 550.0, '60 мин'),
+-- (3, 1, 1, 600.0, '60 мин'),
+-- (4, 1, 2, 650.0, '60 мин'),
+-- (5, 1, 2, 700.0, '60 мин'),
+-- (6, 1, 2, 750.0, '60 мин'),
+-- (7, 1, 3, 800.0, '60 мин'),
+-- (8, 1,  3, 850.0, '60 мин'),
+-- (9, 1,  3, 900.0, '60 мин'),
+-- (10, 1, 4, 950.0, '60 мин'),
+-- (11, 1, 4, 1000.0, '60 мин'),
+-- (12, 2, 4, 1050.0, '60 мин'),
+-- (13, 2, 5, 1100.0, '60 мин'),
+-- (14, 2, 5, 1150.0, '60 мин'),
+-- (15, 2, 5, 1200.0, '60 мин'),
+-- (16, 2, 6, 1250.0, '60 мин'),
+-- (17, 2, 6, 1300.0, '60 мин'),
+-- (18, 2, 6, 1350.0, '60 мин'),
+-- (19, 2, 7, 1400.0, '60 мин'),
+-- (20, 2, 7, 1450.0, '60 мин'),
+-- (21, 3, 7, 1500.0, '60 мин'),
+-- (22, 3, 8, 1550.0, '60 мин'),
+-- (23, 3, 8, 1600.0, '60 мин'),
+-- (24, 3, 8, 1650.0, '60 мин'),
+-- (25, 3, 9, 1700.0, '60 мин'),
+-- (26, 3, 9, 1750.0, '60 мин'),
+-- (27, 3, 9, 1800.0, '60 мин'),
+-- (28, 3, 10, 1850.0, '60 мин'),
+-- (29, 3, 10, 1900.0, '60 мин'),
+-- (30, 3, 10, 1950.0, '60 мин');
 
 INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-3.jpg');
 INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-2.jpg');

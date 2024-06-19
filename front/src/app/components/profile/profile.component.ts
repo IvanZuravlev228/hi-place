@@ -4,10 +4,11 @@ import {User} from "../../models/User";
 import {UserService} from "../../services/user.service";
 import {Address} from "../../models/Address";
 import {AddressService} from "../../services/address.service";
-import {MainTypeOfService} from "../../models/MainTypeOfService";
-import {MainTypeServiceService} from "../../services/main-type-service.service";
-import {Price} from "../../models/Price";
+import {MainTypeOfService} from "../../models/typeService/MainTypeOfService";
+import {Price} from "../../models/price/Price";
 import {PriceService} from "../../services/price.service";
+import {TypeOfServiceService} from "../../services/type-of-service.service";
+import {TypeOfServiceCount} from "../../models/typeService/TypeOfServiceCount";
 
 @Component({
   selector: 'app-profile',
@@ -15,60 +16,48 @@ import {PriceService} from "../../services/price.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-  private userId: number = 0;
+
+  userId: number = 0;
   user: User = new User();
   addresses: Address[] = [];
-  isShowMap: boolean = false;
+
   addressLat: number = 0;
   addressLon: number = 0;
 
-  mainTypes: MainTypeOfService[] = [];
   prices: Price[] = [];
+  profilePriceData: TypeOfServiceCount[] = [];
+
+  images: string[] = [
+    './assets/image/main/haircut-man-main.jpg',
+    './assets/image/main/eyebrow-main.jpg',
+    './assets/image/main/photosession.jpg',
+    './assets/image/main/tattoo-main.jpg',
+    './assets/image/main/injection-main.jpg',
+    './assets/image/main/facial-main.jpg',
+    './assets/image/main/epilation.jpg',
+    './assets/image/main/eyebrow-tattoo-main.jpg',
+    './assets/image/main/haircut-man-main.jpg',
+  ];
 
   constructor(private activatedRoute: ActivatedRoute,
               private userService: UserService,
               private addressService: AddressService,
-              private mainTypeOfService: MainTypeServiceService,
-              private priceService: PriceService) {
+              private priceService: PriceService,
+              private typeOfServiceService: TypeOfServiceService) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
       this.userId = params['userId'];
-      this.getUserById(this.userId);
     });
 
-    this.getAllMainTypeOfService();
-    this.getAllPriceByUser(this.user.id);
+
+    this.getAllTypeOfServiceCountByUserId();
+    this.getAllPriceByUserId(this.userId);
+    this.getAllAddressesByUserId(this.userId);
   }
 
-  public getAllMainTypeOfService() {
-    this.mainTypeOfService.getAllMainTypeOfService().subscribe({
-      next: (mainTypes) => {
-        this.mainTypes = mainTypes;
-        // console.log(this.mainTypes);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
-  }
-
-  private getUserById(userId: number) {
-    this.userService.getUserById(userId).subscribe({
-      next: (user) => {
-        this.user = user;
-        this.hidePhone(this.user);
-
-        this.getAllAddressesByUserId();
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
-  }
-
-  public getAllPriceByUser(userId: number) {
+  public getAllPriceByUserId(userId: number) {
     this.priceService.getAllByUser(userId).subscribe({
       next: (prices) => {
         this.prices = prices;
@@ -80,34 +69,32 @@ export class ProfileComponent implements OnInit{
     })
   }
 
-  public getStars(rating: number): string[] {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      if (i <= rating) {
-        stars.push('fas fa-star');
-      } else if (i - 0.5 <= rating) {
-        stars.push('fas fa-star-half-alt');
-      } else {
-        stars.push('far fa-star');
-      }
-    }
-    return stars;
-  }
-
-  public hidePhone(user: User) {
-    user.hiddenPhone = "+380 (**) *** ** **";
-  }
-
-  public revealPhone(user: User): void {
-    user.hiddenPhone = user.phone;
-    console.log(user);
-  }
-
-  private getAllAddressesByUserId() {
-    this.addressService.getAllByUserId(this.userId).subscribe({
+  private getAllAddressesByUserId(userId: number) {
+    this.addressService.getAllByUserId(userId).subscribe({
       next: (addresses) => {
         this.addresses = addresses;
+        this.addressLat = addresses[0].lat;
+        this.addressLon = addresses[0].lon;
         // console.log(this.addresses);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+
+
+  }
+
+  public showMap(lat: number, lon: number) {
+    this.addressLat = lat;
+    this.addressLon = lon;
+  }
+
+  public getAllTypeOfServiceCountByUserId() {
+    this.typeOfServiceService.getTypeOfServiceCountByUserId(this.userId).subscribe({
+      next: (typeOfServiceCounts) => {
+        this.profilePriceData = typeOfServiceCounts;
+        console.log(this.profilePriceData);
       },
       error: (error) => {
         console.log(error);
@@ -115,9 +102,14 @@ export class ProfileComponent implements OnInit{
     })
   }
 
-  public showMap(lat: number, lon: number) {
-    this.addressLat = lat;
-    this.addressLon = lon;
-    this.isShowMap = true;
+  getPriceByTypeOfService(typeOfServiceId: number, typeCount: TypeOfServiceCount) {
+    this.priceService.getAllPriceProfileByTypeOfServiceIdAndUserId(typeOfServiceId, this.userId).subscribe({
+      next: (priceProfile) => {
+        typeCount.priceProfile = priceProfile;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {MainTypeOfService} from "../models/MainTypeOfService";
+import {MainTypeOfService} from "../models/typeService/MainTypeOfService";
 import {environment} from "../../environment/environment";
 import {Observable} from "rxjs";
 

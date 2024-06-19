@@ -1,5 +1,6 @@
 package hi.place.controller;
 
+import hi.place.dto.TypeOfServiceCountDto;
 import hi.place.dto.TypeOfServiceResponseDto;
 import hi.place.model.TypeOfService;
 import hi.place.service.TypeOfServiceService;
@@ -28,5 +29,10 @@ public class TypeOfServiceController {
                 .stream()
                 .map(typeOfServiceMapper::toDto)
                 .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<TypeOfServiceCountDto>> getAllTypeOfServiceCount(@PathVariable Long userId) {
+        return new ResponseEntity<>(typeOfServiceService.getTypeOfServiceCountByUserId(userId), HttpStatus.OK);
     }
 }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {TypeOfService} from "../models/TypeOfService";
+import {TypeOfService} from "../models/typeService/TypeOfService";
 import {environment} from "../../environment/environment";
+import {Observable} from "rxjs";
+import {TypeOfServiceCount} from "../models/typeService/TypeOfServiceCount";
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +18,9 @@ export class TypeOfServiceService {
         // "Authorization": "Bearer " + this.cookie.get("jwt-token")
       }
     })
+  }
+
+  public getTypeOfServiceCountByUserId(userId: number): Observable<TypeOfServiceCount[]> {
+    return this.http.get<TypeOfServiceCount[]>(environment.backendURL + "/type-service/user/" + userId);
   }
 }

@@ -62,8 +62,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: #a4a4a4 1px solid;
-  margin-bottom: 5px;
-  max-height: 350px;
+  /*max-height: 350px;*/
   padding-bottom: 15px;
   margin-bottom: 15px;
 }
@@ -153,29 +152,13 @@
   font-size: 18px;
 }
 
+.app-image-container {
+  height: 250px;
+}
+
+
 .mode {
 
-}
-
-.example-container {
-  height: 65%;
-  width: 100%; /* Ширина контейнера */
-  overflow-x: auto; /* Горизонтальная прокрутка */
-  white-space: nowrap; /* Отключение переноса строк */
-  margin-bottom: 10px;
-}
-
-.scroll-container {
-  display: inline-block; /* Внутренний контейнер для прокрутки */
-  align-items: center;
-}
-
-.scroll-container img {
-  width: 175px; /* Максимальная ширина изображения */
-  height: 200px; /* Фиксированная высота изображения */
-  margin-right: 15px; /* Отступ между изображениями */
-  display: inline-block; /* Отображение изображений в линию */
-  object-fit: cover;
 }
 
 .show-user-container {

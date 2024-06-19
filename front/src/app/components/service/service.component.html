@@ -20,42 +20,45 @@
 
   <section class="users-container">
     <div class="user" *ngFor="let user of users">
-      <div class="left">
-        <img id="user-logo" [src]="user.logoURL">
+      <app-user-preview [userId]="user.id"></app-user-preview>
+<!--      <div class="left">-->
+<!--        <img id="user-logo" [src]="user.logoURL">-->
 
-        <p id="user-name">{{ user.name }}</p>
+<!--        <p id="user-name">{{ user.name }}</p>-->
 
-        <button id="user-phone" (click)="revealPhone(user)">
-          <a href="tel:{{ user.phone }}">{{ user.hiddenPhone }}</a>
-          <p id="user-phone-call">Подзвонити</p>
-        </button>
+<!--        <button id="user-phone" (click)="revealPhone(user)">-->
+<!--          <a href="tel:{{ user.phone }}">{{ user.hiddenPhone }}</a>-->
+<!--          <p id="user-phone-call">Подзвонити</p>-->
+<!--        </button>-->
 
-        <div id="user-avg">
-          <ng-container *ngFor="let star of getStars(user.avg)">
-            <i class="fa-star" [ngClass]="star" style="color: gold;"></i>
-          </ng-container>
-        </div>
-<!--        <p id="user-avg">{{ user.avg }} зірок</p>-->
+<!--        <div id="user-avg">-->
+<!--          <ng-container *ngFor="let star of getStars(user.avg)">-->
+<!--            <i class="fa-star" [ngClass]="star" style="color: gold;"></i>-->
+<!--          </ng-container>-->
+<!--        </div>-->
+<!--&lt;!&ndash;        <p id="user-avg">{{ user.avg }} зірок</p>&ndash;&gt;-->
 
-        <div class="social-feedback-container">
-          <div class="social">
-            <a [href]="user.instagramLink" target="_blank">
-              <img class="social-icon" src="assets/image/icons/instagram.png" *ngIf="user.instagramLink">
-            </a>
+<!--        <div class="social-feedback-container">-->
+<!--          <div class="social">-->
+<!--            <a [href]="user.instagramLink" target="_blank">-->
+<!--              <img class="social-icon" src="assets/image/icons/instagram.png" *ngIf="user.instagramLink">-->
+<!--            </a>-->
 
-            <a [href]="user.tiktokLink" target="_blank">
-              <img class="social-icon" src="assets/image/icons/tiktok.png" *ngIf="user.tiktokLink">
-            </a>
+<!--            <a [href]="user.tiktokLink" target="_blank">-->
+<!--              <img class="social-icon" src="assets/image/icons/tiktok.png" *ngIf="user.tiktokLink">-->
+<!--            </a>-->
 
-            <a [href]="user.viberLink" target="_blank">
-              <img class="social-icon" src="assets/image/icons/viber.png" *ngIf="user.viberLink">
-            </a>
-          </div>
-          <div class="feedback">
-            <a href="#">Відгуки</a>
-          </div>
-        </div>
-      </div>
+<!--            <a [href]="user.viberLink" target="_blank">-->
+<!--              <img class="social-icon" src="assets/image/icons/viber.png" *ngIf="user.viberLink">-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="feedback">-->
+<!--            <a href="#">Відгуки</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
       <div class="right">
         <div class="discount-mode-container">
           <div class="discount">
@@ -67,11 +70,11 @@
             <p>MAX</p>
           </div>
         </div>
-        <div class="example-container">
-          <div class="scroll-container">
-            <img *ngFor="let image of user.examples" [src]="image" alt="example image">
-          </div>
+
+        <div class="app-image-container">
+          <app-image-example [examples]="user.examples"></app-image-example>
         </div>
+
         <div class="show-user-container">
           <button class="show-user-btn" (click)="goToUserPricePage(user.id)">Переглянути прайс</button>
         </div>
