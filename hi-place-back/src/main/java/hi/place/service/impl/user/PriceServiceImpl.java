@@ -1,5 +1,6 @@
 package hi.place.service.impl.user;
 
+import hi.place.dto.price.PriceProfileResponseDto;
 import hi.place.model.user.Price;
 import hi.place.model.user.User;
 import hi.place.repository.user.PriceRepository;
@@ -19,8 +20,14 @@ public class PriceServiceImpl implements PriceService {
     private final ServiceItemService serviceItemService;
 
     @Override
-    public List<Price> getAllByUser(String email) {
-        return priceRepository.getAllByUser_Email(email);
+    public List<Price> getAllByUserId(Long id) {
+        return priceRepository.getAllByUser_Id(id);
+    }
+
+    @Override
+    public List<PriceProfileResponseDto> getAllByTypeOfServiceIdAndUserId(Long typeOfServiceId, Long userId) {
+//        return priceRepository.getAllByTypeOfService_IdAndUser_Id(typeOfServiceId, userId);
+        return priceRepository.getAllByTypeOfServiceIdAndUserId(typeOfServiceId, userId);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package hi.place.service.impl;
 
+import hi.place.dto.TypeOfServiceCountDto;
 import hi.place.model.TypeOfService;
 import hi.place.repository.TypeOfServiceRepository;
 import hi.place.service.TypeOfServiceService;
@@ -21,5 +22,10 @@ public class TypeOfServiceServiceImpl implements TypeOfServiceService {
     @Override
     public List<TypeOfService> getByMainTypeId(Long mainTypeId) {
         return typeOfServiceRepository.findByMainType_Id(mainTypeId);
+    }
+
+    @Override
+    public List<TypeOfServiceCountDto> getTypeOfServiceCountByUserId(Long userId) {
+        return typeOfServiceRepository.getTypeOfServiceAnfCountByUserId(userId);
     }
 }

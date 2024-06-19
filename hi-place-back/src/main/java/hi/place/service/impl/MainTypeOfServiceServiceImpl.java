@@ -17,4 +17,9 @@ public class MainTypeOfServiceServiceImpl implements MainTypeOfServiceService {
     public List<MainTypeOfService> getAll() {
         return mainTypeOfServiceRepository.findAll();
     }
+
+    @Override
+    public List<MainTypeOfService> getAllByUserId(Long userId) {
+        return mainTypeOfServiceRepository.getAllByUserId(userId);
+    }
 }

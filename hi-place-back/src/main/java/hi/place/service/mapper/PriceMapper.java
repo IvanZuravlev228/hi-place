@@ -29,6 +29,8 @@ public class PriceMapper implements RequestResponseMapper<PriceRequestDto, Price
         PriceResponseDto dto = new PriceResponseDto();
         dto.setId(model.getId());
         dto.setServiceItemId(model.getServiceItem().getId());
+        dto.setTypeOfServiceId(model.getTypeOfService().getId());
+//        dto.setMainTypeOfServiceId(model.getMainTypeOfService().getId());
         dto.setUserId(model.getUser().getId());
         dto.setPrice(model.getPrice());
         dto.setTimeUnit(model.getTimeUnit());

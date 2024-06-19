@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserService {
     User createNewUser(User user);
+
     User getByEmail(String email);
 
     User getById(Long id);
@@ -17,4 +18,6 @@ public interface UserService {
     List<User> getAllByTypeOfServiceId(Long typeOfServiceId);
 
     List<User> getAllByServiceItemId(Long serviceItemId);
+
+    void addLogoUrlToUser(String logoUrl, Long userId);
 }

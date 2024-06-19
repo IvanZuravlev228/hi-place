@@ -1,0 +1,132 @@
+<app-header></app-header>
+
+<main class="main-container-create">
+  <section class="create-user-section">
+    <div>
+      <h1>Створіть свій профіль</h1>
+      <form (ngSubmit)="onSubmit()">
+        <!-- Скрытый элемент, который покажем при отправке формы -->
+        <div class="loading-overlay" *ngIf="isLoading">
+          <div class="loading-spinner"></div>
+        </div>
+
+        <div>
+          <label for="name">Фотографія профілю</label>
+          <input type="file" (change)="selectFile($event)" accept="image/*">
+          <div class="incorrectInputData">
+            <p>{{ messageAboutFile }}</p>
+          </div>
+        </div>
+
+        <div>
+          <label for="name">Ваше ім'я</label>
+          <input type="text" id="name" [(ngModel)]="createUserRequest.name" name="name" required>
+          <div class="incorrectInputData" *ngIf="!createUserRequest.name">
+            Обов'язкове поле
+          </div>
+        </div>
+        <div>
+          <label for="email">Електронна пошта</label>
+          <input type="email" id="email" [(ngModel)]="createUserRequest.email" name="email" required>
+          <div class="incorrectInputData" *ngIf="isEmailCorrect">
+            {{ messageAboutEmail }}
+<!--            Пошта некоректна-->
+          </div>
+<!--          <div class="incorrectInputData" *ngIf="!createUserRequest.email">-->
+<!--            {{ messageAboutEmail }}-->
+<!--          </div>-->
+        </div>
+
+        <div>
+          <label for="phone">Телефон для зв'язку</label>
+          <p id="hint-phone-number">На приклад: +38(099) 999 99 99</p>
+          <input type="tel"
+                 id="phone" [(ngModel)]="createUserRequest.phone"
+                 name="phone"
+                 required>
+          <div class="incorrectInputData" *ngIf="!isCorrectPhoneNumber">
+            Номер телефону некоректний
+          </div>
+          <div class="incorrectInputData" *ngIf="!createUserRequest.phone">
+            Обов'язкове поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="type" class="form-label">Ви майстер чи салон?</label>
+          <select id="type" [(ngModel)]="createUserRequest.type" name="type" class="form-control" required>
+            <option value="SALON">Салон краси</option>
+            <option value="MASTER">Майстер</option>
+          </select>
+        </div>
+        <div class="incorrectInputData" *ngIf="!createUserRequest.type">
+          Обов'язкове поле
+        </div>
+
+        <div>
+          <label for="experience">Скільки у вас років досвіду?</label>
+          <input type="number" id="experience" [(ngModel)]="createUserRequest.experience" name="experience" step="0.1">
+        </div>
+
+        <div>
+          <div class="show-btn" *ngIf="!showLinks" (click)="showLinks = true">
+            Додати соціальні мережі
+          </div>
+        </div>
+
+        <div *ngIf="showLinks" @fadeInOut>
+          <div>
+            <label for="tiktokLink">TikTok</label>
+            <input type="url" id="tiktokLink" [(ngModel)]="createUserRequest.tiktokLink" name="tiktokLink">
+          </div>
+          <div>
+            <label for="instagramLink">Instagram</label>
+            <input type="url" id="instagramLink" [(ngModel)]="createUserRequest.instagramLink" name="instagramLink">
+          </div>
+          <div>
+            <label for="telegramLink">Telegram</label>
+            <input type="url" id="telegramLink" [(ngModel)]="createUserRequest.telegramLink" name="telegramLink">
+          </div>
+          <div>
+            <label for="viberLink">Viber</label>
+            <input type="url" id="viberLink" [(ngModel)]="createUserRequest.viberLink" name="viberLink">
+          </div>
+        </div>
+
+        <div class="checkbox-container">
+          <label for="homeVisit" class="checkbox-label">Чи працюєте на виїзд?</label>
+          <input type="checkbox" id="homeVisit" [(ngModel)]="createUserRequest.homeVisit" name="homeVisit" class="checkbox-input">
+        </div>
+        <div class="checkbox-container">
+          <label for="homeVisit" class="checkbox-label">Чи проводите ви онлайн консультацію?</label>
+          <input type="checkbox" id="onlineCounseling" [(ngModel)]="createUserRequest.onlineCounseling" name="onlineCounseling" class="checkbox-input">
+        </div>
+        <div class="checkbox-container" *ngIf="createUserRequest.type === 'MASTER'">
+          <label for="homeVisit" class="checkbox-label">Приймаєте клієнтів у салоні?</label>
+          <input type="checkbox" id="atSalon" [(ngModel)]="createUserRequest.atSalon" name="atSalon" class="checkbox-input">
+        </div>
+
+        <div>
+          <label for="discountWithPromo">Знижка за промокодом HiPlace</label>
+          <input type="number" id="discountWithPromo" [(ngModel)]="createUserRequest.discountWithPromo" name="discountWithPromo" value="0">
+        </div>
+
+        <div>
+          <div class="show-btn" *ngIf="!showAddress" (click)="showAddress = true">
+            Додати адреси
+          </div>
+        </div>
+
+        <div *ngIf="showAddress" @fadeInOut>
+          <app-address (selectedAddressEmit)="onAddressSelected($event)"></app-address>
+        </div>
+        <p class="incorrectInputData" *ngIf="isAddressCorrect">Додайте адресу або оберіть 'Виїзд додому'</p>
+
+        <button type="submit">Створити профіль</button>
+      </form>
+    </div>
+
+  </section>
+</main>
+
+<app-footer></app-footer>

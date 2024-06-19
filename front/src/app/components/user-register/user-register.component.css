@@ -1,0 +1,183 @@
+.main-container-create {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.create-user-section {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+#hint-phone-number {
+  font-size: 12px;
+  color: grey;
+  margin-bottom: 5px;
+}
+
+.incorrectInputData {
+  color: red;
+  font-size: 12px;
+}
+
+.show-btn {
+  background-color: #007bff;
+  width: 50%;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: white;
+  transition: border-color 0.3s;
+}
+
+.show-btn:hover {
+  cursor: pointer;
+  background-color: #0056b3;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.checkbox-label {
+  margin-right: 10px;
+}
+
+.checkbox-input {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #ccc;
+  border-radius: 50%; /* Делаем чекбокс круглым */
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.form-control {
+  width: 40%;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+
+/* Основные стили для формы */
+form {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для заголовка */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Стили для контейнеров полей */
+form div {
+  margin-bottom: 15px;
+}
+
+/* Стили для меток */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Стили для текстовых полей и текстовых областей */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Стили для чекбоксов */
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Стили для кнопки */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Стили для элемента загрузки и фона */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный серый фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Выше всех остальных элементов */
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3); /* Белая рамка с полупрозрачным фоном */
+  border-radius: 50%;
+  border-top: 4px solid #ffffff; /* Белый верхний бордер для кружка */
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite; /* Анимация вращения */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -12,10 +12,12 @@ public class Address {
     private Long id;
     private String country;
     private String city;
-    private String street;
-    private String building;
-    @OneToOne
-    private Subway subway;
-    @OneToOne
+    private String borough;
+    private String road;
+    private String houseNumber;
+    private String suburb;
+    private Double lat;
+    private Double lon;
+    @ManyToOne
     private User user;
 }

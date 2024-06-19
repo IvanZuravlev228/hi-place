@@ -1,5 +1,6 @@
 package hi.place.controller;
 
+import hi.place.dto.price.PriceProfileResponseDto;
 import hi.place.dto.price.PriceRequestDto;
 import hi.place.dto.price.PriceResponseDto;
 import hi.place.model.user.Price;
@@ -20,9 +21,9 @@ public class PriceController {
     private final PriceService priceService;
     private final RequestResponseMapper<PriceRequestDto, PriceResponseDto, Price> priceMapper;
 
-    @GetMapping
-    public ResponseEntity<List<PriceResponseDto>> getAllByUser(@RequestParam String userEmail) {
-        return new ResponseEntity<>(priceService.getAllByUser(userEmail)
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<PriceResponseDto>> getAllByUser(@PathVariable Long userId) {
+        return new ResponseEntity<>(priceService.getAllByUserId(userId)
                 .stream()
                 .map(priceMapper::toDto)
                 .collect(Collectors.toList()), HttpStatus.OK);
@@ -38,5 +39,11 @@ public class PriceController {
     public ResponseEntity<Boolean> updatePrice(@RequestBody PriceRequestDto price,
                                                @RequestParam Long previousPriceId) {
         return new ResponseEntity<>(priceService.update(priceMapper.toModel(price), previousPriceId).getId() > 0, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{userId}/type/{typeOfServiceId}")
+    public ResponseEntity<List<PriceProfileResponseDto>> getAllByTypeOfServiceId(@PathVariable Long userId,
+                                                                                 @PathVariable Long typeOfServiceId) {
+        return new ResponseEntity<>(priceService.getAllByTypeOfServiceIdAndUserId(typeOfServiceId, userId), HttpStatus.OK);
     }
 }

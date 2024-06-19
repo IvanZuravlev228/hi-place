@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+<main class="profile-main-container">
+  <section class="user-container">
+    <app-user-preview [userId]="userId"></app-user-preview>
+  </section>
+
+  <section class="service-block-container">
+
+    <div class="app-image-container">
+       <app-image-example [examples]="images"></app-image-example>
+    </div>
+
+    <div class="type-service-counts-container">
+      <div class="type-counts-item" *ngFor="let typeCounts of profilePriceData">
+        <button class="type-counts-btn" (click)="getPriceByTypeOfService(typeCounts.typeOfServiceId, typeCounts)">
+          {{ typeCounts.typeOfServiceName }} ({{ typeCounts.count }})
+        </button>
+        <div class="price-profile-container">
+          <div class="price-profile-item" *ngFor="let price of typeCounts.priceProfile">
+
+            <div class="price-profile-service-name">
+              {{ price.serviceItemName }}
+            </div>
+            <div class="price-profile-price">
+              <p>{{ price.price }}/{{ price.timeUnit }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="address-container">
+  <h3>Наши адреса</h3>
+  <div class="address-name">
+    <div class="address-name-item" *ngFor="let address of addresses">
+      <button (click)="showMap(address.lat, address.lon)" id="show-map-btn">
+        {{ address.city }}, {{ address.road }} {{ address.houseNumber }}
+      </button>
+    </div>
+  </div>
+  <div class="address-map">
+    <app-map [lat]="addressLat" [lon]="addressLon"></app-map>
+  </div>
+</section>
+
+<app-footer></app-footer>

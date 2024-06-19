@@ -5,6 +5,10 @@ import {MainComponent} from "./components/main/main.component";
 import {AboutComponent} from "./components/about/about.component";
 import {ServiceComponent} from "./components/service/service.component";
 import {UserPriceComponent} from "./components/user-price/user-price.component";
+import {UserRegisterComponent} from "./components/user-register/user-register.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {LoginComponent} from "./components/login/login.component";
+import {AddServiceComponent} from "./components/add-service/add-service.component";
 
 const routes: Routes = [
   {path: '', component: AppComponent},
@@ -12,6 +16,10 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'services', component: ServiceComponent},
   {path: 'services/user/price', component: UserPriceComponent},
+  {path: 'register/user', component: UserRegisterComponent},
+  {path: 'user/profile', component: ProfileComponent},
+  {path: 'test', component: LoginComponent},
+  {path: 'services/add', component: AddServiceComponent},
 ];
 
 @NgModule({
