@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ImageExampleComponent } from './components/image-example/image-example.component';
 import { UserPreviewComponent } from './components/user-preview/user-preview.component';
 import { AddServiceComponent } from './components/add-service/add-service.component';
+import { LoadingAnimComponent } from './components/loading-anim/loading-anim.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +39,14 @@ import { AddServiceComponent } from './components/add-service/add-service.compon
     ImageExampleComponent,
     UserPreviewComponent,
     AddServiceComponent,
+    LoadingAnimComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   bootstrap: [AppComponent]
 })

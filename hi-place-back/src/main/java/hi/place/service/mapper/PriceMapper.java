@@ -2,6 +2,7 @@ package hi.place.service.mapper;
 
 import hi.place.dto.price.PriceRequestDto;
 import hi.place.dto.price.PriceResponseDto;
+import hi.place.model.ServiceItem;
 import hi.place.model.user.Price;
 import hi.place.service.ServiceItemService;
 import hi.place.service.UserService;
@@ -17,8 +18,11 @@ public class PriceMapper implements RequestResponseMapper<PriceRequestDto, Price
     @Override
     public Price toModel(PriceRequestDto dto) {
         Price model = new Price();
-        model.setServiceItem(serviceItemService.getById(dto.getServiceItemId()));
-        model.setUser(userService.getByEmail(dto.getUserEmail()));
+        ServiceItem serviceItem = serviceItemService.getInitializeById(dto.getServiceItemId());
+        model.setServiceItem(serviceItem);
+        model.setTypeOfService(serviceItem.getTypeOfService());
+        model.setMainTypeOfService(serviceItem.getTypeOfService().getMainType());
+        model.setUser(userService.getById(dto.getUserId()));
         model.setPrice(dto.getPrice());
         model.setTimeUnit(dto.getTimeUnit());
         return model;
@@ -30,7 +34,7 @@ public class PriceMapper implements RequestResponseMapper<PriceRequestDto, Price
         dto.setId(model.getId());
         dto.setServiceItemId(model.getServiceItem().getId());
         dto.setTypeOfServiceId(model.getTypeOfService().getId());
-//        dto.setMainTypeOfServiceId(model.getMainTypeOfService().getId());
+        dto.setMainTypeOfServiceId(model.getMainTypeOfService().getId());
         dto.setUserId(model.getUser().getId());
         dto.setPrice(model.getPrice());
         dto.setTimeUnit(model.getTimeUnit());

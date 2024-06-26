@@ -9,4 +9,6 @@ public interface ServiceItemService {
     List<ServiceItem> getByTypeOfServiceId(Long typeOfServiceId);
 
     ServiceItem getById(Long id);
+
+    ServiceItem getInitializeById(Long id);
 }

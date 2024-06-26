@@ -31,8 +31,8 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public Price addToUser(Price price) {
-        return priceRepository.save(price);
+    public List<Price> addToUser(List<Price> prices) {
+        return priceRepository.saveAll(prices);
     }
 
     @Override
@@ -46,5 +46,15 @@ public class PriceServiceImpl implements PriceService {
 //        Price previous = getById(previousPriceId);
         price.setId(previousPriceId);
         return  priceRepository.save(price);
+    }
+
+    @Override
+    public List<PriceProfileResponseDto> getAllServiceItemsWithoutPrice(Long typeOfServiceId, Long userId) {
+        return priceRepository.getAllServiceItemsWithoutPrice(typeOfServiceId, userId);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        priceRepository.deleteById(id);
     }
 }

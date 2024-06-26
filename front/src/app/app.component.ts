@@ -12,17 +12,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.router.navigate(["user/profile"], {
-    //   queryParams: {
-    //     userId: 1
-    //   }
-    // });
-
-    this.router.navigate(["services/add"], {
+    this.router.navigate(["user/profile"], {
       queryParams: {
         userId: 1
       }
-    })
+    });
+
+    // this.router.navigate(["services/add"], {
+    //   queryParams: {
+    //     userId: 1
+    //   }
+    // })
     // this.router.navigate(["/test"]);
   }
 }

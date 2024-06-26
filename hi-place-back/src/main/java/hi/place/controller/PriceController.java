@@ -4,6 +4,7 @@ import hi.place.dto.price.PriceProfileResponseDto;
 import hi.place.dto.price.PriceRequestDto;
 import hi.place.dto.price.PriceResponseDto;
 import hi.place.model.user.Price;
+import hi.place.repository.user.PriceRepository;
 import hi.place.service.PriceService;
 import hi.place.service.mapper.RequestResponseMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,8 @@ public class PriceController {
     private final PriceService priceService;
     private final RequestResponseMapper<PriceRequestDto, PriceResponseDto, Price> priceMapper;
 
+    private final PriceRepository priceRepository;
+
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<PriceResponseDto>> getAllByUser(@PathVariable Long userId) {
         return new ResponseEntity<>(priceService.getAllByUserId(userId)
@@ -30,20 +33,33 @@ public class PriceController {
     }
 
     @PostMapping
-    public ResponseEntity<Boolean> addPriceToUser(@RequestBody PriceRequestDto price) {
-        return new ResponseEntity<>(priceService.addToUser(priceMapper.toModel(price)).getId() > 0,
+    public ResponseEntity<Boolean> addPriceToUser(@RequestBody List<PriceRequestDto> price) {
+        return new ResponseEntity<>(!priceService.addToUser(price.stream().map(priceMapper::toModel).toList()).isEmpty(),
                 HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping("/{prevPriceId}")
     public ResponseEntity<Boolean> updatePrice(@RequestBody PriceRequestDto price,
-                                               @RequestParam Long previousPriceId) {
-        return new ResponseEntity<>(priceService.update(priceMapper.toModel(price), previousPriceId).getId() > 0, HttpStatus.OK);
+                                               @PathVariable Long prevPriceId) {
+        return new ResponseEntity<>(priceService.update(priceMapper.toModel(price), prevPriceId).getId() > 0,
+                HttpStatus.OK);
     }
 
     @GetMapping("/user/{userId}/type/{typeOfServiceId}")
     public ResponseEntity<List<PriceProfileResponseDto>> getAllByTypeOfServiceId(@PathVariable Long userId,
                                                                                  @PathVariable Long typeOfServiceId) {
         return new ResponseEntity<>(priceService.getAllByTypeOfServiceIdAndUserId(typeOfServiceId, userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/type/{typeId}/user/{userId}")
+    public ResponseEntity<List<PriceProfileResponseDto>> getAllTest(@PathVariable Long typeId,
+                                                                    @PathVariable Long userId) {
+        return new ResponseEntity<>(priceService.getAllServiceItemsWithoutPrice(typeId, userId), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePrice(@PathVariable Long id) {
+        priceRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
