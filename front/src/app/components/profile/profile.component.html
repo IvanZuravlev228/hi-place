@@ -12,20 +12,28 @@
     </div>
 
     <div class="type-service-counts-container">
-      <div class="type-counts-item" *ngFor="let typeCounts of profilePriceData">
-        <button class="type-counts-btn" (click)="getPriceByTypeOfService(typeCounts.typeOfServiceId, typeCounts)">
-          {{ typeCounts.typeOfServiceName }} ({{ typeCounts.count }})
-        </button>
-        <div class="price-profile-container">
-          <div class="price-profile-item" *ngFor="let price of typeCounts.priceProfile">
+      <button class="change-mode-btn" (click)="showAddService = !showAddService">
+        <img class="change-mode-btn-image" src="assets/image/icons/edit-create.png" alt="something went wrong)" title="Додавання/редагування">
+      </button>
+      <app-add-service *ngIf="showAddService"></app-add-service>
 
-            <div class="price-profile-service-name">
-              {{ price.serviceItemName }}
-            </div>
-            <div class="price-profile-price">
-              <p>{{ price.price }}/{{ price.timeUnit }}</p>
-            </div>
+      <div class="show-service-container" *ngIf="!showAddService">
+        <div class="type-counts-item" *ngFor="let typeCounts of profilePriceData">
+          <button class="type-counts-btn"
+                  (click)="getPriceByTypeOfService(typeCounts.typeOfServiceId, typeCounts)">
+            {{ typeCounts.typeOfServiceName }} ({{ typeCounts.count }})
+          </button>
+          <div class="price-profile-container">
+            <div class="price-profile-item" *ngFor="let price of typeCounts.priceProfile">
 
+              <div class="price-profile-service-name">
+                {{ price.serviceItemName }}
+              </div>
+              <div class="price-profile-price">
+                <p>{{ price.price }}/{{ price.timeUnit }}</p>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>

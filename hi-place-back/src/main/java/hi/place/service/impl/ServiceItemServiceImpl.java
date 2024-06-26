@@ -23,4 +23,10 @@ public class ServiceItemServiceImpl implements ServiceItemService {
         return serviceItemRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("Can't find service item by id: " + id));
     }
+
+    @Override
+    public ServiceItem getInitializeById(Long id) {
+        return serviceItemRepository.getInitializeServiceItemById(id).orElseThrow(() ->
+                new RuntimeException("Can't find service item by id: " + id));
+    }
 }

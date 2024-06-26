@@ -41,7 +41,7 @@ export class MapComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   private renderMap() {
     this.map = L.map('map').setView([this.lat, this.lon], this.zoom);
-    console.log('Map initialized:', this.map);
+    // console.log('Map initialized:', this.map);
     this.map.getContainer().style.width = this.sizeMap;
     this.map.getContainer().style.height = this.sizeMap;
 

@@ -4,7 +4,6 @@ import {User} from "../../models/User";
 import {UserService} from "../../services/user.service";
 import {Address} from "../../models/Address";
 import {AddressService} from "../../services/address.service";
-import {MainTypeOfService} from "../../models/typeService/MainTypeOfService";
 import {Price} from "../../models/price/Price";
 import {PriceService} from "../../services/price.service";
 import {TypeOfServiceService} from "../../services/type-of-service.service";
@@ -38,6 +37,7 @@ export class ProfileComponent implements OnInit{
     './assets/image/main/eyebrow-tattoo-main.jpg',
     './assets/image/main/haircut-man-main.jpg',
   ];
+  showAddService: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private userService: UserService,
@@ -61,7 +61,6 @@ export class ProfileComponent implements OnInit{
     this.priceService.getAllByUser(userId).subscribe({
       next: (prices) => {
         this.prices = prices;
-        console.log("prices: " + this.prices);
       },
       error: (error) => {
         console.log(error);
@@ -94,7 +93,7 @@ export class ProfileComponent implements OnInit{
     this.typeOfServiceService.getTypeOfServiceCountByUserId(this.userId).subscribe({
       next: (typeOfServiceCounts) => {
         this.profilePriceData = typeOfServiceCounts;
-        console.log(this.profilePriceData);
+        // console.log(this.profilePriceData);
       },
       error: (error) => {
         console.log(error);
