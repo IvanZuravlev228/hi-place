@@ -45,6 +45,10 @@
   max-height: 40px; /* Максимальная высота логотипа */
 }
 
+.logo-img:hover {
+  cursor: pointer;
+}
+
 /* Стили для кнопок аутентификации */
 .login-button,
 .sign-in-button {

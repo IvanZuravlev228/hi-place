@@ -8,16 +8,22 @@ import {Price} from "../../models/price/Price";
 import {PriceService} from "../../services/price.service";
 import {TypeOfServiceService} from "../../services/type-of-service.service";
 import {TypeOfServiceCount} from "../../models/typeService/TypeOfServiceCount";
+import {UserImagesService} from "../../services/user-images.service";
+import {UserServiceImagesResponse} from "../../models/UserServiceImagesResponse";
+import {PriceProfile} from "../../models/price/PriceProfile";
+import {UploadFileService} from "../../services/upload-file.service";
+import {MatDialog} from "@angular/material/dialog";
+import {WarningModuleComponent} from "../../modals/warning-module/warning-module.component";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
 
   userId: number = 0;
-  user: User = new User();
+  // user: User = new User();
   addresses: Address[] = [];
 
   addressLat: number = 0;
@@ -25,25 +31,19 @@ export class ProfileComponent implements OnInit{
 
   prices: Price[] = [];
   profilePriceData: TypeOfServiceCount[] = [];
+  images: UserServiceImagesResponse[] = [];
 
-  images: string[] = [
-    './assets/image/main/haircut-man-main.jpg',
-    './assets/image/main/eyebrow-main.jpg',
-    './assets/image/main/photosession.jpg',
-    './assets/image/main/tattoo-main.jpg',
-    './assets/image/main/injection-main.jpg',
-    './assets/image/main/facial-main.jpg',
-    './assets/image/main/epilation.jpg',
-    './assets/image/main/eyebrow-tattoo-main.jpg',
-    './assets/image/main/haircut-man-main.jpg',
-  ];
+  showService: boolean = true;
   showAddService: boolean = false;
+  showAddAddress: boolean = false;
+
 
   constructor(private activatedRoute: ActivatedRoute,
               private userService: UserService,
               private addressService: AddressService,
               private priceService: PriceService,
-              private typeOfServiceService: TypeOfServiceService) {
+              private typeOfServiceService: TypeOfServiceService,
+              private userImagesService: UserImagesService) {
   }
 
   ngOnInit(): void {
@@ -54,6 +54,7 @@ export class ProfileComponent implements OnInit{
 
     this.getAllTypeOfServiceCountByUserId();
     this.getAllPriceByUserId(this.userId);
+    this.getAllUserImages();
     this.getAllAddressesByUserId(this.userId);
   }
 
@@ -72,9 +73,10 @@ export class ProfileComponent implements OnInit{
     this.addressService.getAllByUserId(userId).subscribe({
       next: (addresses) => {
         this.addresses = addresses;
-        this.addressLat = addresses[0].lat;
-        this.addressLon = addresses[0].lon;
-        // console.log(this.addresses);
+        if (addresses.length > 0) {
+          this.addressLat = addresses[0].lat;
+          this.addressLon = addresses[0].lon;
+        }
       },
       error: (error) => {
         console.log(error);
@@ -101,10 +103,78 @@ export class ProfileComponent implements OnInit{
     })
   }
 
-  getPriceByTypeOfService(typeOfServiceId: number, typeCount: TypeOfServiceCount) {
+  public getPriceByTypeOfService(typeOfServiceId: number, typeCount: TypeOfServiceCount) {
     this.priceService.getAllPriceProfileByTypeOfServiceIdAndUserId(typeOfServiceId, this.userId).subscribe({
       next: (priceProfile) => {
         typeCount.priceProfile = priceProfile;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  private getAllUserImages() {
+    this.userImagesService.getExampleImagesByUserId(this.userId).subscribe({
+      next: (images) => {
+        this.images = images;
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+  public receivedAddresses: Address[] | null = null;
+  isLoading: boolean = false;
+
+  public onAddressSelected(addresses: Address[]) {
+    this.receivedAddresses = addresses;
+  }
+
+  public saveAddress() {
+    this.isLoading = true;
+
+    if (this.receivedAddresses) {
+      this.receivedAddresses.forEach(address => {
+        address.userId = this.userId;
+        this.saveNewAddress(address);
+      });
+    }
+
+    this.ngOnInit();
+  }
+
+  private saveNewAddress(address: Address) {
+    this.addressService.saveNewAddress(address).subscribe({
+      next: (address) => {
+        this.isLoading = false;
+
+      },
+      error: (error) => {
+        console.log(error);
+        this.isLoading = false;
+      }
+    })
+  }
+
+  showAddServiceOnClick() {
+    console.log("showAddServiceOnClick clicked");
+    this.showAddService = !this.showAddService;
+    this.showService = !this.showService;
+    this.showAddAddress = false;
+  }
+
+  showAddAddressOnClick() {
+    console.log("showAddAddressOnClick clicked");
+    this.showAddService = false;
+    this.showService = !this.showService;
+    this.showAddAddress = !this.showAddAddress;
+  }
+
+  public deleteAddress(addressId: number) {
+    this.addressService.deleteAddressById(addressId).subscribe({
+      next: () => {
+        this.addresses = this.addresses.filter(address => address.id !== addressId);
       },
       error: (error) => {
         console.log(error);

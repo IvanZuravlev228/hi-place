@@ -27,12 +27,12 @@ export class MainComponent {
   constructor(private router: Router) {
   }
 
-  showMoreItems() {
+  public showMoreItems() {
     this.visibleItemsCount = this.serviceItems.length;
   }
 
   public goToServicePage(dbID: number) {
-    this.router.navigate(["services"], {
+    this.router.navigate(["/services"], {
       queryParams: {
         mainTypeId: dbID
       }});

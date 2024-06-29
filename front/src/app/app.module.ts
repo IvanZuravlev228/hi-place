@@ -8,7 +8,7 @@ import {FormsModule} from "@angular/forms";
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
 import { AboutComponent } from './components/about/about.component';
-import { ServiceComponent } from './components/service/service.component';
+import { ServiceComponent } from './components/service-page/service.component';
 import { UserPriceComponent } from './components/user-price/user-price.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -21,6 +21,8 @@ import { ImageExampleComponent } from './components/image-example/image-example.
 import { UserPreviewComponent } from './components/user-preview/user-preview.component';
 import { AddServiceComponent } from './components/add-service/add-service.component';
 import { LoadingAnimComponent } from './components/loading-anim/loading-anim.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { WarningModuleComponent } from './modals/warning-module/warning-module.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { LoadingAnimComponent } from './components/loading-anim/loading-anim.com
     UserPreviewComponent,
     AddServiceComponent,
     LoadingAnimComponent,
+    WarningModuleComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { LoadingAnimComponent } from './components/loading-anim/loading-anim.com
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    MatDialogModule
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserServiceImagesResponse} from "../models/UserServiceImagesResponse";
 import {environment} from "../../environment/environment";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +34,10 @@ export class UserImagesService {
       }
     })
   }
+
+  public getExampleImagesByUserId(userId: number) {
+    return this.http.get<UserServiceImagesResponse[]>(`${environment.backendURL}/images/user/${userId}`)
+  }
+
+
 }

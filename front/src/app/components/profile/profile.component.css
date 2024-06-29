@@ -18,6 +18,8 @@
   padding: 15px;
 }
 
+
+
 .address-name {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -25,6 +27,10 @@
 
 .address-name-item {
   margin-bottom: 5px;
+}
+
+.map-pointer-icon {
+  width: 20px;
 }
 
 #show-map-btn {
@@ -64,18 +70,19 @@
 
 .change-mode-btn {
   background-color: transparent;
-  padding: 5px;
-  border-radius: 3px;
-  transition: background-color 0.5s ease;
-}
-
-.change-mode-btn:hover {
-  cursor: pointer;
-  background-color: #d1d1d1;
 }
 
 .change-mode-btn-image {
-  width: 17px;
+  width: 20px;
+  padding: 5px;
+  border-radius: 3px;
+  transition: background-color 0.5s ease, width 0.5s ease;
+}
+
+.change-mode-btn-image:hover {
+  cursor: pointer;
+  background-color: #f1f1f1;
+  width: 25px;
 }
 
 .type-counts-item {
@@ -84,6 +91,9 @@
 }
 
 .type-counts-btn {
+  display: flex;
+  justify-content: space-between;
+
   width: 100%;
   padding: 10px 20px;
   text-align: left;
@@ -119,4 +129,17 @@
 
 .price-profile-price {
 
+}
+
+#add-address-btn {
+  padding: 10px 20px;
+  background-color: #5e855e;
+  border: black 1px solid;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#add-address-btn:hover {
+  cursor: pointer;
+  background-color: #94ec94;
 }

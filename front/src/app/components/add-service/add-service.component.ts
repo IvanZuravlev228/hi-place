@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {MainTypeServiceService} from "../../services/main-type-service.service";
 import {TypeOfServiceService} from "../../services/type-of-service.service";
@@ -7,6 +7,10 @@ import {PriceService} from "../../services/price.service";
 import {TypeOfServiceView} from "../../models/view/TypeOfServiceView";
 import {PriceProfile} from "../../models/price/PriceProfile";
 import {PriceCreateRequestDto} from "../../models/price/PriceCreateRequestDto";
+import {MatDialog} from "@angular/material/dialog";
+import {WarningModuleComponent} from "../../modals/warning-module/warning-module.component";
+import {UploadFileService} from "../../services/upload-file.service";
+import {UserServiceImagesResponse} from "../../models/UserServiceImagesResponse";
 
 @Component({
   selector: 'app-add-service',
@@ -15,14 +19,18 @@ import {PriceCreateRequestDto} from "../../models/price/PriceCreateRequestDto";
 })
 export class AddServiceComponent implements OnInit {
   private userId: number = 0;
+  @Input() images: UserServiceImagesResponse[] = [];
 
   createModel: AllServiceForView[] = [];
   isLoading: boolean = false;
+  formDataImages: FormData = new FormData();
 
   constructor(private activatedRoute: ActivatedRoute,
               private mainTypeService: MainTypeServiceService,
               private typeOfServiceService: TypeOfServiceService,
-              private priceService: PriceService) {
+              private priceService: PriceService,
+              public dialog: MatDialog,
+              private uploadFileService: UploadFileService) {
   }
 
   ngOnInit(): void {
@@ -35,6 +43,7 @@ export class AddServiceComponent implements OnInit {
 
   public onSubmit() {
     this.isLoading = true;
+    this.saveImages();
     this.saveOrUpdatePrice(this.createModel);
   }
 
@@ -156,5 +165,32 @@ export class AddServiceComponent implements OnInit {
         console.log(error);
       }
     })
+  }
+
+  onFileSelected(event: any, typeOfServiceId: number) {
+    const file: File = event.target.files[0];
+    if (file) {
+
+      this.formDataImages.append("files", file);
+      this.formDataImages.append("typeOfServiceIds", typeOfServiceId.toString());
+    }
+  }
+
+  private saveImages() {
+    this.dialog.open(WarningModuleComponent);
+
+    console.log("form data: " + this.formDataImages);
+    this.uploadFileService.uploadExampleImages(this.formDataImages, this.userId).subscribe({
+      next: () => {
+        console.log("images were uploaded successfully)");
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
+  public countImagesByTypeOfService(typeId: number): number {
+    return this.images.filter(image => image.typeOfServiceId === typeId).length;
   }
 }

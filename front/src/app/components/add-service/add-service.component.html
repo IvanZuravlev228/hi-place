@@ -10,6 +10,10 @@
       <div *ngFor="let type of model.typesOfService" class="types-service-container">
         <div (click)="getEmptyPrice(type.id, type)" class="prices-btn">
           <p>{{ type.name }}</p>
+          <p id="added-images">(добавлено картинок:{{ countImagesByTypeOfService(type.id) }}/5)</p>
+          <div class="add-image" *ngIf="countImagesByTypeOfService(type.id) < 5">
+            <input type="file" (change)="onFileSelected($event, type.id)">
+          </div>
         </div>
 
         <div *ngFor="let price of type.prices" class="prices-container">
@@ -30,13 +34,15 @@
 
             <img id="delete-price"
                  src="assets/image/icons/delete.png"
-                 alt="delete price" (click)="deletePrice(type.prices, price.id)">
-
+                 alt="delete price"
+                 (click)="deletePrice(type.prices, price.id)">
           </div>
 
         </div>
       </div>
     </div>
     <button type="submit" class="price-submit-btn">save</button>
+      <div class="save-button-container" *ngIf="formDataImages.has('files')">
+    </div>
   </form>
 </section>

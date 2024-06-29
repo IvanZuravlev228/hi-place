@@ -50,6 +50,7 @@ export class AddressComponent {
     console.log(address.address);
 
     const selectedAddressObject: Address = {
+      id: address.id,
       country: address.address.country,
       city: address.address.city,
       borough: address.address.borough || '',

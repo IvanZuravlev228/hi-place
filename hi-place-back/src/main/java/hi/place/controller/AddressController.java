@@ -38,4 +38,10 @@ public class AddressController {
                 .map(addressMapper::toDto)
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{addressId}")
+    public ResponseEntity<Void> deleteAddressById(@PathVariable Long addressId) {
+        addressService.deleteById(addressId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

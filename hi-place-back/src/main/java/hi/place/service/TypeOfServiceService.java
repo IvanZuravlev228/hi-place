@@ -11,4 +11,6 @@ public interface TypeOfServiceService {
     List<TypeOfService> getByMainTypeId(Long mainTypeId);
 
     List<TypeOfServiceCountDto> getTypeOfServiceCountByUserId(Long userId);
+
+    TypeOfService getById(Long id);
 }

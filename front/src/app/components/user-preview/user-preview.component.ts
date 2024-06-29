@@ -13,7 +13,8 @@ import {Router} from "@angular/router";
 export class UserPreviewComponent implements OnInit{
   private hiddenPhoneMask: string = "+380 (**) *** ** **";
 
-  @Input() userId: number = 0;
+  @Input() userId: number = -1;
+  @Input() inputUser: User = new User();
   user: User = new User();
   addresses: Address[] = [];
 
@@ -23,12 +24,16 @@ export class UserPreviewComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    if (this.userId == -1 && this.inputUser.id > 0) {
+      this.user = this.inputUser;
+      this.hidePhone(this.user);
+      return;
+    }
     this.getUserById(this.userId);
   }
 
   public revealPhone(user: User): void {
     user.hiddenPhone = user.phone;
-    console.log(user);
   }
 
   public getStars(rating: number): string[] {
@@ -54,11 +59,13 @@ export class UserPreviewComponent implements OnInit{
   }
 
   private getUserById(userId: number) {
+
+    console.log("request to back-end....");
+
     this.userService.getUserById(userId).subscribe({
       next: (user) => {
         this.user = user;
         this.hidePhone(this.user);
-
         this.getAllAddressesByUserId();
       },
       error: (error) => {

@@ -18,11 +18,19 @@ export class AppComponent implements OnInit {
       }
     });
 
+    // this.router.navigate(["/services"], {
+    //   queryParams: {
+    //     mainTypeId: 1
+    //   }
+    // });
+
     // this.router.navigate(["services/add"], {
     //   queryParams: {
     //     userId: 1
     //   }
     // })
     // this.router.navigate(["/test"]);
+
+    // this.router.navigate(["/home"]);
   }
 }

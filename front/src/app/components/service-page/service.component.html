@@ -1,0 +1,50 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+
+<app-header></app-header>
+<main class="main-service-container">
+  <section class="side-panel">
+    <div class="service-type-item" *ngFor="let typeOfService of typesOfService">
+      <p>
+        <button class="service-type-item-btn" (click)="loadServiceItem(typeOfService)">{{ typeOfService.name }}</button>
+      </p>
+      <div class="service-item-block" *ngIf="!typeOfService.serviceItem || typeOfService.serviceItem.length > 1">
+        <div class="service-item-item" *ngFor="let item of typeOfService.serviceItem">
+          <p><button class="service-item-item-btn" (click)="getUsersByServiceItemId(item.id, typeOfService.id)">{{ item.name }}</button></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="users-container">
+    <div class="user" *ngFor="let user of users">
+      <app-user-preview [inputUser]="user"></app-user-preview>
+
+      <div class="right">
+        <div class="discount-mode-container">
+          <div class="discount">
+            <p *ngIf="user.discountWithPromo">
+              -{{ user.discountWithPromo }}% за промокодом HiPlace
+            </p>
+          </div>
+          <div class="mode">
+            <p>MAX</p>
+          </div>
+        </div>
+
+        <div class="app-image-container" *ngIf="user.examples && user.examples.length > 0">
+          <app-image-example [examples]="user.examples"></app-image-example>
+        </div>
+
+        <div class="show-user-container">
+          <button class="show-user-btn" (click)="goToUserPricePage(user.id)">Переглянути прайс</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<app-footer></app-footer>

@@ -1,17 +1,19 @@
 <app-header></app-header>
 <main class="home-main-container">
   <section class="about-service-container">
-    <h2 class="section-name">О нашем сервисе</h2>
+    <h2 class="section-name">Про наш сервіс</h2>
 
     <p class="text-about">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid beatae, consequuntur ex itaque magnam porro rerum. Amet iure unde veritatis!
+      На нашому сайті ви можете знайти найкращого майстра або салон краси поруч із вами і з найприємнішими цінами.
     </p>
 
     <div class="service-item-container">
-      <div *ngFor="let item of serviceItems; let i = index"
+      <div class="service-item"
+           *ngFor="let item of serviceItems; let i = index"
            [class.hidden]="i >= visibleItemsCount"
-           [id]="item.id" class="service-item"
-           [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
+           [id]="item.id"
+           [ngStyle]="{'background-image': 'url(' + item.image + ')'}"
+           (click)="goToServicePage(item.dbID)">
 
         <div class="overlay">
           <button class="overlay-btn" (click)="goToServicePage(item.dbID)">{{ item.name }}</button>
@@ -26,4 +28,4 @@
   </section>
 </main>
 
-
+<app-footer></app-footer>

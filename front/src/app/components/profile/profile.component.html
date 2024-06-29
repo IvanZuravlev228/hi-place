@@ -1,5 +1,7 @@
 <app-header></app-header>
 
+<app-loading-anim [isLoading]="isLoading"></app-loading-anim>
+
 <main class="profile-main-container">
   <section class="user-container">
     <app-user-preview [userId]="userId"></app-user-preview>
@@ -7,21 +9,38 @@
 
   <section class="service-block-container">
 
-    <div class="app-image-container">
-       <app-image-example [examples]="images"></app-image-example>
+    <div class="app-image-container" *ngIf="images && images.length > 0">
+      <app-image-example [examples]="images"></app-image-example>
     </div>
 
     <div class="type-service-counts-container">
-      <button class="change-mode-btn" (click)="showAddService = !showAddService">
-        <img class="change-mode-btn-image" src="assets/image/icons/edit-create.png" alt="something went wrong)" title="Додавання/редагування">
+      <button class="change-mode-btn">
+        <img class="change-mode-btn-image"
+             src="assets/image/icons/edit-create.png"
+             alt="something went wrong)"
+             title="Додавання/редагування"
+             (click)="showAddServiceOnClick()">
+
+        <img class="change-mode-btn-image"
+             src="assets/image/icons/add-address.png"
+             alt="something went wrong)"
+             title="Додавання адреси"
+             (click)="showAddAddressOnClick()">
       </button>
+
+      <div class="address-container" *ngIf="showAddAddress">
+        <app-address (selectedAddressEmit)="onAddressSelected($event)"></app-address>
+        <button id="add-address-btn" (click)="saveAddress()">add address</button>
+      </div>
+
       <app-add-service *ngIf="showAddService"></app-add-service>
 
-      <div class="show-service-container" *ngIf="!showAddService">
+      <div class="show-service-container" *ngIf="showService">
         <div class="type-counts-item" *ngFor="let typeCounts of profilePriceData">
           <button class="type-counts-btn"
                   (click)="getPriceByTypeOfService(typeCounts.typeOfServiceId, typeCounts)">
             {{ typeCounts.typeOfServiceName }} ({{ typeCounts.count }})
+
           </button>
           <div class="price-profile-container">
             <div class="price-profile-item" *ngFor="let price of typeCounts.priceProfile">
@@ -32,22 +51,25 @@
               <div class="price-profile-price">
                 <p>{{ price.price }}/{{ price.timeUnit }}</p>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
 </main>
 
-<section class="address-container">
-  <h3>Наши адреса</h3>
+<section class="address-container" *ngIf="addresses.length > 0">
+  <h3>Наші адреси</h3>
   <div class="address-name">
     <div class="address-name-item" *ngFor="let address of addresses">
       <button (click)="showMap(address.lat, address.lon)" id="show-map-btn">
+        <img class="map-pointer-icon" src="assets/image/icons/map-pointer.png" alt="icon">
         {{ address.city }}, {{ address.road }} {{ address.houseNumber }}
+        <img class="map-pointer-icon" src="assets/image/icons/delete.png"
+             alt="delete"
+             title="delete address"
+             (click)="deleteAddress(address.id)">
       </button>
     </div>
   </div>

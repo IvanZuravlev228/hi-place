@@ -1,3 +1,7 @@
+.home-main-container {
+  margin-bottom: 200px;
+}
+
 .about-service-container {
   display: flex;
   flex-direction: column;
@@ -5,7 +9,7 @@
   text-align: center;
   padding: 20px;
   margin-top: 15px;
-  height: 90vh;
+  /*height: 90vh;*/
 }
 
 .section-name {
@@ -26,6 +30,10 @@
   flex-wrap: wrap;
   gap: 16px;
   padding: 16px;
+}
+
+.service-item-container:hover {
+  cursor: pointer;
 }
 
 .service-item {

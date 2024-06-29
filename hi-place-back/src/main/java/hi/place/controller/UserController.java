@@ -2,7 +2,6 @@ package hi.place.controller;
 
 import hi.place.dto.user.UserRequestDto;
 import hi.place.dto.user.UserResponseDto;
-import hi.place.exception.EmailAlreadyExistsException;
 import hi.place.model.user.User;
 import hi.place.service.UserService;
 import hi.place.service.mapper.RequestResponseMapper;

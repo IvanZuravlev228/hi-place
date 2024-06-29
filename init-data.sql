@@ -482,109 +482,109 @@ INSERT INTO `hi-place`.`service_item` (`type_of_service_id`, `name`) VALUES ('89
 
 
 
--- subway initialization
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Академмістечко');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Житомирська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Святошин');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Нивки');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Берестейська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Шулявська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Політехнічний інститут,Вокзальна');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Університет');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Театральна');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Хрещатик');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Арсенальна');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Дніпро');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Гідропарк');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Лівобережна');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Дарниця');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Чернігівська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Лісова');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Героїв Дніпра');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Мінська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Оболонь');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Почайна');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Тараса Шевченка');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Контрактова площа');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Поштова площа');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Майдан Незалежності');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Площа Українських Героїв');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Олімпійська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Палац «Україна»');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Либідська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Деміївська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Голосіївська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Васильківська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Виставковий центр');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Іподром');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Теремки');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Сирець');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Дорогожичі');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Лук\'янівська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Золоті ворота');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Палац спорту');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Кловська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Печерська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Звіринецька');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Видубичі');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Славутич');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Осокорки');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Позняки');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Харківська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Вирлиця');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Бориспільська');
-INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Червоний хутір');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '1');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '2');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '3');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '4');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '5');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '6');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '7');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '8');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '9');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '10');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '11');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '12');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '13');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '14');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '15');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '16');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '17');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '18');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '19');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '20');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '21');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '22');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '23');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '24');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '25');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '26');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '27');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '28');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '29');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '30');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '31');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '32');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '33');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '34');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '35');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '36');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '37');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '38');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '39');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '40');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '41');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '42');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '43');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '44');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '45');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '46');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '47');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '48');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '49');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '50');
-UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '51');
+-- -- subway initialization
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Академмістечко');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Житомирська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Святошин');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Нивки');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Берестейська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Шулявська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Політехнічний інститут,Вокзальна');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Університет');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Театральна');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Хрещатик');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Арсенальна');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Дніпро');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Гідропарк');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Лівобережна');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Дарниця');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Чернігівська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('red', 'Лісова');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Героїв Дніпра');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Мінська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Оболонь');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Почайна');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Тараса Шевченка');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Контрактова площа');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Поштова площа');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Майдан Незалежності');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Площа Українських Героїв');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Олімпійська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Палац «Україна»');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Либідська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Деміївська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Голосіївська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Васильківська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Виставковий центр');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Іподром');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('blue', 'Теремки');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Сирець');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Дорогожичі');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Лук\'янівська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Золоті ворота');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Палац спорту');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Кловська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Печерська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Звіринецька');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Видубичі');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Славутич');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Осокорки');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Позняки');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Харківська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Вирлиця');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Бориспільська');
+-- INSERT INTO `hi-place`.`subway` (`color`, `name`) VALUES ('green', 'Червоний хутір');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '1');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '2');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '3');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '4');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '5');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '6');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '7');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '8');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '9');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '10');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '11');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '12');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '13');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '14');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '15');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '16');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '17');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '18');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '19');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '20');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '21');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '22');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '23');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '24');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '25');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '26');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '27');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '28');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '29');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '30');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '31');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '32');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '33');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '34');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '35');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '36');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '37');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '38');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '39');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '40');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '41');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '42');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '43');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '44');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '45');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '46');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '47');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '48');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '49');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '50');
+-- UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '51');
 
 -- DELIMITER $$
 
@@ -607,95 +607,95 @@ UPDATE `hi-place`.`subway` SET `city` = 'Kyiv' WHERE (`id` = '51');
 
 -- DELIMITER ;
 
-INSERT INTO user (name, email, logourl, experience, phone, tiktok_link, instagram_link, telegram_link, viber_link, home_visit, online_counseling, at_salon, discount_with_promo, type, avg) VALUES
-('User1', 'user1@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 5.0, '+38 (095) 332 42 55', '', 'http://instagram.com/user1', 'http://telegram.com/user1', 'http://viber.com/user1', TRUE, FALSE, TRUE, 10, 'SALON', 5),
-('User2', 'user2@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 4.5, '+38 (095) 332 42 55', 'http://tiktok.com/user2', '', 'http://telegram.com/user2', 'http://viber.com/user2', FALSE, TRUE, FALSE, 15, 'MASTER', 4.7),
-('User3', 'user3@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 3.2, '+38 (095) 332 42 55', 'http://tiktok.com/user3', 'http://instagram.com/user3', '', 'http://viber.com/user3', TRUE, TRUE, TRUE, 5, 'SALON', 4.0),
-('User4', 'user4@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 6.1, '+38 (095) 332 42 55', 'http://tiktok.com/user4', 'http://instagram.com/user4', 'http://telegram.com/user4', '', FALSE, FALSE, TRUE, 0, 'MASTER', 4.8),
-('User5', 'user5@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 7.0, '+38 (095) 332 42 55', 'http://tiktok.com/user5', 'http://instagram.com/user5', 'http://telegram.com/user5', 'http://viber.com/user5', TRUE, TRUE, FALSE, 20, 'SALON', 4.9),
-('User6', 'user6@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 2.3, '+38 (095) 332 42 55', 'http://tiktok.com/user6', 'http://instagram.com/user6', 'http://telegram.com/user6', 'http://viber.com/user6', FALSE, FALSE, FALSE, 10, 'MASTER', 3.8),
-('User7', 'user7@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 8.2, '+38 (095) 332 42 55', 'http://tiktok.com/user7', 'http://instagram.com/user7', 'http://telegram.com/user7', 'http://viber.com/user7', TRUE, TRUE, TRUE, 25, 'SALON', 4.6),
-('User8', 'user8@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 4.0, '+38 (095) 332 42 55', 'http://tiktok.com/user8', 'http://instagram.com/user8', 'http://telegram.com/user8', 'http://viber.com/user8', FALSE, TRUE, FALSE, 30, 'MASTER', 4.3),
-('User9', 'user9@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 1.5, '+38 (095) 332 42 55', 'http://tiktok.com/user9', 'http://instagram.com/user9', 'http://telegram.com/user9', 'http://viber.com/user9', TRUE, FALSE, TRUE, 10, 'SALON', 3.5),
-('User10', 'user10@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 5.5, '+38 (095) 332 42 55', 'http://tiktok.com/user10', 'http://instagram.com/user10', 'http://telegram.com/user10', 'http://viber.com/user10', FALSE, TRUE, FALSE, 0, 'MASTER', 4.1);
+-- INSERT INTO user (name, email, logourl, experience, phone, tiktok_link, instagram_link, telegram_link, viber_link, home_visit, online_counseling, at_salon, discount_with_promo, type, avg) VALUES
+-- ('User1', 'user1@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 5.0, '+38 (095) 332 42 55', '', 'http://instagram.com/user1', 'http://telegram.com/user1', 'http://viber.com/user1', TRUE, FALSE, TRUE, 10, 'SALON', 5),
+-- ('User2', 'user2@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 4.5, '+38 (095) 332 42 55', 'http://tiktok.com/user2', '', 'http://telegram.com/user2', 'http://viber.com/user2', FALSE, TRUE, FALSE, 15, 'MASTER', 4.7),
+-- ('User3', 'user3@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 3.2, '+38 (095) 332 42 55', 'http://tiktok.com/user3', 'http://instagram.com/user3', '', 'http://viber.com/user3', TRUE, TRUE, TRUE, 5, 'SALON', 4.0),
+-- ('User4', 'user4@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 6.1, '+38 (095) 332 42 55', 'http://tiktok.com/user4', 'http://instagram.com/user4', 'http://telegram.com/user4', '', FALSE, FALSE, TRUE, 0, 'MASTER', 4.8),
+-- ('User5', 'user5@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 7.0, '+38 (095) 332 42 55', 'http://tiktok.com/user5', 'http://instagram.com/user5', 'http://telegram.com/user5', 'http://viber.com/user5', TRUE, TRUE, FALSE, 20, 'SALON', 4.9),
+-- ('User6', 'user6@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 2.3, '+38 (095) 332 42 55', 'http://tiktok.com/user6', 'http://instagram.com/user6', 'http://telegram.com/user6', 'http://viber.com/user6', FALSE, FALSE, FALSE, 10, 'MASTER', 3.8),
+-- ('User7', 'user7@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 8.2, '+38 (095) 332 42 55', 'http://tiktok.com/user7', 'http://instagram.com/user7', 'http://telegram.com/user7', 'http://viber.com/user7', TRUE, TRUE, TRUE, 25, 'SALON', 4.6),
+-- ('User8', 'user8@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 4.0, '+38 (095) 332 42 55', 'http://tiktok.com/user8', 'http://instagram.com/user8', 'http://telegram.com/user8', 'http://viber.com/user8', FALSE, TRUE, FALSE, 30, 'MASTER', 4.3),
+-- ('User9', 'user9@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 1.5, '+38 (095) 332 42 55', 'http://tiktok.com/user9', 'http://instagram.com/user9', 'http://telegram.com/user9', 'http://viber.com/user9', TRUE, FALSE, TRUE, 10, 'SALON', 3.5),
+-- ('User10', 'user10@example.com', 'http://localhost:8080/images/user-logo/user1.jpg', 5.5, '+38 (095) 332 42 55', 'http://tiktok.com/user10', 'http://instagram.com/user10', 'http://telegram.com/user10', 'http://viber.com/user10', FALSE, TRUE, FALSE, 0, 'MASTER', 4.1);
 
 
-INSERT INTO `hi-place`.`price` (`service_item_id`, `type_of_service_id`, `main_type_of_service_id`, `user_id`, `price`, `time_unit`) VALUES 
-(1, 1, 1, 1, 500.0, '15хв'),
-(2, 1, 1, 1, 550.0, '30хв'),
-(3, 1, 1, 1, 600.0, '45хв'),
-(4, 1, 1, 2, 650.0, 'год'),
-(5, 1, 1, 2, 700.0, '2год'),
-(6, 1, 1, 2, 750.0, 'сеанс'),
-(7, 1, 1, 3, 800.0, '60 мин'),
-(8, 1, 1, 3, 850.0, '60 мин'),
-(9, 1, 1, 3, 900.0, '60 мин'),
-(10, 1, 1, 4, 950.0, '60 мин'),
-(11, 1, 1, 4, 1000.0, '60 мин'),
-(12, 2, 1, 4, 1050.0, '60 мин'),
-(13, 2, 1, 5, 1100.0, '60 мин'),
-(14, 2, 1, 5, 1150.0, '60 мин'),
-(15, 2, 1, 5, 1200.0, '60 мин'),
-(16, 2, 1, 6, 1250.0, '60 мин'),
-(17, 2, 1, 6, 1300.0, '60 мин'),
-(18, 2, 1, 6, 1350.0, '60 мин'),
-(19, 2, 1, 7, 1400.0, '60 мин'),
-(20, 2, 1, 7, 1450.0, '60 мин'),
-(21, 3, 1, 7, 1500.0, '60 мин'),
-(22, 3, 1, 8, 1550.0, '60 мин'),
-(23, 3, 1, 8, 1600.0, '60 мин'),
-(24, 3, 1, 8, 1650.0, '60 мин'),
-(25, 3, 1, 9, 1700.0, '60 мин'),
-(26, 3, 1, 9, 1750.0, '60 мин'),
-(27, 3, 1, 9, 1800.0, '60 мин'),
-(28, 3, 1, 10, 1850.0, '60 мин'),
-(29, 3, 1, 10, 1900.0, '60 мин'),
-(30, 3, 1, 10, 1950.0, '60 мин'),
-(31, 4, 1, 1, 1950.0, '60 мин'),
-(32, 4, 1, 1, 1950.0, '60 мин'),
-(33, 4, 1, 1, 1950.0, '60 мин'),
-(34, 4, 1, 1, 1950.0, '60 мин'),
-(35, 4, 1, 1, 1950.0, '60 мин'),
-(36, 4, 1, 1, 1950.0, '60 мин'),
-(37, 4, 1, 1, 1950.0, '60 мин'),
-(38, 4, 1, 1, 1950.0, '60 мин'),
-(39, 4, 1, 1, 1950.0, '60 мин'),
-(40, 4, 1, 1, 1950.0, '60 мин'),
-(41, 4, 1, 1, 1950.0, '60 мин'),
-(42, 4, 1, 1, 1950.0, '60 мин'),
-(43, 4, 1, 1, 1950.0, '60 мин'),
-(44, 4, 1, 1, 1950.0, '60 мин'),
-(45, 4, 1, 1, 1950.0, '60 мин'),
-(46, 4, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин'),
-(45, 5, 1, 1, 1950.0, '60 мин');
+-- INSERT INTO `hi-place`.`price` (`service_item_id`, `type_of_service_id`, `main_type_of_service_id`, `user_id`, `price`, `time_unit`) VALUES 
+-- (1, 1, 1, 1, 500.0, '15хв'),
+-- (2, 1, 1, 1, 550.0, '30хв'),
+-- (3, 1, 1, 1, 600.0, '45хв'),
+-- (4, 1, 1, 2, 650.0, 'год'),
+-- (5, 1, 1, 2, 700.0, '2год'),
+-- (6, 1, 1, 2, 750.0, 'сеанс'),
+-- (7, 1, 1, 3, 800.0, '60 мин'),
+-- (8, 1, 1, 3, 850.0, '60 мин'),
+-- (9, 1, 1, 3, 900.0, '60 мин'),
+-- (10, 1, 1, 4, 950.0, '60 мин'),
+-- (11, 1, 1, 4, 1000.0, '60 мин'),
+-- (12, 2, 1, 4, 1050.0, '60 мин'),
+-- (13, 2, 1, 5, 1100.0, '60 мин'),
+-- (14, 2, 1, 5, 1150.0, '60 мин'),
+-- (15, 2, 1, 5, 1200.0, '60 мин'),
+-- (16, 2, 1, 6, 1250.0, '60 мин'),
+-- (17, 2, 1, 6, 1300.0, '60 мин'),
+-- (18, 2, 1, 6, 1350.0, '60 мин'),
+-- (19, 2, 1, 7, 1400.0, '60 мин'),
+-- (20, 2, 1, 7, 1450.0, '60 мин'),
+-- (21, 3, 1, 7, 1500.0, '60 мин'),
+-- (22, 3, 1, 8, 1550.0, '60 мин'),
+-- (23, 3, 1, 8, 1600.0, '60 мин'),
+-- (24, 3, 1, 8, 1650.0, '60 мин'),
+-- (25, 3, 1, 9, 1700.0, '60 мин'),
+-- (26, 3, 1, 9, 1750.0, '60 мин'),
+-- (27, 3, 1, 9, 1800.0, '60 мин'),
+-- (28, 3, 1, 10, 1850.0, '60 мин'),
+-- (29, 3, 1, 10, 1900.0, '60 мин'),
+-- (30, 3, 1, 10, 1950.0, '60 мин'),
+-- (31, 4, 1, 1, 1950.0, '60 мин'),
+-- (32, 4, 1, 1, 1950.0, '60 мин'),
+-- (33, 4, 1, 1, 1950.0, '60 мин'),
+-- (34, 4, 1, 1, 1950.0, '60 мин'),
+-- (35, 4, 1, 1, 1950.0, '60 мин'),
+-- (36, 4, 1, 1, 1950.0, '60 мин'),
+-- (37, 4, 1, 1, 1950.0, '60 мин'),
+-- (38, 4, 1, 1, 1950.0, '60 мин'),
+-- (39, 4, 1, 1, 1950.0, '60 мин'),
+-- (40, 4, 1, 1, 1950.0, '60 мин'),
+-- (41, 4, 1, 1, 1950.0, '60 мин'),
+-- (42, 4, 1, 1, 1950.0, '60 мин'),
+-- (43, 4, 1, 1, 1950.0, '60 мин'),
+-- (44, 4, 1, 1, 1950.0, '60 мин'),
+-- (45, 4, 1, 1, 1950.0, '60 мин'),
+-- (46, 4, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин'),
+-- (45, 5, 1, 1, 1950.0, '60 мин');
 
 
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-3.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-2.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-1.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-4.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-5.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-6.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-3.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-2.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-1.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-4.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-5.jpg');
-INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-6.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-3.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-2.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-1.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('1', '1', 'http://localhost:8080/images/examples/user1/user1-4.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-5.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-6.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-3.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-2.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-1.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-4.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-5.jpg');
+-- INSERT INTO `hi-place`.`user_service_images` (`type_of_service_id`, `user_id`, `path`) VALUES ('4', '1', 'http://localhost:8080/images/examples/user1/user1-6.jpg');
 
-INSERT INTO `hi-place`.`address` (`lat`, `lon`, `user_id`, `borough`, `city`, `country`, `house_number`, `road`, `suburb`) VALUES ('50.40291', '30.51543', '1', 'мммм', 'Kyiv', 'Ukraine', '46/1', 'Голосеевский проспект', 'Димеевка');
-INSERT INTO `hi-place`.`address` (`lat`, `lon`, `user_id`, `borough`, `city`, `country`, `house_number`, `road`, `suburb`) VALUES ('50.4140', '30.5270', '1', 'мммм', 'Kyiv', 'Ukraine', '46/1', 'Голосеевский проспект', 'Димеевка');
+-- INSERT INTO `hi-place`.`address` (`lat`, `lon`, `user_id`, `borough`, `city`, `country`, `house_number`, `road`, `suburb`) VALUES ('50.40291', '30.51543', '1', 'мммм', 'Kyiv', 'Ukraine', '46/1', 'Голосеевский проспект', 'Димеевка');
+-- INSERT INTO `hi-place`.`address` (`lat`, `lon`, `user_id`, `borough`, `city`, `country`, `house_number`, `road`, `suburb`) VALUES ('50.4140', '30.5270', '1', 'мммм', 'Kyiv', 'Ukraine', '46/1', 'Голосеевский проспект', 'Димеевка');

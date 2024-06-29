@@ -17,4 +17,8 @@ export class HeaderComponent {
   public goToHomePage() {
     this.router.navigate(["home"])
   }
+
+  public goToLoginPage() {
+    this.router.navigate(["/register/user"]);
+  }
 }
