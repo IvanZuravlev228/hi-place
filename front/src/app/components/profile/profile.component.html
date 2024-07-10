@@ -30,7 +30,7 @@
 
       <div class="address-container" *ngIf="showAddAddress">
         <app-address (selectedAddressEmit)="onAddressSelected($event)"></app-address>
-        <button id="add-address-btn" (click)="saveAddress()">add address</button>
+        <button id="add-address-btn" (click)="saveAddress()">Додати адресу</button>
       </div>
 
       <app-add-service *ngIf="showAddService"></app-add-service>
@@ -49,7 +49,7 @@
                 {{ price.serviceItemName }}
               </div>
               <div class="price-profile-price">
-                <p>{{ price.price }}/{{ price.timeUnit }}</p>
+                <p>{{ price.price }}грн/{{ price.timeUnit }}</p>
               </div>
             </div>
           </div>

@@ -12,39 +12,53 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllUsersByMainTypeOfServiceId(mainTypeOfServiceId: number): Observable<User[]> {
-    return this.http.get<User[]>(environment.backendURL + "/user/main-service", {
+  public getAllUsersByMainTypeOfServiceId(mainTypeOfServiceId: number, city: string, page: number): Observable<User[]> {
+    const params = new HttpParams()
+      .set('mainTypeOfServiceId', mainTypeOfServiceId.toString())
+      .set("page", page)
+      .set("size", environment.paginationUsersSize);
+
+    return this.http.get<User[]>( `${environment.backendURL}/user/main-service/city/${city}`, {
       headers: {
       },
-      params: {
-        mainTypeOfServiceId: mainTypeOfServiceId.toString()
-      }
+      params: params
     })
   }
 
-  public getAllUsersByTypeOfServiceId(typeOfServiceId: number): Observable<User[]> {
-    return this.http.get<User[]>(environment.backendURL + "/user/type-of-service", {
+  public getAllUsersByTypeOfServiceId(typeOfServiceId: number, city: string, page: number): Observable<User[]> {
+    const params = new HttpParams()
+      .set('serviceTypeId', typeOfServiceId.toString())
+      .set("page", page)
+      .set("size", environment.paginationUsersSize);
+
+    return this.http.get<User[]>(`${environment.backendURL}/user/type-of-service/city/${city}`, {
       headers: {
       },
-      params: {
-        serviceTypeId: typeOfServiceId.toString()
-      }
+      params: params
     })
   }
 
-  public getUsersByServiceItemId(serviceItemId: number): Observable<User[]> {
-    const params = new HttpParams().set("serviceItemId", serviceItemId.toString())
+  public getUsersByServiceItemId(serviceItemId: number, city: string, page: number): Observable<User[]> {
+    const params = new HttpParams()
+      .set("serviceItemId", serviceItemId.toString())
+      .set("page", page)
+      .set("size", environment.paginationUsersSize);
+
     const headers = new HttpHeaders({
       // 'Content-Type': 'application/json',
       // 'Authorization': 'Bearer ' + localStorage.getItem('token') // Пример добавления заголовка авторизации
     });
 
-    return this.http.get<User[]>(environment.backendURL + "/user/service-item", { params, headers })
+    return this.http.get<User[]>(`${environment.backendURL}/user/service-item/city/${city}`, {
+      headers: {
+      },
+      params: params
+    })
   }
 
   public createUser(user: UserRequest): Observable<User> {
     const userJSON = JSON.stringify(user);
-    return this.http.post<User>(environment.backendURL + "/user", userJSON, {
+    return this.http.post<User>(`${environment.backendURL}/user`, userJSON, {
       headers: {
         "Content-Type": "application/json",
         // "Authorization": "Bearer " + this.cookie.get("jwt-token")
@@ -53,6 +67,6 @@ export class UserService {
   }
 
   public getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(environment.backendURL + "/user/" + userId);
+    return this.http.get<User>(`${environment.backendURL}/user/` + userId);
   }
 }

@@ -12,4 +12,8 @@ public interface AddressService {
     List<Address> getByUserId(Long userId);
 
     void deleteById(Long id);
+
+    List<Address> getAllNearAddress(Double lat, Double lon);
+
+    List<String> getAllCities();
 }

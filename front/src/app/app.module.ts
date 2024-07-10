@@ -23,6 +23,7 @@ import { AddServiceComponent } from './components/add-service/add-service.compon
 import { LoadingAnimComponent } from './components/loading-anim/loading-anim.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { WarningModuleComponent } from './modals/warning-module/warning-module.component';
+import { UserLocationComponent } from './components/user-location/user-location.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { WarningModuleComponent } from './modals/warning-module/warning-module.c
     AddServiceComponent,
     LoadingAnimComponent,
     WarningModuleComponent,
+    UserLocationComponent,
   ],
   imports: [
     BrowserModule,

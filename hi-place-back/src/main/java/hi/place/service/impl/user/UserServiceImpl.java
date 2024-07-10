@@ -6,6 +6,7 @@ import hi.place.repository.user.UserRepository;
 import hi.place.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,18 +43,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllByMainTypeOfServiceId(Long mainTypeOfServiceId) {
-        return userRepository.findUsersByMainTypeOfServiceId(mainTypeOfServiceId);
+    public List<User> getAllByMainTypeOfServiceId(Long mainTypeOfServiceId, String city, Pageable pageable) {
+        return userRepository.findUsersByMainTypeOfServiceId(mainTypeOfServiceId, city, pageable);
     }
 
     @Override
-    public List<User> getAllByTypeOfServiceId(Long typeOfServiceId) {
-        return userRepository.findUsersByTypeOfServiceId(typeOfServiceId);
+    public List<User> getAllByTypeOfServiceId(Long typeOfServiceId, String city, Pageable pageable) {
+        return userRepository.findUsersByTypeOfServiceIdAndCity(typeOfServiceId, city, pageable);
     }
 
     @Override
-    public List<User> getAllByServiceItemId(Long serviceItemId) {
-        return userRepository.findUsersByServiceItemId(serviceItemId);
+    public List<User> getAllByServiceItemId(Long serviceItemId, String city, Pageable pageable) {
+        return userRepository.findUsersByServiceItemId(serviceItemId, city, pageable);
     }
 
     @Override

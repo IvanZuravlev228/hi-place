@@ -24,7 +24,7 @@
     "cors": "^2.8.5",
     "imask": "^7.6.1",
     "leaflet": "^1.9.4",
-    "ngx-cookie-service": "^16.0.0",
+    "ngx-cookie-service": "^16.1.0",
     "ngx-mask": "^17.0.8",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

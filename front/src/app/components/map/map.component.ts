@@ -56,6 +56,9 @@ export class MapComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
       // popupAnchor: [0, -32] // смещение всплывающего окна относительно иконки
     });
 
+    const lat1 = 50.402902850000004;
+    const lon1 = 30.515381475679238;
+
     L.marker([this.lat, this.lon], ).addTo(this.map)
       .setIcon(customIcon)
       .openPopup();

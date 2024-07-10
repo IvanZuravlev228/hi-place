@@ -1,0 +1,6 @@
+<section class="location-container">
+  <label for="city-select">Select your city:</label>
+  <select id="city-select" [(ngModel)]="currentCity" (change)="onCityChange(currentCity)">
+    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+  </select>
+</section>

@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {TypeOfServiceService} from "../../services/type-of-service.service";
 import {TypeOfService} from "../../models/typeService/TypeOfService";
-import {ServiceItem} from "../../models/ServiceItem";
 import {ServiceItemService} from "../../services/service-item.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/User";
 import {UserImagesService} from "../../services/user-images.service";
+import {environment} from "../../../environment/environment";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-service',
@@ -14,11 +15,16 @@ import {UserImagesService} from "../../services/user-images.service";
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit {
-
-  mainTypeId: number = 0;
   typesOfService: TypeOfService[] = [];
   users: User[] = [];
-
+  mainTypeId: number = 0;
+  mainTypePaginationPageCount = 0;
+  lastTypeOfServiceId: number = -1;
+  lastServiceItemId: number = -1;
+  serviceItemPaginationPageCount: number = 0;
+  typeOfServicePaginationPageCount: number = 0;
+  nextServiceItemOrTypeOfService: boolean = false; // true = service item | false = type of service
+  city: string = "";
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -26,9 +32,12 @@ export class ServiceComponent implements OnInit {
               private typeOfServiceService: TypeOfServiceService,
               private serviceItemService: ServiceItemService,
               private userService: UserService,
-              private userImagesService: UserImagesService) { }
+              private userImagesService: UserImagesService,
+              private cookieService: CookieService) { }
 
   ngOnInit() {
+    this.city = this.cookieService.get("user_city");
+
     this.activatedRoute.queryParams.subscribe(params => {
       this.mainTypeId = params['mainTypeId'];
       this.getAllTypeOfMainService(this.mainTypeId);
@@ -49,6 +58,8 @@ export class ServiceComponent implements OnInit {
 
   public loadServiceItem(typeOfService: TypeOfService) {
     this.getAllUsersByTypeOfServiceId(typeOfService.id);
+    this.nextServiceItemOrTypeOfService = false;
+    this.lastTypeOfServiceId = typeOfService.id;
 
     this.serviceItemService.getAllServiceItemsByTypeId(typeOfService.id).subscribe({
       next: (serviceItems) => {
@@ -61,7 +72,7 @@ export class ServiceComponent implements OnInit {
   }
 
   public getAllUsersByMainTypeOfServiceId(mainTypeId: number) {
-    this.userService.getAllUsersByMainTypeOfServiceId(mainTypeId).subscribe({
+    this.userService.getAllUsersByMainTypeOfServiceId(mainTypeId, this.city, this.mainTypePaginationPageCount).subscribe({
       next: (users) => {
         this.users = users;
         this.users.forEach(user => this.getExampleImagesByMainTypeOfServiceAndUserId(mainTypeId, user.id, user));
@@ -74,11 +85,14 @@ export class ServiceComponent implements OnInit {
   }
 
   public getUsersByServiceItemId(serviceItemId: number, typeOfServiceId: number) {
-    this.userService.getUsersByServiceItemId(serviceItemId).subscribe({
+    this.nextServiceItemOrTypeOfService = true;
+    this.lastServiceItemId = serviceItemId;
+    this.lastTypeOfServiceId = typeOfServiceId;
+
+    this.userService.getUsersByServiceItemId(serviceItemId, this.city, this.serviceItemPaginationPageCount).subscribe({
       next: (users) => {
         this.users = users;
-        this.users.forEach(user => this.getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId, user.id, user));
-        this.users.forEach(user => this.hidePhone(user));
+        this.getImagesAndHidePhone(this.users, typeOfServiceId);
       },
       error: (error) => {
         console.log(error);
@@ -87,17 +101,20 @@ export class ServiceComponent implements OnInit {
   }
 
   public getAllUsersByTypeOfServiceId(typeOfServiceId: number) {
-    this.userService.getAllUsersByTypeOfServiceId(typeOfServiceId).subscribe({
+    this.userService.getAllUsersByTypeOfServiceId(typeOfServiceId, this.city, this.typeOfServicePaginationPageCount).subscribe({
       next: (users) => {
         this.users = users;
-        this.users.forEach(user => this.getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId, user.id, user));
-        this.users.forEach(user => this.hidePhone(user));
-        console.log(this.users);
+        this.getImagesAndHidePhone(this.users, typeOfServiceId);
       },
       error: (error) => {
         console.log(error);
       }
     })
+  }
+
+  private getImagesAndHidePhone(users: User[], typeOfServiceId: number) {
+    users.forEach(user => this.getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId, user.id, user));
+    users.forEach(user => this.hidePhone(user));
   }
 
   private getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId: number, userId: number, user: User) {
@@ -171,4 +188,55 @@ export class ServiceComponent implements OnInit {
       }
     });
   }
+
+  previousPage() {
+    if (this.lastServiceItemId == -1 && this.lastTypeOfServiceId == -1 && this.mainTypePaginationPageCount > 0) {
+      this.mainTypePaginationPageCount--;
+      this.getAllUsersByMainTypeOfServiceId(this.mainTypeId);
+      return;
+    }
+
+    if (this.nextServiceItemOrTypeOfService && this.serviceItemPaginationPageCount > 0) {
+      this.serviceItemPaginationPageCount--;
+      this.getUsersByServiceItemId(this.lastServiceItemId, this.lastTypeOfServiceId);
+      console.log("new two service item --");
+      return;
+    }
+
+    if (this.typeOfServicePaginationPageCount > 0) {
+      this.typeOfServicePaginationPageCount--;
+      this.getAllUsersByTypeOfServiceId(this.lastTypeOfServiceId);
+      console.log("new type of service --");
+    }
+
+  }
+
+  nextPage() {
+    if (this.users.length < environment.paginationUsersSize) {
+      return;
+    }
+
+    if (this.lastServiceItemId == -1 && this.lastTypeOfServiceId == -1) {
+      this.mainTypePaginationPageCount++;
+      this.getAllUsersByMainTypeOfServiceId(this.mainTypeId);
+      return;
+    }
+
+    if (this.nextServiceItemOrTypeOfService) {
+      this.serviceItemPaginationPageCount++;
+      this.getUsersByServiceItemId(this.lastServiceItemId, this.lastTypeOfServiceId);
+      console.log("new next service item ++");
+      return;
+    }
+
+    this.typeOfServicePaginationPageCount++;
+    this.getAllUsersByTypeOfServiceId(this.lastTypeOfServiceId);
+    console.log("new type of service ++");
+  }
+
+  // private defaultInitPaginationCount() {
+  //   this.serviceItemPaginationPageCount = 0;
+  //   this.typeOfServicePaginationPageCount = 0;
+  //   this.mainTypePaginationPageCount = 0;
+  // }
 }

@@ -4,6 +4,7 @@ import hi.place.dto.address.AddressRequestDto;
 import hi.place.dto.address.AddressResponseDto;
 import hi.place.model.address.Address;
 import hi.place.service.AddressService;
+import hi.place.service.mapper.PriceMapper;
 import hi.place.service.mapper.RequestResponseMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,5 +44,19 @@ public class AddressController {
     public ResponseEntity<Void> deleteAddressById(@PathVariable Long addressId) {
         addressService.deleteById(addressId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/near")
+    public ResponseEntity<List<AddressResponseDto>> getAll(@RequestParam Double lat,
+                                                           @RequestParam Double lon) {
+        return new ResponseEntity<>(addressService.getAllNearAddress(lat, lon)
+                .stream()
+                .map(addressMapper::toDto)
+                .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/cities")
+    public ResponseEntity<List<String>> getAllCities() {
+        return new ResponseEntity<>(addressService.getAllCities(), HttpStatus.OK);
     }
 }

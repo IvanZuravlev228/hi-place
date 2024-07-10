@@ -2,6 +2,7 @@ package hi.place.service;
 
 import hi.place.dto.TypeOfServiceCountDto;
 import hi.place.model.TypeOfService;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 

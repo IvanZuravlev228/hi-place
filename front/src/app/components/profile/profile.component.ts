@@ -32,6 +32,8 @@ export class ProfileComponent implements OnInit {
   prices: Price[] = [];
   profilePriceData: TypeOfServiceCount[] = [];
   images: UserServiceImagesResponse[] = [];
+  public receivedAddresses: Address[] | null = null;
+  isLoading: boolean = false;
 
   showService: boolean = true;
   showAddService: boolean = false;
@@ -124,8 +126,6 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-  public receivedAddresses: Address[] | null = null;
-  isLoading: boolean = false;
 
   public onAddressSelected(addresses: Address[]) {
     this.receivedAddresses = addresses;
@@ -142,6 +142,8 @@ export class ProfileComponent implements OnInit {
     }
 
     this.ngOnInit();
+    this.showAddAddress = false;
+    this.showService = true;
   }
 
   private saveNewAddress(address: Address) {

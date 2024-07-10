@@ -13,6 +13,10 @@
     </ng-container>
   </div>
 
+  <div class="experience">
+    <p>{{ user.experience }} роки досвиду</p>
+  </div>
+
   <button id="user-phone" (click)="revealPhone(user)">
     <a href="tel:{{ user.phone }}">{{ user.hiddenPhone }}</a>
     <p id="user-phone-call">Подзвонити</p>

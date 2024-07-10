@@ -47,7 +47,11 @@ export class AddressService {
     return this.http.get<Address[]>(environment.backendURL + "/address/user/" + userId);
   }
 
-  deleteAddressById(addressId: number) {
+  public deleteAddressById(addressId: number) {
     return this.http.delete<void>(`${environment.backendURL}/address/${addressId}`);
+  }
+
+  public getAllCities() {
+    return this.http.get<string[]>(`${environment.backendURL}/address/cities`);
   }
 }
