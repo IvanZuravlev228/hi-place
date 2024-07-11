@@ -45,7 +45,6 @@ export class UserRegisterComponent {
     }
 
     if (!this.checkEmail(this.createUserRequest.email)) {
-      // this.isEmailCorrect = false;
       return;
     }
     this.isEmailCorrect = true;
@@ -63,7 +62,6 @@ export class UserRegisterComponent {
     this.isAddressCorrect = false;
 
     this.isLoading = true;
-    console.log("sending request for new user...");
     this.createUser(this.createUserRequest);
   }
 
@@ -167,7 +165,6 @@ export class UserRegisterComponent {
   private checkLoading(userId: number) {
     if (this.isSuccessfullyUploadedUserLogo && this.isSuccessfullySavedNewAddress) {
       this.isLoading = false;
-      // this.routter.....
       this.router.navigate(["user/profile"], {
         queryParams: {
           userId: userId

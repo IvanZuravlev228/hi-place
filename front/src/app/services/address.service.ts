@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import { Observable} from "rxjs";
 import {Address} from "../models/Address";
 import {environment} from "../../environment/environment";
 
@@ -19,16 +19,7 @@ export class AddressService {
       .set('addressdetails', '1')
       .set('limit', '5')
       .set('countrycodes', countryCodes)
-      // .set('city', city)
       .set('accept-language', language);
-
-    // return this.http.get<any[]>(this.apiUrl, { params }).pipe(
-    //   map(results => results.map(result => ({
-    //     display_name: result.display_name,
-    //     lat: result.lat,
-    //     lon: result.lon
-    //   })))
-    // );
 
     return this.http.get<any[]>(this.apiUrl, { params });
   }
@@ -37,21 +28,22 @@ export class AddressService {
     const addressJSON = JSON.stringify(address);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ' + localStorage.getItem('token') // Пример добавления заголовка авторизации
     });
 
-    return this.http.post<Address>(environment.backendURL + "/address", addressJSON, {headers: headers});
+    return this.http.post<Address>(`${environment.backendURL}/address`, addressJSON, {
+      headers: headers
+    });
   }
 
-  public getAllByUserId(userId: number) {
-    return this.http.get<Address[]>(environment.backendURL + "/address/user/" + userId);
+  public getAllByUserId(userId: number): Observable<Address[]> {
+    return this.http.get<Address[]>(`${environment.backendURL}/address/user/${userId}`);
   }
 
-  public deleteAddressById(addressId: number) {
+  public deleteAddressById(addressId: number): Observable<void> {
     return this.http.delete<void>(`${environment.backendURL}/address/${addressId}`);
   }
 
-  public getAllCities() {
+  public getAllCities(): Observable<string[]> {
     return this.http.get<string[]>(`${environment.backendURL}/address/cities`);
   }
 }

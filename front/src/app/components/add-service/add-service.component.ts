@@ -47,22 +47,6 @@ export class AddServiceComponent implements OnInit {
     this.saveOrUpdatePrice(this.createModel);
   }
 
-  private getAllMainTypeOfService() {
-    this.mainTypeService.getAllMainTypeOfService().subscribe({
-      next: (mainTypes) => {
-        this.createModel = mainTypes.map(mainType => {
-          const serviceItemForCreateView = new AllServiceForView();
-          serviceItemForCreateView.mainTypes = mainType;
-          serviceItemForCreateView.typesOfService = [];
-          return serviceItemForCreateView;
-        });
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
-  }
-
   public getTypeOfService(model: AllServiceForView) {
     this.typeOfServiceService.getAllTypeOfMainServiceView(model.mainTypes.id).subscribe({
       next: (types) => {
@@ -78,6 +62,54 @@ export class AddServiceComponent implements OnInit {
     this.priceService.getAllPriceWithoutPrice(typeId, this.userId).subscribe({
       next: (emptyPrices) => {
         type.prices = emptyPrices;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+
+  public deletePrice(prices: PriceProfile[], priceId: number) {
+    if (!priceId) {
+      return;
+    }
+    this.isLoading = true;
+
+    this.priceService.deletePriceById(priceId).subscribe({
+      next: () => {
+        const index = prices.findIndex(item => item.id === priceId);
+        if (index !== -1) {
+          prices.splice(index, 1);
+        }
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  public onFileSelected(event: any, typeOfServiceId: number) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.formDataImages.append("files", file);
+      this.formDataImages.append("typeOfServiceIds", typeOfServiceId.toString());
+    }
+  }
+
+  public countImagesByTypeOfService(typeId: number): number {
+    return this.images.filter(image => image.typeOfServiceId === typeId).length;
+  }
+  private getAllMainTypeOfService() {
+    this.mainTypeService.getAllMainTypeOfService().subscribe({
+      next: (mainTypes) => {
+        this.createModel = mainTypes.map(mainType => {
+          const serviceItemForCreateView = new AllServiceForView();
+          serviceItemForCreateView.mainTypes = mainType;
+          serviceItemForCreateView.typesOfService = [];
+          return serviceItemForCreateView;
+        });
       },
       error: (error) => {
         console.log(error);
@@ -134,52 +166,19 @@ export class AddServiceComponent implements OnInit {
       }
     })
   }
-
   private updatePrice(priceProfile: PriceCreateRequestDto, prevPriceId: number) {
     this.priceService.updatePrice(priceProfile, prevPriceId).subscribe({
       next: (result) => {
-        console.log("price was updated successfully: " + result);
         this.isLoading = false;
       },
       error: (error) => {
         console.log(error);
       }
     })
-  }
-
-  public deletePrice(prices: PriceProfile[], priceId: number) {
-    if (!priceId) {
-      return;
-    }
-    this.isLoading = true;
-
-    this.priceService.deletePriceById(priceId).subscribe({
-      next: () => {
-        const index = prices.findIndex(item => item.id === priceId);
-        if (index !== -1) {
-          prices.splice(index, 1);
-        }
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
-  }
-
-  onFileSelected(event: any, typeOfServiceId: number) {
-    const file: File = event.target.files[0];
-    if (file) {
-
-      this.formDataImages.append("files", file);
-      this.formDataImages.append("typeOfServiceIds", typeOfServiceId.toString());
-    }
   }
 
   private saveImages() {
     this.dialog.open(WarningModuleComponent);
-
-    console.log("form data: " + this.formDataImages);
     this.uploadFileService.uploadExampleImages(this.formDataImages, this.userId).subscribe({
       next: () => {
         console.log("images were uploaded successfully)");
@@ -188,9 +187,5 @@ export class AddServiceComponent implements OnInit {
         console.log(error)
       }
     })
-  }
-
-  public countImagesByTypeOfService(typeId: number): number {
-    return this.images.filter(image => image.typeOfServiceId === typeId).length;
   }
 }

@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {User} from "../../models/User";
-import {UserService} from "../../services/user.service";
 import {Address} from "../../models/Address";
 import {AddressService} from "../../services/address.service";
 import {Price} from "../../models/price/Price";
@@ -10,10 +8,6 @@ import {TypeOfServiceService} from "../../services/type-of-service.service";
 import {TypeOfServiceCount} from "../../models/typeService/TypeOfServiceCount";
 import {UserImagesService} from "../../services/user-images.service";
 import {UserServiceImagesResponse} from "../../models/UserServiceImagesResponse";
-import {PriceProfile} from "../../models/price/PriceProfile";
-import {UploadFileService} from "../../services/upload-file.service";
-import {MatDialog} from "@angular/material/dialog";
-import {WarningModuleComponent} from "../../modals/warning-module/warning-module.component";
 
 @Component({
   selector: 'app-profile',
@@ -21,11 +15,8 @@ import {WarningModuleComponent} from "../../modals/warning-module/warning-module
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
   userId: number = 0;
-  // user: User = new User();
   addresses: Address[] = [];
-
   addressLat: number = 0;
   addressLon: number = 0;
 
@@ -41,7 +32,6 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(private activatedRoute: ActivatedRoute,
-              private userService: UserService,
               private addressService: AddressService,
               private priceService: PriceService,
               private typeOfServiceService: TypeOfServiceService,
@@ -69,23 +59,6 @@ export class ProfileComponent implements OnInit {
         console.log(error);
       }
     })
-  }
-
-  private getAllAddressesByUserId(userId: number) {
-    this.addressService.getAllByUserId(userId).subscribe({
-      next: (addresses) => {
-        this.addresses = addresses;
-        if (addresses.length > 0) {
-          this.addressLat = addresses[0].lat;
-          this.addressLon = addresses[0].lon;
-        }
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
-
-
   }
 
   public showMap(lat: number, lon: number) {
@@ -116,17 +89,6 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  private getAllUserImages() {
-    this.userImagesService.getExampleImagesByUserId(this.userId).subscribe({
-      next: (images) => {
-        this.images = images;
-      },
-      error: (error) => {
-        console.log(error)
-      }
-    })
-  }
-
   public onAddressSelected(addresses: Address[]) {
     this.receivedAddresses = addresses;
   }
@@ -146,27 +108,14 @@ export class ProfileComponent implements OnInit {
     this.showService = true;
   }
 
-  private saveNewAddress(address: Address) {
-    this.addressService.saveNewAddress(address).subscribe({
-      next: (address) => {
-        this.isLoading = false;
-
-      },
-      error: (error) => {
-        console.log(error);
-        this.isLoading = false;
-      }
-    })
-  }
-
-  showAddServiceOnClick() {
+  public showAddServiceOnClick() {
     console.log("showAddServiceOnClick clicked");
     this.showAddService = !this.showAddService;
     this.showService = !this.showService;
     this.showAddAddress = false;
   }
 
-  showAddAddressOnClick() {
+  public showAddAddressOnClick() {
     console.log("showAddAddressOnClick clicked");
     this.showAddService = false;
     this.showService = !this.showService;
@@ -180,6 +129,44 @@ export class ProfileComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
+      }
+    })
+  }
+
+  private getAllAddressesByUserId(userId: number) {
+    this.addressService.getAllByUserId(userId).subscribe({
+      next: (addresses) => {
+        this.addresses = addresses;
+        if (addresses.length > 0) {
+          this.addressLat = addresses[0].lat;
+          this.addressLon = addresses[0].lon;
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
+  private getAllUserImages() {
+    this.userImagesService.getExampleImagesByUserId(this.userId).subscribe({
+      next: (images) => {
+        this.images = images;
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
+  private saveNewAddress(address: Address) {
+    this.addressService.saveNewAddress(address).subscribe({
+      next: (address) => {
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.log(error);
+        this.isLoading = false;
       }
     })
   }

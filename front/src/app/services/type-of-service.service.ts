@@ -13,23 +13,15 @@ export class TypeOfServiceService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllTypeOfMainService(mainTypeId: number) {
-    return this.http.get<TypeOfService[]>(environment.backendURL + "/type-service/" + mainTypeId, {
-      headers: {
-        // "Authorization": "Bearer " + this.cookie.get("jwt-token")
-      }
-    })
+  public getAllTypeOfMainService(mainTypeId: number): Observable<TypeOfService[]> {
+    return this.http.get<TypeOfService[]>(`${environment.backendURL}/type-service/${mainTypeId}`);
   }
 
-  public getAllTypeOfMainServiceView(mainTypeId: number) {
-    return this.http.get<TypeOfServiceView[]>(environment.backendURL + "/type-service/" + mainTypeId, {
-      headers: {
-        // "Authorization": "Bearer " + this.cookie.get("jwt-token")
-      }
-    })
+  public getAllTypeOfMainServiceView(mainTypeId: number): Observable<TypeOfServiceView[]> {
+    return this.http.get<TypeOfServiceView[]>(`${environment.backendURL}/type-service/${mainTypeId}`);
   }
 
   public getTypeOfServiceCountByUserId(userId: number): Observable<TypeOfServiceCount[]> {
-    return this.http.get<TypeOfServiceCount[]>(environment.backendURL + "/type-service/user/" + userId);
+    return this.http.get<TypeOfServiceCount[]>(`${environment.backendURL}/type-service/user/${userId}`);
   }
 }

@@ -49,7 +49,7 @@
   width: 15px;
   height: 15px;
   border: 1px solid #ccc;
-  border-radius: 50%; /* Делаем чекбокс круглым */
+  border-radius: 50%;
   cursor: pointer;
 }
 
@@ -79,8 +79,6 @@
   border-color: #007bff;
 }
 
-
-/* Основные стили для формы */
 form {
   padding: 20px;
   border: 1px solid #ccc;
@@ -89,19 +87,16 @@ form {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Стили для заголовка */
 h1 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
 }
 
-/* Стили для контейнеров полей */
 form div {
   margin-bottom: 15px;
 }
 
-/* Стили для меток */
 label {
   display: block;
   margin-bottom: 5px;
@@ -109,7 +104,6 @@ label {
   color: #555;
 }
 
-/* Стили для текстовых полей и текстовых областей */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -132,12 +126,10 @@ input[type="number"]:focus {
   outline: none;
 }
 
-/* Стили для чекбоксов */
 input[type="checkbox"] {
   margin-right: 10px;
 }
 
-/* Стили для кнопки */
 button {
   width: 100%;
   padding: 10px;

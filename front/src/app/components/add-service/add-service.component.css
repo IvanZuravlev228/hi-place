@@ -1,6 +1,5 @@
 .add-service-wrapper {
   width: 100%;
-  /*background-color: #1dd1a1;*/
 }
 
 .add-price-form {
@@ -50,9 +49,7 @@
 }
 
 .prices-container {
-  /*background-color: #1dd1a1;*/
   padding: 7px 20px;
-
   display: flex;
   justify-content: space-between;
   border-bottom: black 1px solid;
@@ -79,25 +76,17 @@
 }
 
 .select-time-unit {
-  /*width: 60%;*/
   padding: 5px 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
   background-color: transparent;
   transition: border-color 0.3s, box-shadow 0.3s;
-  /*-webkit-appearance: none;*/
-  /*-moz-appearance: none;*/
   appearance: none;
-  /*background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.5l-5.5-6h11z' fill='%23ccc'/%3E%3C/svg%3E");*/
-  /*background-repeat: no-repeat;*/
-  /*background-position: right 10px center;*/
-  /*background-size: 12px 8px;*/
 }
 
 .select-time-unit:focus {
   border-color: #66afe9;
   outline: none;
-  /*box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);*/
 }
 
 .select-time-unit option {

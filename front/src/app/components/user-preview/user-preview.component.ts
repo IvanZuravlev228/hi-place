@@ -59,9 +59,6 @@ export class UserPreviewComponent implements OnInit{
   }
 
   private getUserById(userId: number) {
-
-    console.log("request to back-end....");
-
     this.userService.getUserById(userId).subscribe({
       next: (user) => {
         this.user = user;

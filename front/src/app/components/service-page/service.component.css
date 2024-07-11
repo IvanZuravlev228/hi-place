@@ -53,10 +53,10 @@
   text-align: left;
   cursor: pointer;
 }
-/*================================*/
+
 .users-container {
   width: 70%;
-  /*border: black 1px solid;*/
+  text-align: center;
 }
 
 .user {
@@ -162,7 +162,6 @@
   max-height: 400px;
 }
 
-
 .mode {
 
 }
@@ -180,4 +179,29 @@
   background-color: transparent;
   cursor: pointer;
   font-size: 18px;
+}
+
+.pagination-btns-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-btns {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination-btn {
+  font-size: 24px;
+  padding: 1px 25px;
+  border-radius: 5px;
+  background-color: rgba(187,96,219,0.3);
+  transition: background-color 0.3s ease;
+}
+
+.pagination-btn:hover {
+  cursor: pointer;
+  background-color: rgba(213, 124, 245, 0.3);
+
 }

@@ -19,10 +19,8 @@ export class UserService {
       .set("size", environment.paginationUsersSize);
 
     return this.http.get<User[]>( `${environment.backendURL}/user/main-service/city/${city}`, {
-      headers: {
-      },
       params: params
-    })
+    });
   }
 
   public getAllUsersByTypeOfServiceId(typeOfServiceId: number, city: string, page: number): Observable<User[]> {
@@ -32,10 +30,8 @@ export class UserService {
       .set("size", environment.paginationUsersSize);
 
     return this.http.get<User[]>(`${environment.backendURL}/user/type-of-service/city/${city}`, {
-      headers: {
-      },
       params: params
-    })
+    });
   }
 
   public getUsersByServiceItemId(serviceItemId: number, city: string, page: number): Observable<User[]> {
@@ -44,29 +40,22 @@ export class UserService {
       .set("page", page)
       .set("size", environment.paginationUsersSize);
 
-    const headers = new HttpHeaders({
-      // 'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ' + localStorage.getItem('token') // Пример добавления заголовка авторизации
-    });
-
     return this.http.get<User[]>(`${environment.backendURL}/user/service-item/city/${city}`, {
-      headers: {
-      },
       params: params
-    })
+    });
   }
 
   public createUser(user: UserRequest): Observable<User> {
     const userJSON = JSON.stringify(user);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
     return this.http.post<User>(`${environment.backendURL}/user`, userJSON, {
-      headers: {
-        "Content-Type": "application/json",
-        // "Authorization": "Bearer " + this.cookie.get("jwt-token")
-      }
+      headers: headers
     })
   }
 
   public getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(`${environment.backendURL}/user/` + userId);
+    return this.http.get<User>(`${environment.backendURL}/user/${userId}`);
   }
 }

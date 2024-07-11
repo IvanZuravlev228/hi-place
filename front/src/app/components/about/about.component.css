@@ -2,17 +2,14 @@
 }
 
 .preview-container {
-  background-image: url('src/assets/image/main/back-main.png'); /* Установка изображения как задний фон */
-  background-size: cover; /* Масштабирование изображения для покрытия всей области */
-  background-position: center; /* Центрирование изображения */
-  background-repeat: no-repeat; /* Избежание повторения изображения */
-  /*width: 100%; !* Ширина секции *!*/
-  height: 90vh; /* Высота секции, можно изменить по необходимости */
-  display: flex; /* Использование flexbox для выравнивания содержимого */
+  background-image: url('src/assets/image/main/back-main.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 90vh;
+  display: flex;
   flex-direction: column;
-  /*justify-content: center; !* Горизонтальное выравнивание содержимого *!*/
-  /*align-items: center; !* Вертикальное выравнивание содержимого *!*/
-  color: white; /* Цвет текста для лучшей читаемости на фоне */
+  color: white;
   margin-top: 15px;
   padding: 20px;
 }
@@ -57,23 +54,18 @@
 .empty {
   width: 10%;
   font-size: 24px;
-  /*background-color: black;*/
-  /*border-top: white 1px solid;*/
-  /*border-bottom: white 1px solid;*/
   align-items: center;
   text-align: center;
 }
 
 .about-service-container {
-  display: flex; /* Устанавливает контейнер как flex-контейнер */
-  flex-direction: column; /* Располагает элементы в колонку */
-  /*justify-content: center; !* Центрирует элементы по вертикали *!*/
-  align-items: center; /* Центрирует элементы по горизонтали */
-  text-align: center; /* Центрирует текст внутри элементов */
-  padding: 20px; /* Отступы внутри контейнера */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
   margin-top: 15px;
   height: 90vh;
-  /*margin-bottom: 400px;*/
 }
 
 .section-name {

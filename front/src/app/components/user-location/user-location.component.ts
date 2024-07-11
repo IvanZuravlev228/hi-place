@@ -11,7 +11,6 @@ import {AddressService} from "../../services/address.service";
 export class UserLocationComponent implements OnInit {
   userCityCookieName: string = "user_city";
   currentCity: string = "Kyiv";
-  // cities: string[] = ['Kyiv', 'Lviv', 'Odessa', 'Dnipro', 'Kharkiv'];
   cities: string[] = [];
 
   constructor(private cookieService: CookieService,
@@ -30,7 +29,7 @@ export class UserLocationComponent implements OnInit {
     this.currentCity = this.cookieService.get(this.userCityCookieName);
   }
 
-  onCityChange(newCity: string): void {
+  public onCityChange(newCity: string): void {
     this.currentCity = newCity;
     this.cookieService.set(this.userCityCookieName, newCity, 7);
   }
@@ -40,7 +39,6 @@ export class UserLocationComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        // console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
         this.getCityName(latitude, longitude);
       });
     } else {
@@ -73,5 +71,4 @@ export class UserLocationComponent implements OnInit {
       }
     })
   }
-
 }

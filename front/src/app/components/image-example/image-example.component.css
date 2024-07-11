@@ -12,7 +12,7 @@
   align-items: center;
   text-align: center;
   width: 100%;
-  height: calc(100% - 40px); /* Уменьшить высоту для учета пространства под dots-container */
+  height: calc(100% - 40px);
 }
 
 .scroll-container {

@@ -30,9 +30,7 @@ export class MainComponent implements OnInit{
 
   }
 
-  constructor(private router: Router,
-              private http: HttpClient,
-              private cookieService: CookieService) {
+  constructor(private router: Router) {
   }
 
   public showMoreItems() {
