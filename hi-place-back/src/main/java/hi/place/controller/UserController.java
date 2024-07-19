@@ -44,8 +44,19 @@ public class UserController {
     @GetMapping("/type-of-service/city/{city}")
     public ResponseEntity<List<UserResponseDto>> getAllByTypeOfService(@RequestParam Long serviceTypeId,
                                                                        @PathVariable String city,
+                                                                       @RequestParam(defaultValue = "type") String sortByType,
+                                                                       @RequestParam(defaultValue = "true") Boolean sortByAtSalon,
+                                                                       @RequestParam(defaultValue = "true") Boolean sortByHomeVisit,
+                                                                       @RequestParam(defaultValue = "true") Boolean sortByOnlineCounseling,
                                                                        Pageable pageable) {
-        return new ResponseEntity<>(userService.getAllByTypeOfServiceId(serviceTypeId, city, pageable)
+
+        return new ResponseEntity<>(userService.getAllByTypeOfServiceId(serviceTypeId,
+                                                                        city,
+                                                                        sortByType,
+                                                                        sortByAtSalon,
+                                                                        sortByHomeVisit,
+                                                                        sortByOnlineCounseling,
+                                                                        pageable)
                 .stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList()), HttpStatus.OK);

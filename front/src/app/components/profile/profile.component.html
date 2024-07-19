@@ -32,7 +32,7 @@
         <button id="add-address-btn" (click)="saveAddress()">Додати адресу</button>
       </div>
 
-      <app-add-service *ngIf="showAddService"></app-add-service>
+      <app-add-service [images]="images" *ngIf="showAddService"></app-add-service>
 
       <div class="show-service-container" *ngIf="showService">
         <div class="type-counts-item" *ngFor="let typeCounts of profilePriceData">

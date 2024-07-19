@@ -38,9 +38,23 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "JOIN service_item si ON p.service_item_id = si.id " +
             "JOIN type_of_service tos ON si.type_of_service_id = tos.id " +
             "WHERE tos.id = :typeOfServiceId " +
-            "AND a.city = :city", nativeQuery = true)
+            "AND a.city = :city " +
+            "AND (" +
+            "u.at_salon = :sortByAtSalon " +
+            "OR u.home_visit = :sortByHomeVisit " +
+            "OR u.online_counseling = :sortByOnlineCounseling " +
+            ")  " +
+            "ORDER BY " +
+            "    CASE WHEN u.type = :sortByType THEN 1 ELSE 2 END, " +
+            "    u.at_salon DESC, " +
+            "    u.home_visit DESC, " +
+            "    u.online_counseling DESC; ", nativeQuery = true)
     List<User> findUsersByTypeOfServiceIdAndCity(@Param("typeOfServiceId") Long typeOfServiceId,
                                                  @Param("city") String city,
+                                                 @Param("sortByType") String sortByType,
+                                                 @Param("sortByAtSalon") Boolean sortByAtSalon,
+                                                 @Param("sortByHomeVisit") Boolean sortByHomeVisit,
+                                                 @Param("sortByOnlineCounseling") Boolean sortByOnlineCounseling,
                                                  Pageable pageable);
 
     @Query(value = "SELECT DISTINCT u.* FROM price p " +

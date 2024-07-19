@@ -16,7 +16,13 @@ public interface UserService {
 
     List<User> getAllByMainTypeOfServiceId(Long mainTypeOfServiceId, String city, Pageable pageable);
 
-    List<User> getAllByTypeOfServiceId(Long typeOfServiceId, String city, Pageable pageable);
+    List<User> getAllByTypeOfServiceId(Long typeOfServiceId,
+                                       String city,
+                                       String sortByType,
+                                       Boolean sortByAtSalon,
+                                       Boolean sortByHomeVisit,
+                                       Boolean sortByOnlineCounseling,
+                                       Pageable pageable);
 
     List<User> getAllByServiceItemId(Long serviceItemId, String city, Pageable pageable);
 

@@ -62,6 +62,7 @@ export class AddServiceComponent implements OnInit {
     this.priceService.getAllPriceWithoutPrice(typeId, this.userId).subscribe({
       next: (emptyPrices) => {
         type.prices = emptyPrices;
+        type.imageCount = this.countImagesByTypeOfService(typeId);
       },
       error: (error) => {
         console.log(error);
@@ -90,14 +91,15 @@ export class AddServiceComponent implements OnInit {
     })
   }
 
-  public onFileSelected(event: any, typeOfServiceId: number) {
+  public onFileSelected(event: any, type: TypeOfServiceView) {
     const file: File = event.target.files[0];
     if (file) {
       this.formDataImages.append("files", file);
-      this.formDataImages.append("typeOfServiceIds", typeOfServiceId.toString());
+      this.formDataImages.append("typeOfServiceIds", type.id.toString());
     }
   }
 
+  count: number = 0;
   public countImagesByTypeOfService(typeId: number): number {
     return this.images.filter(image => image.typeOfServiceId === typeId).length;
   }

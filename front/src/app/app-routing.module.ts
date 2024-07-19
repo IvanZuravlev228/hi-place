@@ -10,7 +10,7 @@ import {AddServiceComponent} from "./components/add-service/add-service.componen
 import {FooterComponent} from "./components/footer/footer.component";
 
 const routes: Routes = [
-  {path: '', component: AppComponent},
+  {path: '', component: MainComponent},
   {path: 'home', component: MainComponent},
   {path: 'about', component: AboutComponent},
   {path: 'services', component: ServiceComponent},

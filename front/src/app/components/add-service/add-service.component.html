@@ -9,10 +9,12 @@
       </div>
       <div *ngFor="let type of model.typesOfService" class="types-service-container">
         <div (click)="getEmptyPrice(type.id, type)" class="prices-btn">
-          <p>{{ type.name }}</p>
-          <p id="added-images">(добавлено картинок:{{ countImagesByTypeOfService(type.id) }}/5)</p>
-          <div class="add-image" *ngIf="countImagesByTypeOfService(type.id) < 5">
-            <input type="file" (change)="onFileSelected($event, type.id)">
+          <p>
+            {{ type.name }}
+          </p>
+          <p id="added-images">(добавлено картинок:{{ type.imageCount ? type.imageCount : 0 }}/5)</p>
+          <div class="add-image" *ngIf="type.imageCount < 5">
+            <input type="file" (change)="onFileSelected($event, type)">
           </div>
         </div>
 

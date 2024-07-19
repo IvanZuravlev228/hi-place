@@ -48,8 +48,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllByTypeOfServiceId(Long typeOfServiceId, String city, Pageable pageable) {
-        return userRepository.findUsersByTypeOfServiceIdAndCity(typeOfServiceId, city, pageable);
+    public List<User> getAllByTypeOfServiceId(Long typeOfServiceId,
+                                              String city,
+                                              String sortByType,
+                                              Boolean sortByAtSalon,
+                                              Boolean sortByHomeVisit,
+                                              Boolean sortByOnlineCounseling,
+                                              Pageable pageable) {
+        return userRepository.findUsersByTypeOfServiceIdAndCity(typeOfServiceId,
+                                                                city,
+                                                                sortByType,
+                                                                sortByAtSalon,
+                                                                sortByHomeVisit,
+                                                                sortByOnlineCounseling,
+                                                                pageable);
     }
 
     @Override

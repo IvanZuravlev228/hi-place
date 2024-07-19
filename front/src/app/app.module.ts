@@ -24,6 +24,7 @@ import { LoadingAnimComponent } from './components/loading-anim/loading-anim.com
 import {MatDialogModule} from "@angular/material/dialog";
 import { WarningModuleComponent } from './modals/warning-module/warning-module.component';
 import { UserLocationComponent } from './components/user-location/user-location.component';
+import { SortingComponent } from './components/sorting/sorting.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { UserLocationComponent } from './components/user-location/user-location.
     LoadingAnimComponent,
     WarningModuleComponent,
     UserLocationComponent,
+    SortingComponent,
   ],
   imports: [
     BrowserModule,

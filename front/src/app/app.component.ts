@@ -11,10 +11,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.navigate(["/services"], {
-      queryParams: {
-        mainTypeId: 1
-      }
-    });
+    // this.router.navigate(["/services"], {
+    //   queryParams: {
+    //     mainTypeId: 1
+    //   }
+    // });
   }
 }

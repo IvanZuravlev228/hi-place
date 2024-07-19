@@ -8,6 +8,7 @@ import {User} from "../../models/User";
 import {UserImagesService} from "../../services/user-images.service";
 import {environment} from "../../../environment/environment";
 import {CookieService} from "ngx-cookie-service";
+import {Sort} from "../sorting/Sort";
 
 @Component({
   selector: 'app-service',
@@ -44,6 +45,13 @@ export class ServiceComponent implements OnInit {
     this.getAllUsersByMainTypeOfServiceId(this.mainTypeId);
   }
 
+  currentSort: Sort = new Sort();
+
+  public handleSortChanged(sort: Sort) {
+    this.currentSort = sort;
+    this.ngOnInit();
+  }
+
   public loadServiceItem(typeOfService: TypeOfService) {
     this.getAllUsersByTypeOfServiceId(typeOfService.id);
     this.nextServiceItemOrTypeOfService = false;
@@ -76,7 +84,7 @@ export class ServiceComponent implements OnInit {
     this.lastServiceItemId = serviceItemId;
     this.lastTypeOfServiceId = typeOfServiceId;
 
-    this.userService.getUsersByServiceItemId(serviceItemId, this.city, this.serviceItemPaginationPageCount).subscribe({
+    this.userService.getUsersByServiceItemId(serviceItemId, this.city, this.serviceItemPaginationPageCount, this.currentSort).subscribe({
       next: (users) => {
         this.users = users;
         this.users.forEach(user => this.getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId, user.id, user));
@@ -88,7 +96,7 @@ export class ServiceComponent implements OnInit {
   }
 
   public getAllUsersByTypeOfServiceId(typeOfServiceId: number) {
-    this.userService.getAllUsersByTypeOfServiceId(typeOfServiceId, this.city, this.typeOfServicePaginationPageCount).subscribe({
+    this.userService.getAllUsersByTypeOfServiceId(typeOfServiceId, this.city, this.typeOfServicePaginationPageCount, this.currentSort).subscribe({
       next: (users) => {
         this.users = users;
         this.users.forEach(user => this.getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId, user.id, user));

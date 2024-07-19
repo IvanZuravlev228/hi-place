@@ -4,6 +4,7 @@ import {environment} from "../../environment/environment";
 import {User} from "../models/User";
 import {UserRequest} from "../models/UserRequest";
 import {Observable} from "rxjs";
+import {Sort} from "../components/sorting/Sort";
 
 @Injectable({
   providedIn: 'root'
@@ -23,22 +24,36 @@ export class UserService {
     });
   }
 
-  public getAllUsersByTypeOfServiceId(typeOfServiceId: number, city: string, page: number): Observable<User[]> {
+  public getAllUsersByTypeOfServiceId(typeOfServiceId: number, city: string, page: number, sort: Sort): Observable<User[]> {
     const params = new HttpParams()
       .set('serviceTypeId', typeOfServiceId.toString())
       .set("page", page)
-      .set("size", environment.paginationUsersSize);
+      .set("size", environment.paginationUsersSize)
+      .set("sortByType", sort.sortByType)
+      .set("sortByAtSalon", sort.sortByAtSalon)
+      .set("sortByHomeVisit", sort.sortByHomeVisit)
+      .set("sortByOnlineCounseling", sort.sortByOnlineCounseling);
+
+    console.log("params: ");
+    console.log(params);
 
     return this.http.get<User[]>(`${environment.backendURL}/user/type-of-service/city/${city}`, {
       params: params
     });
   }
 
-  public getUsersByServiceItemId(serviceItemId: number, city: string, page: number): Observable<User[]> {
+  public getUsersByServiceItemId(serviceItemId: number, city: string, page: number, sort: Sort): Observable<User[]> {
     const params = new HttpParams()
       .set("serviceItemId", serviceItemId.toString())
       .set("page", page)
-      .set("size", environment.paginationUsersSize);
+      .set("size", environment.paginationUsersSize)
+      .set("sortByType", sort.sortByType)
+      .set("sortByAtSalon", sort.sortByAtSalon)
+      .set("sortByHomeVisit", sort.sortByHomeVisit)
+      .set("sortByOnlineCounseling", sort.sortByOnlineCounseling);
+
+    console.log("params: ");
+    console.log(params);
 
     return this.http.get<User[]>(`${environment.backendURL}/user/service-item/city/${city}`, {
       params: params
