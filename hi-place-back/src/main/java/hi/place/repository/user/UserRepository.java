@@ -93,4 +93,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Transactional
     @Query("update User u set u.logoURL = :logoURL where u.id = :userId")
     void addLogoUrlToUser(@Param("logoURL") String logoURL, @Param("userId") Long userId);
+
+    User findByVerificationToken(String verificationToken);
 }

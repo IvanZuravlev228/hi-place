@@ -25,6 +25,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { WarningModuleComponent } from './modals/warning-module/warning-module.component';
 import { UserLocationComponent } from './components/user-location/user-location.component';
 import { SortingComponent } from './components/sorting/sorting.component';
+import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SortingComponent } from './components/sorting/sorting.component';
     WarningModuleComponent,
     UserLocationComponent,
     SortingComponent,
+    ConfirmEmailComponent,
   ],
   imports: [
     BrowserModule,

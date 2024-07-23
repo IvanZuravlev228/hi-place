@@ -4,24 +4,49 @@ import hi.place.exception.EmailAlreadyExistsException;
 import hi.place.model.user.User;
 import hi.place.repository.user.UserRepository;
 import hi.place.service.UserService;
+import hi.place.service.impl.EmailService;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final EmailService emailService;
 
     @Override
     public User createNewUser(User user) {
         try {
+            String token = UUID.randomUUID().toString();
+            user.setVerificationToken(token);
+            String confirmationUrl = "http://localhost:4200/confirm-email?token=" + token;
+            String htmlContent = "<html>" +
+                    "<body>" +
+                    "<h1>Confirm your email</h1>" +
+                    "<p>Please click the link below to confirm your email:</p>" +
+                    "<a href=\"" + confirmationUrl + "\">Confirm Email</a>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; }" +
+                    "h1 { color: #333; }" +
+                    "p { font-size: 16px; }" +
+                    "a { background-color: #008CBA; color: white; padding: 10px 20px; text-decoration: none; }" +
+                    "a:hover { background-color: #005f6b; }" +
+                    "</style>" +
+                    "</body>" +
+                    "</html>";
+            emailService.sendEmail(user.getEmail(), "Confirm your email", htmlContent);
+
             return userRepository.save(user);
         } catch (DataIntegrityViolationException e) {
-            throw new EmailAlreadyExistsException("Email already exists");
+            throw new EmailAlreadyExistsException("Email already exists", e);
+        } catch (MessagingException e) {
+            throw new RuntimeException("Something went wrong while send email", e);
         }
     }
 
@@ -72,5 +97,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addLogoUrlToUser(String logoUrl, Long userId) {
         userRepository.addLogoUrlToUser(logoUrl, userId);
+    }
+
+    @Override
+    public boolean confirmEmail(String token) {
+        User user = userRepository.findByVerificationToken(token);
+        if (user != null) {
+            user.setEmailVerified(true);
+            user.setVerificationToken(null);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 }

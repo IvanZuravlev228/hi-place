@@ -65,7 +65,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post<User>(`${environment.backendURL}/user`, userJSON, {
+    return this.http.post<User>(`${environment.backendURL}/auth/register`, userJSON, {
       headers: headers
     })
   }

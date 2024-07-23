@@ -27,12 +27,6 @@ public class UserController {
                 HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<UserResponseDto> createNewUser(@RequestBody UserRequestDto newUser) {
-        return new ResponseEntity<>(userMapper.toDto(userService.createNewUser(
-                userMapper.toModel(newUser))), HttpStatus.CREATED);
-    }
-
     @GetMapping("/all")
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
         return new ResponseEntity<>(userService.getAll()

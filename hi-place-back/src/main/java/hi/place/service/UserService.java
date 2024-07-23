@@ -27,4 +27,6 @@ public interface UserService {
     List<User> getAllByServiceItemId(Long serviceItemId, String city, Pageable pageable);
 
     void addLogoUrlToUser(String logoUrl, Long userId);
+
+    boolean confirmEmail(String token);
 }
