@@ -188,4 +188,24 @@ export class UserRegisterComponent {
     }
     return true;
   }
+
+  public validateTikTokLink(link: string): boolean {
+    const urlPattern = /^(https?:\/\/)?(www\.)?tiktok\.com\/.+$/;
+    return urlPattern.test(link);
+  }
+
+  public validateInstagramLink(link: string): boolean {
+    const urlPattern = /^(https?:\/\/)?(www\.)?instagram\.com\/.+$/;
+    return urlPattern.test(link);
+  }
+
+  public validateTelegramLink(link: string): boolean {
+    const urlPattern = /^(https?:\/\/)?(www\.)?t\.me\/.+$/;
+    return urlPattern.test(link);
+  }
+
+  public validateViberLink(link: string): boolean {
+    const urlPattern = /^(https?:\/\/)?(www\.)?viber\.com\/.+$/;
+    return urlPattern.test(link);
+  }
 }

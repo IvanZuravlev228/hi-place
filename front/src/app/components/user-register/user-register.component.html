@@ -86,29 +86,34 @@
         <div class="form-group" *ngIf="showLinks" @fadeInOut>
           <div class="form-group">
             <div class="input-wrapper">
-              <input type="url" id="tiktokLink" [(ngModel)]="createUserRequest.tiktokLink" name="tiktokLink" class="form-input" placeholder=" ">
+              <input type="url" id="tiktokLink" [(ngModel)]="createUserRequest.tiktokLink" name="tiktokLink" class="form-input" placeholder=" " (ngModelChange)="validateTikTokLink(createUserRequest.tiktokLink)">
               <label for="tiktokLink" class="form-label">TikTok</label>
+              <div *ngIf="!validateTikTokLink(createUserRequest.tiktokLink) && createUserRequest.tiktokLink" class="error">Invalid TikTok link</div>
             </div>
           </div>
           <div class="form-group">
             <div class="input-wrapper">
-              <input type="url" id="instagramLink" [(ngModel)]="createUserRequest.instagramLink" name="instagramLink" class="form-input" placeholder=" ">
+              <input type="url" id="instagramLink" [(ngModel)]="createUserRequest.instagramLink" name="instagramLink" class="form-input" placeholder=" " (ngModelChange)="validateInstagramLink(createUserRequest.instagramLink)">
               <label for="instagramLink" class="form-label">Instagram</label>
+              <div *ngIf="!validateInstagramLink(createUserRequest.instagramLink) && createUserRequest.instagramLink" class="error">Invalid Instagram link</div>
             </div>
           </div>
           <div class="form-group">
             <div class="input-wrapper">
-              <input type="url" id="telegramLink" [(ngModel)]="createUserRequest.telegramLink" name="telegramLink" class="form-input" placeholder=" ">
+              <input type="url" id="telegramLink" [(ngModel)]="createUserRequest.telegramLink" name="telegramLink" class="form-input" placeholder=" " (ngModelChange)="validateTelegramLink(createUserRequest.telegramLink)">
               <label for="telegramLink" class="form-label">Telegram</label>
+              <div *ngIf="!validateTelegramLink(createUserRequest.telegramLink) && createUserRequest.telegramLink" class="error">Invalid Telegram link</div>
             </div>
           </div>
           <div class="form-group">
             <div class="input-wrapper">
-              <input type="url" id="viberLink" [(ngModel)]="createUserRequest.viberLink" name="viberLink" class="form-input" placeholder=" ">
+              <input type="url" id="viberLink" [(ngModel)]="createUserRequest.viberLink" name="viberLink" class="form-input" placeholder=" " (ngModelChange)="validateViberLink(createUserRequest.viberLink)">
               <label for="viberLink" class="form-label">Viber</label>
+              <div *ngIf="!validateViberLink(createUserRequest.viberLink) && createUserRequest.viberLink" class="error">Invalid Viber link</div>
             </div>
           </div>
         </div>
+
 
         <div class="checkbox-container">
           <label for="homeVisit" class="checkbox-label">Чи працюєте на виїзд?</label>
