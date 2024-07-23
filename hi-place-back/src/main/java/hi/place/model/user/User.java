@@ -26,6 +26,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserType type;
     private Double avg;
+    private Boolean emailVerified = false;
+    private String verificationToken;
 
     public enum UserType {
         SALON, MASTER

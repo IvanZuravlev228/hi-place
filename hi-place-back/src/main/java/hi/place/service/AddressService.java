@@ -10,4 +10,10 @@ public interface AddressService {
     Address getById(Long id);
 
     List<Address> getByUserId(Long userId);
+
+    void deleteById(Long id);
+
+    List<Address> getAllNearAddress(Double lat, Double lon);
+
+    List<String> getAllCities();
 }

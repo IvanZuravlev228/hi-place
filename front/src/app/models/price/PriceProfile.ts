@@ -4,4 +4,5 @@ export interface PriceProfile {
   serviceItemName: string;
   price: number;
   timeUnit: string;
+  imageFile?: File;
 }

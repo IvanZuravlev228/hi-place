@@ -1,15 +1,9 @@
-<!--<div class="example-container">-->
-<!--  <div class="scroll-container">-->
-<!--    <img *ngFor="let image of examples" [src]="image" alt="example image">-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="example-wrapper">
   <div class="example-container">
     <button class="position-btn" (click)="prevImage()" [disabled]="currentIndex === 0">←</button>
 
     <div class="scroll-container">
-      <img class="example-img" [src]="examples[currentIndex]" alt="example image" (click)="openModal(examples[currentIndex])">
+      <img class="example-img" [src]="examples[currentIndex].path" alt="example image" (click)="openModal(examples[currentIndex].path)">
     </div>
 
     <button class="position-btn" (click)="nextImage()" [disabled]="currentIndex === examples.length - 1">→</button>

@@ -41,7 +41,6 @@ export class MapComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   private renderMap() {
     this.map = L.map('map').setView([this.lat, this.lon], this.zoom);
-    console.log('Map initialized:', this.map);
     this.map.getContainer().style.width = this.sizeMap;
     this.map.getContainer().style.height = this.sizeMap;
 
@@ -52,8 +51,6 @@ export class MapComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     const customIcon = L.icon({
       iconUrl: this.pathToMapPointerImage,
       iconSize: [this.iconSize, this.iconSize], // размер иконки
-      // iconAnchor: [16, 32], // точка якоря иконки
-      // popupAnchor: [0, -32] // смещение всплывающего окна относительно иконки
     });
 
     L.marker([this.lat, this.lon], ).addTo(this.map)

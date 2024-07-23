@@ -5,7 +5,7 @@
   margin-top: 20px;
   margin-bottom: 15px;
 }
-/*======================================================*/
+
 .user-container {
   padding: 20px 10px;
   width: 30%;
@@ -27,6 +27,10 @@
   margin-bottom: 5px;
 }
 
+.map-pointer-icon {
+  width: 20px;
+}
+
 #show-map-btn {
   background-color: transparent;
   color: blue;
@@ -44,7 +48,7 @@
   width: 100%;
   height: 400px;
 }
-/*========================================================*/
+
 .service-block-container {
   width: 65%;
   background-color: rgba(237, 237, 237, 0.3);
@@ -54,12 +58,28 @@
 .app-image-container {
   width: 100%;
   height: 300px;
-  /*background-color: #1dd1a1;*/
   margin-bottom: 15px;
 }
 
 .type-service-counts-container {
 
+}
+
+.change-mode-btn {
+  background-color: transparent;
+}
+
+.change-mode-btn-image {
+  width: 20px;
+  padding: 5px;
+  border-radius: 3px;
+  transition: background-color 0.5s ease, width 0.5s ease;
+}
+
+.change-mode-btn-image:hover {
+  cursor: pointer;
+  background-color: #f1f1f1;
+  width: 25px;
 }
 
 .type-counts-item {
@@ -68,6 +88,8 @@
 }
 
 .type-counts-btn {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   padding: 10px 20px;
   text-align: left;
@@ -103,4 +125,17 @@
 
 .price-profile-price {
 
+}
+
+#add-address-btn {
+  padding: 10px 20px;
+  background-color: #5e855e;
+  border: black 1px solid;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#add-address-btn:hover {
+  cursor: pointer;
+  background-color: #94ec94;
 }

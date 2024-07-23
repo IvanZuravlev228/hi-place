@@ -49,7 +49,7 @@
   width: 15px;
   height: 15px;
   border: 1px solid #ccc;
-  border-radius: 50%; /* Делаем чекбокс круглым */
+  border-radius: 50%;
   cursor: pointer;
 }
 
@@ -79,8 +79,6 @@
   border-color: #007bff;
 }
 
-
-/* Основные стили для формы */
 form {
   padding: 20px;
   border: 1px solid #ccc;
@@ -89,19 +87,16 @@ form {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Стили для заголовка */
 h1 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
 }
 
-/* Стили для контейнеров полей */
 form div {
   margin-bottom: 15px;
 }
 
-/* Стили для меток */
 label {
   display: block;
   margin-bottom: 5px;
@@ -109,7 +104,6 @@ label {
   color: #555;
 }
 
-/* Стили для текстовых полей и текстовых областей */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -132,12 +126,10 @@ input[type="number"]:focus {
   outline: none;
 }
 
-/* Стили для чекбоксов */
 input[type="checkbox"] {
   margin-right: 10px;
 }
 
-/* Стили для кнопки */
 button {
   width: 100%;
   padding: 10px;
@@ -152,32 +144,4 @@ button {
 
 button:hover {
   background-color: #0056b3;
-}
-
-/* Стили для элемента загрузки и фона */
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный серый фон */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Выше всех остальных элементов */
-}
-
-.loading-spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3); /* Белая рамка с полупрозрачным фоном */
-  border-radius: 50%;
-  border-top: 4px solid #ffffff; /* Белый верхний бордер для кружка */
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite; /* Анимация вращения */
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }

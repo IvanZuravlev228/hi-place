@@ -6,6 +6,7 @@ import hi.place.model.TypeOfService;
 import hi.place.service.TypeOfServiceService;
 import hi.place.service.mapper.TypeOfServiceMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

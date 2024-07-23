@@ -12,6 +12,6 @@ export class MainTypeServiceService {
   constructor(private http: HttpClient) { }
 
   public getAllMainTypeOfService(): Observable<MainTypeOfService[]> {
-    return this.http.get<MainTypeOfService[]>(environment.backendURL + "/main-type-service");
+    return this.http.get<MainTypeOfService[]>(`${environment.backendURL}/main-type-service`);
   }
 }

@@ -1,15 +1,10 @@
 <app-header></app-header>
-
+<app-loading-anim [isLoading]="isLoading"></app-loading-anim>
 <main class="main-container-create">
   <section class="create-user-section">
     <div>
       <h1>Створіть свій профіль</h1>
       <form (ngSubmit)="onSubmit()">
-        <!-- Скрытый элемент, который покажем при отправке формы -->
-        <div class="loading-overlay" *ngIf="isLoading">
-          <div class="loading-spinner"></div>
-        </div>
-
         <div>
           <label for="name">Фотографія профілю</label>
           <input type="file" (change)="selectFile($event)" accept="image/*">
@@ -30,11 +25,7 @@
           <input type="email" id="email" [(ngModel)]="createUserRequest.email" name="email" required>
           <div class="incorrectInputData" *ngIf="isEmailCorrect">
             {{ messageAboutEmail }}
-<!--            Пошта некоректна-->
           </div>
-<!--          <div class="incorrectInputData" *ngIf="!createUserRequest.email">-->
-<!--            {{ messageAboutEmail }}-->
-<!--          </div>-->
         </div>
 
         <div>

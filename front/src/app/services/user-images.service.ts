@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {UserServiceImagesResponse} from "../models/UserServiceImagesResponse";
 import {environment} from "../../environment/environment";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +11,27 @@ export class UserImagesService {
 
   constructor(private http: HttpClient) { }
 
-  public getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId: number, userId: number) {
-    return this.http.get<UserServiceImagesResponse[]>(environment.backendURL + "/images", {
-      headers: {
+  public getExampleImagesByTypeOfServiceAndUserId(typeOfServiceId: number, userId: number): Observable<UserServiceImagesResponse[]> {
+    const params = new HttpParams()
+      .set("typeOfServiceId", typeOfServiceId)
+      .set("userId", userId);
 
-      },
-      params: {
-        typeOfServiceId: typeOfServiceId,
-        userId: userId
-      }
+    return this.http.get<UserServiceImagesResponse[]>(`${environment.backendURL}/images`, {
+      params: params
     })
   }
 
-  public getExampleImagesByMainTypeOfServiceAndUserId(mainTypeOfServiceId: number, userId: number) {
-    return this.http.get<UserServiceImagesResponse[]>(environment.backendURL + "/images/main", {
-      headers: {
+  public getExampleImagesByMainTypeOfServiceAndUserId(mainTypeOfServiceId: number, userId: number): Observable<UserServiceImagesResponse[]> {
+    const params = new HttpParams()
+      .set("mainTypeOfServiceId", mainTypeOfServiceId)
+      .set("userId", userId);
 
-      },
-      params: {
-        mainTypeOfServiceId: mainTypeOfServiceId,
-        userId: userId
-      }
+    return this.http.get<UserServiceImagesResponse[]>(`${environment.backendURL}/images/main`, {
+      params: params
     })
+  }
+
+  public getExampleImagesByUserId(userId: number) {
+    return this.http.get<UserServiceImagesResponse[]>(`${environment.backendURL}/images/user/${userId}`)
   }
 }

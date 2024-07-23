@@ -13,15 +13,11 @@ export class AddressComponent {
   public query: string = "";
   public addresses: any[] = [];
   public selectedAddresses: Address[] = [];
-  // public selectedAddress: string = "";
   @Output() selectedAddressEmit = new EventEmitter<Address[]>();
-
 
   constructor(private addressService: AddressService){ }
 
-  ngOnInit(): void { }
-
-  onQueryChange(): void {
+  public onQueryChange(): void {
     if (this.query.length > 4) {
       this.addressService.search(this.query, this.countryCodes, 'ua').subscribe({
         next: (data: any) => {
@@ -46,10 +42,8 @@ export class AddressComponent {
   }
 
   public selectAddress(address: any): void {
-    console.log(address);
-    console.log(address.address);
-
     const selectedAddressObject: Address = {
+      id: address.id,
       country: address.address.country,
       city: address.address.city,
       borough: address.address.borough || '',
@@ -61,9 +55,6 @@ export class AddressComponent {
       userId: 1
     };
 
-    console.log('Selected Address Object:', selectedAddressObject);
-
-    // this.selectedAddress = address.display_name;
     this.selectedAddresses.push(selectedAddressObject);
 
     this.selectedAddressEmit.emit(this.selectedAddresses);

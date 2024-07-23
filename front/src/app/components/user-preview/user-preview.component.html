@@ -3,7 +3,7 @@
 </head>
 
 <section class="user-block-container">
-  <img [src]="user.logoURL" [alt]="user.name" class="user-logo-img">
+  <img [src]="user.logoURL" [alt]="user.name" class="user-logo-img" [title]="user.name">
 
   <p id="user-name">{{ user.name }}</p>
 
@@ -13,23 +13,26 @@
     </ng-container>
   </div>
 
+  <div class="experience">
+    <p>{{ user.experience }} р. досвіду</p>
+  </div>
+
   <button id="user-phone" (click)="revealPhone(user)">
     <a href="tel:{{ user.phone }}">{{ user.hiddenPhone }}</a>
     <p id="user-phone-call">Подзвонити</p>
   </button>
 
-  <div class="checkbox-container">
-    <p class="hint-text">Мои услуги</p>
-    <p *ngIf="user.homeVisit">Выезд на дом  <span>&#10003;</span></p>
-    <p *ngIf="user.onlineCounseling">Онлайн косультация  <span>&#10003;</span></p>
-    <p *ngIf="user.atSalon">Принимаю в салоне  <span>&#10003;</span></p>
+  <div class="checkbox-container" *ngIf="user.homeVisit || user.onlineCounseling || user.atSalon">
+    <p class="hint-text">Наші послуги</p>
+    <p *ngIf="user.homeVisit">Виїзд додому<span>&#10003;</span></p>
+    <p *ngIf="user.onlineCounseling">Онлайн консультація<span>&#10003;</span></p>
+    <p *ngIf="user.atSalon">Приймаю в салоні<span>&#10003;</span></p>
   </div>
 
   <div>
-    <p class="hint-text">Мои соц сети</p>
+    <p class="hint-text">Наші соцмережі</p>
   </div>
   <div class="social-feedback-container">
-
     <div class="social">
       <a [href]="user.instagramLink" target="_blank">
         <img class="social-icon" src="assets/image/icons/instagram.png" *ngIf="user.instagramLink">
@@ -52,8 +55,8 @@
     </div>
   </div>
 
-  <div class="address-container">
-    <p class="hint-text">Мы находимся</p>
+  <div class="address-container" *ngIf="addresses.length > 0">
+    <p class="hint-text">Ми знаходимося</p>
     <div class="address-item" *ngFor="let address of addresses">
       <button id="address-item-map-btn"
               (click)="goToProfile()">

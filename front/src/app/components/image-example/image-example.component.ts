@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {UserServiceImagesResponse} from "../../models/UserServiceImagesResponse";
 
 @Component({
   selector: 'app-image-example',
@@ -6,7 +7,7 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./image-example.component.css']
 })
 export class ImageExampleComponent {
-  @Input() examples: string[] = [];
+  @Input() examples: UserServiceImagesResponse[] = [];
   currentIndex: number = 0;
   isModalOpen: boolean = false;
   modalImageSrc: string = '';

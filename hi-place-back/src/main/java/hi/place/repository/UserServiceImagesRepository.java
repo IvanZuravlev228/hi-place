@@ -22,4 +22,6 @@ public interface UserServiceImagesRepository extends JpaRepository<UserServiceIm
             "where mt.id = :mainTypeOfServiceId and u.id = :userId order by usi.id asc LIMIT 5")
     List<UserServiceImageResponseDto> findUserServiceImageDtosByMainTypeOfService_IdAndUser_Id(@Param("mainTypeOfServiceId") Long mainTypeOfServiceId,
                                                                                                @Param("userId") Long userId);
+
+    List<UserServiceImageResponseDto> findByUser_Id(Long userId);
 }

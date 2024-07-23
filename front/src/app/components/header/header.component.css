@@ -3,68 +3,65 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #D7B9C2; /* Цвет фона */
-  box-shadow: 0 5px 2px rgba(0, 0, 0, 0.1); /* Тень */
+  background-color: #D7B9C2;
+  box-shadow: 0 5px 2px rgba(0, 0, 0, 0.1);
 }
 
 .nav-button-container,
 .auth-container {
   display: flex;
-  gap: 1px; /* Расстояние между кнопками */
+  gap: 1px;
 }
 
-/* Стили для кнопок навигации */
 .nav-button {
-  background-color: transparent; /* Прозрачный фон */
-  color: black; /* Цвет текста */
-  padding: 10px 20px; /* Отступы */
-  font-size: 16px; /* Размер шрифта */
-  cursor: pointer; /* Указатель курсора */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Плавный переход */
+  background-color: transparent;
+  color: black;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
   border: none;
 }
 
 .nav-button:hover {
-  /*background-color: #333; !* Цвет фона при наведении *!*/
-  color: #c119c7; /* Цвет текста при наведении */
+  color: #c119c7;
 }
 
 .nav-button:active {
-  /*background-color: #555; !* Цвет фона при нажатии *!*/
-  color: #c119c7; /* Цвет текста при нажатии */
+  color: #c119c7;
 }
 
-/* Стили для логотипа */
 .logo-container {
-  flex-grow: 1; /* Расширение контейнера логотипа для центровки */
+  flex-grow: 1;
   display: flex;
   justify-content: center;
 }
 
 .logo-img {
-  max-height: 40px; /* Максимальная высота логотипа */
+  max-height: 40px;
 }
 
-/* Стили для кнопок аутентификации */
+.logo-img:hover {
+  cursor: pointer;
+}
+
 .login-button,
 .sign-in-button {
-  background-color: transparent; /* Прозрачный фон */
-  color: black; /* Цвет текста */
-  padding: 10px 20px; /* Отступы */
-  font-size: 16px; /* Размер шрифта */
-  cursor: pointer; /* Указатель курсора */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Плавный переход */
+  background-color: transparent;
+  color: black;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
   border: none;
 }
 
 .login-button:hover,
 .sign-in-button:hover {
-  /*background-color: #333; !* Цвет фона при наведении *!*/
-  color: #c119c7; /* Цвет текста при наведении */
+  color: #c119c7;
 }
 
 .login-button:active,
 .sign-in-button:active {
-  /*background-color: #555; !* Цвет фона при нажатии *!*/
-  color: #c119c7; /* Цвет текста при нажатии */
+  color: #c119c7;
 }

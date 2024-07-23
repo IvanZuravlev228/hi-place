@@ -1,3 +1,5 @@
+import {UserServiceImagesResponse} from "./UserServiceImagesResponse";
+
 export class User {
   id: number = 0;
   name: string = "";
@@ -16,5 +18,5 @@ export class User {
   discountWithPromo: number = 0;
   type: string = "";
   avg: number = 0;
-  examples: string[] = [];
+  examples: UserServiceImagesResponse[] = [];
 }

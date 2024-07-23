@@ -28,4 +28,10 @@ public class TypeOfServiceServiceImpl implements TypeOfServiceService {
     public List<TypeOfServiceCountDto> getTypeOfServiceCountByUserId(Long userId) {
         return typeOfServiceRepository.getTypeOfServiceAnfCountByUserId(userId);
     }
+
+    @Override
+    public TypeOfService getById(Long id) {
+        return typeOfServiceRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Can't find type of service by id: " + id));
+    }
 }

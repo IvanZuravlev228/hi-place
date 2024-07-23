@@ -1,6 +1,7 @@
 package hi.place.service;
 
 import hi.place.model.user.User;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -13,11 +14,19 @@ public interface UserService {
 
     List<User> getAll();
 
-    List<User> getAllByMainTypeOfServiceId(Long mainTypeOfServiceId);
+    List<User> getAllByMainTypeOfServiceId(Long mainTypeOfServiceId, String city, Pageable pageable);
 
-    List<User> getAllByTypeOfServiceId(Long typeOfServiceId);
+    List<User> getAllByTypeOfServiceId(Long typeOfServiceId,
+                                       String city,
+                                       String sortByType,
+                                       Boolean sortByAtSalon,
+                                       Boolean sortByHomeVisit,
+                                       Boolean sortByOnlineCounseling,
+                                       Pageable pageable);
 
-    List<User> getAllByServiceItemId(Long serviceItemId);
+    List<User> getAllByServiceItemId(Long serviceItemId, String city, Pageable pageable);
 
     void addLogoUrlToUser(String logoUrl, Long userId);
+
+    boolean confirmEmail(String token);
 }

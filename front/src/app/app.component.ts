@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {environment} from "../environment/environment";
 
 @Component({
   selector: 'app-root',
@@ -12,17 +11,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.router.navigate(["user/profile"], {
+    // this.router.navigate(["/services"], {
     //   queryParams: {
-    //     userId: 1
+    //     mainTypeId: 1
     //   }
     // });
-
-    this.router.navigate(["services/add"], {
-      queryParams: {
-        userId: 1
-      }
-    })
-    // this.router.navigate(["/test"]);
   }
 }
