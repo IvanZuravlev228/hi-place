@@ -20,17 +20,19 @@ export class UserRegisterComponent {
   selectedFiles?: FileList;
   messageAboutFile = '';
   messageAboutEmail: string = "Обов'язкове поле";
+  messageAboutPassword: string = "Обов'язкове поле";
 
   isCorrectPhoneNumber: boolean = true;
   isSuccessfullyUploadedUserLogo: boolean = false;
   isSuccessfullySavedNewAddress: boolean = false;
   isLoading: boolean = false;
-  isEmailCorrect: boolean = true;
+  isEmailCorrect: boolean = false;
   isAddressCorrect: boolean = false;
 
+  isPassCorrect: boolean = false;
   showLinks: boolean = false;
-  showAddress: boolean = false;
 
+  showAddress: boolean = false;
   public receivedAddresses: Address[] | null = null;
 
   constructor(private uploadService: UploadFileService,
@@ -48,6 +50,11 @@ export class UserRegisterComponent {
       return;
     }
     this.isEmailCorrect = true;
+
+    if (this.checkPass(this.createUserRequest.password)) {
+      return;
+    }
+    this.isPassCorrect = true;
 
     if (!this.checkPhoneNumber(this.createUserRequest.phone)) {
       this.isCorrectPhoneNumber = false
@@ -171,5 +178,14 @@ export class UserRegisterComponent {
         }
       })
     }
+  }
+
+  private checkPass(password: string): boolean {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    if (!passwordRegex.test(password)) {
+      this.messageAboutPassword = "Пароль має бути довшим за 6 символів, містити букви та цифри";
+      return false;
+    }
+    return true;
   }
 }

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import { Observable} from "rxjs";
 import {Address} from "../models/Address";
 import {environment} from "../../environment/environment";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import {environment} from "../../environment/environment";
 export class AddressService {
   private apiUrl: string = 'https://nominatim.openstreetmap.org/search';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private cookie: CookieService) { }
 
   public search(query: string, countryCodes: string, language: string): Observable<any[]> {
     const params = new HttpParams()
@@ -26,9 +28,9 @@ export class AddressService {
 
   public saveNewAddress(address: Address): Observable<Address> {
     const addressJSON = JSON.stringify(address);
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json")
+      .set("Authorization", "Bearer " + this.cookie.get("jwt-token"));
 
     return this.http.post<Address>(`${environment.backendURL}/address`, addressJSON, {
       headers: headers
@@ -40,7 +42,11 @@ export class AddressService {
   }
 
   public deleteAddressById(addressId: number): Observable<void> {
-    return this.http.delete<void>(`${environment.backendURL}/address/${addressId}`);
+    const headers = new HttpHeaders()
+      .set("Authorization", "Bearer " + this.cookie.get("jwt-token"));
+    return this.http.delete<void>(`${environment.backendURL}/address/${addressId}`, {
+      headers: headers
+    });
   }
 
   public getAllCities(): Observable<string[]> {
