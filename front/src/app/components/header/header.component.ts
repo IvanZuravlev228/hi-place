@@ -18,7 +18,11 @@ export class HeaderComponent {
     this.router.navigate(["home"])
   }
 
+  public goToRegisterPage() {
+    this.router.navigate(["/user/auth/register"]);
+  }
+
   public goToLoginPage() {
-    this.router.navigate(["/register/user"]);
+    this.router.navigate(["/user/auth/login"]);
   }
 }

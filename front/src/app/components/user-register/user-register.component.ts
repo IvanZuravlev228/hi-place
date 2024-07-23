@@ -172,7 +172,7 @@ export class UserRegisterComponent {
   private checkLoading(userId: number) {
     if (this.isSuccessfullyUploadedUserLogo && this.isSuccessfullySavedNewAddress) {
       this.isLoading = false;
-      this.router.navigate(["user/profile"], {
+      this.router.navigate(["/user/auth/login"], {
         queryParams: {
           userId: userId
         }
