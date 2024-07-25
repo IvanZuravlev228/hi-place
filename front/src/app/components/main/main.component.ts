@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit{
+export class MainComponent implements OnInit {
   serviceItems = [
     { id: 'manicure', name: 'Нігтьовий сервіс', image: './assets/image/main/manicure-main.jpg', dbID: 4 },
     { id: 'haircut', name: 'Перукарські послуги', image: './assets/image/main/haircut-main.jpg', dbID: 3  },
@@ -26,11 +24,10 @@ export class MainComponent implements OnInit{
 
   visibleItemsCount = 9;
 
-  ngOnInit() {
-
+  constructor(private router: Router) {
   }
 
-  constructor(private router: Router) {
+  ngOnInit() {
   }
 
   public showMoreItems() {
