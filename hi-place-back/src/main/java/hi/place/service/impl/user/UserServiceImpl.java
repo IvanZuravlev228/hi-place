@@ -20,35 +20,35 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final EmailService emailService;
 
-    @Override
-    public User createNewUser(User user) {
-        try {
-            String token = UUID.randomUUID().toString();
-            user.setVerificationToken(token);
-            String confirmationUrl = "http://localhost:4200/confirm-email?token=" + token;
-            String htmlContent = "<html>" +
-                    "<body>" +
-                    "<h1>Confirm your email</h1>" +
-                    "<p>Please click the link below to confirm your email:</p>" +
-                    "<a href=\"" + confirmationUrl + "\">Confirm Email</a>" +
-                    "<style>" +
-                    "body { font-family: Arial, sans-serif; }" +
-                    "h1 { color: #333; }" +
-                    "p { font-size: 16px; }" +
-                    "a { background-color: #008CBA; color: white; padding: 10px 20px; text-decoration: none; }" +
-                    "a:hover { background-color: #005f6b; }" +
-                    "</style>" +
-                    "</body>" +
-                    "</html>";
-            emailService.sendEmail(user.getEmail(), "Confirm your email", htmlContent);
-
-            return userRepository.save(user);
-        } catch (DataIntegrityViolationException e) {
-            throw new EmailAlreadyExistsException("Email already exists", e);
-        } catch (MessagingException e) {
-            throw new RuntimeException("Something went wrong while send email", e);
-        }
-    }
+//    @Override
+//    public User createNewUser(User user) {
+//        try {
+//            String token = UUID.randomUUID().toString();
+//            user.setVerificationToken(token);
+//            String confirmationUrl = "http://localhost:4200/confirm-email?token=" + token;
+//            String htmlContent = "<html>" +
+//                    "<body>" +
+//                    "<h1>Confirm your email</h1>" +
+//                    "<p>Please click the link below to confirm your email:</p>" +
+//                    "<a href=\"" + confirmationUrl + "\">Confirm Email</a>" +
+//                    "<style>" +
+//                    "body { font-family: Arial, sans-serif; }" +
+//                    "h1 { color: #333; }" +
+//                    "p { font-size: 16px; }" +
+//                    "a { background-color: #008CBA; color: white; padding: 10px 20px; text-decoration: none; }" +
+//                    "a:hover { background-color: #005f6b; }" +
+//                    "</style>" +
+//                    "</body>" +
+//                    "</html>";
+//            emailService.sendEmail(user.getEmail(), "Confirm your email", htmlContent);
+//
+//            return userRepository.save(user);
+//        } catch (DataIntegrityViolationException e) {
+//            throw new EmailAlreadyExistsException("Email already exists", e);
+//        } catch (MessagingException e) {
+//            throw new RuntimeException("Something went wrong while send email", e);
+//        }
+//    }
 
     @Override
     public User getByEmail(String email) {

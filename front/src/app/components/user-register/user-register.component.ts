@@ -20,17 +20,19 @@ export class UserRegisterComponent {
   selectedFiles?: FileList;
   messageAboutFile = '';
   messageAboutEmail: string = "Обов'язкове поле";
+  messageAboutPassword: string = "Обов'язкове поле";
 
   isCorrectPhoneNumber: boolean = true;
   isSuccessfullyUploadedUserLogo: boolean = false;
   isSuccessfullySavedNewAddress: boolean = false;
   isLoading: boolean = false;
-  isEmailCorrect: boolean = true;
+  isEmailCorrect: boolean = false;
   isAddressCorrect: boolean = false;
 
+  isPassCorrect: boolean = false;
   showLinks: boolean = false;
-  showAddress: boolean = false;
 
+  showAddress: boolean = false;
   public receivedAddresses: Address[] | null = null;
 
   constructor(private uploadService: UploadFileService,
@@ -48,6 +50,11 @@ export class UserRegisterComponent {
       return;
     }
     this.isEmailCorrect = true;
+
+    if (this.checkPass(this.createUserRequest.password)) {
+      return;
+    }
+    this.isPassCorrect = true;
 
     if (!this.checkPhoneNumber(this.createUserRequest.phone)) {
       this.isCorrectPhoneNumber = false
@@ -165,11 +172,40 @@ export class UserRegisterComponent {
   private checkLoading(userId: number) {
     if (this.isSuccessfullyUploadedUserLogo && this.isSuccessfullySavedNewAddress) {
       this.isLoading = false;
-      this.router.navigate(["user/profile"], {
+      this.router.navigate(["/user/auth/login"], {
         queryParams: {
           userId: userId
         }
       })
     }
+  }
+
+  private checkPass(password: string): boolean {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    if (!passwordRegex.test(password)) {
+      this.messageAboutPassword = "Пароль має бути довшим за 6 символів, містити букви та цифри";
+      return false;
+    }
+    return true;
+  }
+
+  public validateTikTokLink(link: string): boolean {
+    const urlPattern = /^(https?:\/\/)?(www\.)?tiktok\.com\/.+$/;
+    return urlPattern.test(link);
+  }
+
+  public validateInstagramLink(link: string): boolean {
+    const urlPattern = /^(https?:\/\/)?(www\.)?instagram\.com\/.+$/;
+    return urlPattern.test(link);
+  }
+
+  public validateTelegramLink(link: string): boolean {
+    const urlPattern = /^(https?:\/\/)?(www\.)?t\.me\/.+$/;
+    return urlPattern.test(link);
+  }
+
+  public validateViberLink(link: string): boolean {
+    const urlPattern = /^(https?:\/\/)?(www\.)?viber\.com\/.+$/;
+    return urlPattern.test(link);
   }
 }

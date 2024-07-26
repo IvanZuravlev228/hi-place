@@ -8,13 +8,15 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {AddServiceComponent} from "./components/add-service/add-service.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {ConfirmEmailComponent} from "./components/confirm-email/confirm-email.component";
+import {LoginComponent} from "./components/login/login.component";
 
 const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'home', component: MainComponent},
   {path: 'about', component: AboutComponent},
   {path: 'services', component: ServiceComponent},
-  {path: 'register/user', component: UserRegisterComponent},
+  {path: 'user/auth/register', component: UserRegisterComponent},
+  {path: 'user/auth/login', component: LoginComponent},
   {path: 'user/profile', component: ProfileComponent},
   {path: 'services/add', component: AddServiceComponent},
   {path: 'footer', component: FooterComponent},

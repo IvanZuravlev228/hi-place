@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AddressService} from "../../services/address.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-location',
@@ -36,10 +37,15 @@ export class UserLocationComponent implements OnInit {
 
   private getUserLocation(): void {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition(position => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         this.getCityName(latitude, longitude);
+        location.reload();
+      }, positionError => {
+        console.log(positionError);
+        this.cookieService.set(this.userCityCookieName, "Kyiv");
+        location.reload();
       });
     } else {
       console.error('Geolocation is not supported by this browser.');
@@ -53,7 +59,6 @@ export class UserLocationComponent implements OnInit {
     });
 
     this.http.get(url, { headers }).subscribe((data: any) => {
-      console.log(data);
       const city = data.address.city || data.address.town || data.address.village;
       console.log(`City: ${city}`);
       this.cookieService.set("user_city", city, 7);

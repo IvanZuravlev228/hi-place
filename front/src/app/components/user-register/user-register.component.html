@@ -3,120 +3,152 @@
 <main class="main-container-create">
   <section class="create-user-section">
     <div>
-      <h1>Створіть свій профіль</h1>
-      <form (ngSubmit)="onSubmit()">
-        <div>
-          <label for="name">Фотографія профілю</label>
-          <input type="file" (change)="selectFile($event)" accept="image/*">
-          <div class="incorrectInputData">
+      <h1 class="form-title">Створіть свій профіль</h1>
+      <form (ngSubmit)="onSubmit()" class="form">
+        <div class="form-group">
+          <p>Фотографія профілю</p>
+          <input type="file" (change)="selectFile($event)" accept="image/*" class="form-input">
+          <div class="incorrect-input-data">
             <p>{{ messageAboutFile }}</p>
           </div>
         </div>
 
-        <div>
-          <label for="name">Ваше ім'я</label>
-          <input type="text" id="name" [(ngModel)]="createUserRequest.name" name="name" required>
-          <div class="incorrectInputData" *ngIf="!createUserRequest.name">
-            Обов'язкове поле
-          </div>
-        </div>
-        <div>
-          <label for="email">Електронна пошта</label>
-          <input type="email" id="email" [(ngModel)]="createUserRequest.email" name="email" required>
-          <div class="incorrectInputData" *ngIf="isEmailCorrect">
-            {{ messageAboutEmail }}
-          </div>
-        </div>
-
-        <div>
-          <label for="phone">Телефон для зв'язку</label>
-          <p id="hint-phone-number">На приклад: +38(099) 999 99 99</p>
-          <input type="tel"
-                 id="phone" [(ngModel)]="createUserRequest.phone"
-                 name="phone"
-                 required>
-          <div class="incorrectInputData" *ngIf="!isCorrectPhoneNumber">
-            Номер телефону некоректний
-          </div>
-          <div class="incorrectInputData" *ngIf="!createUserRequest.phone">
+        <div class="input-wrapper">
+          <input type="text" id="name" [(ngModel)]="createUserRequest.name" name="name" required class="form-input" placeholder=" ">
+          <label for="name" class="form-label">Ваше ім'я</label>
+          <div class="incorrect-input-data" *ngIf="!createUserRequest.name">
             Обов'язкове поле
           </div>
         </div>
 
         <div class="form-group">
-          <label for="type" class="form-label">Ви майстер чи салон?</label>
-          <select id="type" [(ngModel)]="createUserRequest.type" name="type" class="form-control" required>
+          <div class="input-wrapper">
+            <input type="email" id="email" [(ngModel)]="createUserRequest.email" name="email" required class="form-input" placeholder=" ">
+            <label for="email" class="form-label">Електронна пошта</label>
+          </div>
+<!--          <div class="incorrect-input-data" *ngIf="isEmailCorrect">-->
+<!--            {{ messageAboutEmail }}-->
+<!--          </div>-->
+
+          <div class="incorrect-input-data">
+            {{ isEmailCorrect ? "Обов'язкове поле" : messageAboutEmail }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-wrapper">
+            <input type="password" id="pass" [(ngModel)]="createUserRequest.password" name="pass" required class="form-input" placeholder=" ">
+            <label for="pass" class="form-label">Пароль</label>
+          </div>
+          <div class="incorrect-input-data">
+            {{ isPassCorrect ? "Обов'язкове поле" : messageAboutPassword }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-wrapper">
+            <input type="tel" id="phone" [(ngModel)]="createUserRequest.phone" name="phone" required class="form-input" placeholder=" ">
+            <label for="phone" class="form-label">+38(099) 999 99 99</label>
+          </div>
+          <div class="incorrect-input-data" *ngIf="!isCorrectPhoneNumber">
+            Номер телефону некоректний
+          </div>
+          <div class="incorrect-input-data" *ngIf="!createUserRequest.phone">
+            Обов'язкове поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="type" id="type-label">Ви майстер чи салон?</label>
+          <select id="type" [(ngModel)]="createUserRequest.type" name="type" required>
+            <option value="" disabled selected>Виберіть...</option>
             <option value="SALON">Салон краси</option>
             <option value="MASTER">Майстер</option>
           </select>
-        </div>
-        <div class="incorrectInputData" *ngIf="!createUserRequest.type">
-          Обов'язкове поле
-        </div>
-
-        <div>
-          <label for="experience">Скільки у вас років досвіду?</label>
-          <input type="number" id="experience" [(ngModel)]="createUserRequest.experience" name="experience" step="0.1">
+          <div class="incorrect-input-data" *ngIf="!createUserRequest.type">
+            Обов'язкове поле
+          </div>
         </div>
 
-        <div>
+        <div class="form-group">
+          <div class="input-wrapper">
+            <input type="number" id="experience" [(ngModel)]="createUserRequest.experience" name="experience" step="0.1" class="form-input" placeholder=" ">
+            <label for="experience" class="form-label">Скільки у вас років досвіду?</label>
+          </div>
+        </div>
+
+        <div class="form-group">
           <div class="show-btn" *ngIf="!showLinks" (click)="showLinks = true">
             Додати соціальні мережі
           </div>
         </div>
 
-        <div *ngIf="showLinks" @fadeInOut>
-          <div>
-            <label for="tiktokLink">TikTok</label>
-            <input type="url" id="tiktokLink" [(ngModel)]="createUserRequest.tiktokLink" name="tiktokLink">
+        <div class="form-group" *ngIf="showLinks" @fadeInOut>
+          <div class="form-group">
+            <div class="input-wrapper">
+              <input type="url" id="tiktokLink" [(ngModel)]="createUserRequest.tiktokLink" name="tiktokLink" class="form-input" placeholder=" " (ngModelChange)="validateTikTokLink(createUserRequest.tiktokLink)">
+              <label for="tiktokLink" class="form-label">TikTok</label>
+              <div *ngIf="!validateTikTokLink(createUserRequest.tiktokLink) && createUserRequest.tiktokLink" class="error">Invalid TikTok link</div>
+            </div>
           </div>
-          <div>
-            <label for="instagramLink">Instagram</label>
-            <input type="url" id="instagramLink" [(ngModel)]="createUserRequest.instagramLink" name="instagramLink">
+          <div class="form-group">
+            <div class="input-wrapper">
+              <input type="url" id="instagramLink" [(ngModel)]="createUserRequest.instagramLink" name="instagramLink" class="form-input" placeholder=" " (ngModelChange)="validateInstagramLink(createUserRequest.instagramLink)">
+              <label for="instagramLink" class="form-label">Instagram</label>
+              <div *ngIf="!validateInstagramLink(createUserRequest.instagramLink) && createUserRequest.instagramLink" class="error">Invalid Instagram link</div>
+            </div>
           </div>
-          <div>
-            <label for="telegramLink">Telegram</label>
-            <input type="url" id="telegramLink" [(ngModel)]="createUserRequest.telegramLink" name="telegramLink">
+          <div class="form-group">
+            <div class="input-wrapper">
+              <input type="url" id="telegramLink" [(ngModel)]="createUserRequest.telegramLink" name="telegramLink" class="form-input" placeholder=" " (ngModelChange)="validateTelegramLink(createUserRequest.telegramLink)">
+              <label for="telegramLink" class="form-label">Telegram</label>
+              <div *ngIf="!validateTelegramLink(createUserRequest.telegramLink) && createUserRequest.telegramLink" class="error">Invalid Telegram link</div>
+            </div>
           </div>
-          <div>
-            <label for="viberLink">Viber</label>
-            <input type="url" id="viberLink" [(ngModel)]="createUserRequest.viberLink" name="viberLink">
+          <div class="form-group">
+            <div class="input-wrapper">
+              <input type="url" id="viberLink" [(ngModel)]="createUserRequest.viberLink" name="viberLink" class="form-input" placeholder=" " (ngModelChange)="validateViberLink(createUserRequest.viberLink)">
+              <label for="viberLink" class="form-label">Viber</label>
+              <div *ngIf="!validateViberLink(createUserRequest.viberLink) && createUserRequest.viberLink" class="error">Invalid Viber link</div>
+            </div>
           </div>
         </div>
+
 
         <div class="checkbox-container">
           <label for="homeVisit" class="checkbox-label">Чи працюєте на виїзд?</label>
           <input type="checkbox" id="homeVisit" [(ngModel)]="createUserRequest.homeVisit" name="homeVisit" class="checkbox-input">
         </div>
         <div class="checkbox-container">
-          <label for="homeVisit" class="checkbox-label">Чи проводите ви онлайн консультацію?</label>
+          <label for="onlineCounseling" class="checkbox-label">Чи проводите ви онлайн консультацію?</label>
           <input type="checkbox" id="onlineCounseling" [(ngModel)]="createUserRequest.onlineCounseling" name="onlineCounseling" class="checkbox-input">
         </div>
         <div class="checkbox-container" *ngIf="createUserRequest.type === 'MASTER'">
-          <label for="homeVisit" class="checkbox-label">Приймаєте клієнтів у салоні?</label>
+          <label for="atSalon" class="checkbox-label">Приймаєте клієнтів у салоні?</label>
           <input type="checkbox" id="atSalon" [(ngModel)]="createUserRequest.atSalon" name="atSalon" class="checkbox-input">
         </div>
 
-        <div>
-          <label for="discountWithPromo">Знижка за промокодом HiPlace</label>
-          <input type="number" id="discountWithPromo" [(ngModel)]="createUserRequest.discountWithPromo" name="discountWithPromo" value="0">
+        <div class="form-group">
+          <div class="input-wrapper">
+            <input type="number" id="discountWithPromo" [(ngModel)]="createUserRequest.discountWithPromo" name="discountWithPromo" value="0" class="form-input" placeholder=" ">
+            <label for="discountWithPromo" class="form-label">Знижка за промокодом HiPlace</label>
+          </div>
         </div>
 
-        <div>
+        <div class="form-group">
           <div class="show-btn" *ngIf="!showAddress" (click)="showAddress = true">
             Додати адреси
           </div>
         </div>
 
-        <div *ngIf="showAddress" @fadeInOut>
+        <div class="form-group" *ngIf="showAddress" @fadeInOut>
           <app-address (selectedAddressEmit)="onAddressSelected($event)"></app-address>
         </div>
-        <p class="incorrectInputData" *ngIf="isAddressCorrect">Додайте адресу або оберіть 'Виїзд додому'</p>
+        <p class="incorrect-input-data" *ngIf="isAddressCorrect">Додайте адресу або оберіть 'Виїзд додому'</p>
 
-        <button type="submit">Створити профіль</button>
+        <button type="submit" class="submit-btn">Створити профіль</button>
       </form>
     </div>
-
   </section>
 </main>
 

@@ -12,6 +12,7 @@ public class User {
     private String name;
     @Column(unique = true, nullable = false)
     private String email;
+    private String password;
     private String logoURL;
     private Double experience;
     private String phone;

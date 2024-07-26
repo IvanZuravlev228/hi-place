@@ -5,13 +5,16 @@ import {User} from "../models/User";
 import {UserRequest} from "../models/UserRequest";
 import {Observable} from "rxjs";
 import {Sort} from "../components/sorting/Sort";
+import {CookieService} from "ngx-cookie-service";
+import {UserLogin} from "../components/login/UserLogin";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private cookie: CookieService) { }
 
   public getAllUsersByMainTypeOfServiceId(mainTypeOfServiceId: number, city: string, page: number): Observable<User[]> {
     const params = new HttpParams()
@@ -62,10 +65,21 @@ export class UserService {
 
   public createUser(user: UserRequest): Observable<User> {
     const userJSON = JSON.stringify(user);
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json")
+      .set("Authorization", "Bearer " + this.cookie.get("jwt-token"));
+
     return this.http.post<User>(`${environment.backendURL}/auth/register`, userJSON, {
+      headers: headers
+    })
+  }
+
+  public login(userLogin: UserLogin): Observable<any> {
+    const userLoginJSON = JSON.stringify(userLogin);
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json");
+
+    return this.http.post<any>(`${environment.backendURL}/auth/login`, userLoginJSON, {
       headers: headers
     })
   }

@@ -52,8 +52,8 @@ public class PriceController {
     }
 
     @GetMapping("/type/{typeId}/user/{userId}")
-    public ResponseEntity<List<PriceProfileResponseDto>> getAllTest(@PathVariable Long typeId,
-                                                                    @PathVariable Long userId) {
+    public ResponseEntity<List<PriceProfileResponseDto>> getAllServiceItemsWithoutPrice(@PathVariable Long typeId,
+                                                                                        @PathVariable Long userId) {
         return new ResponseEntity<>(priceService.getAllServiceItemsWithoutPrice(typeId, userId), HttpStatus.OK);
     }
 
